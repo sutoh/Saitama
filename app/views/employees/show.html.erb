@@ -1,0 +1,90 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Family name:</b>
+  <%= @employee.family_name %>
+</p>
+
+<p>
+  <b>Given name:</b>
+  <%= @employee.given_name %>
+</p>
+
+<p>
+  <b>Family name kana:</b>
+  <%= @employee.family_name_kana %>
+</p>
+
+<p>
+  <b>Given name kana:</b>
+  <%= @employee.given_name_kana %>
+</p>
+
+<p>
+  <b>Gender:</b>
+  <%= @employee.gender %>
+</p>
+
+<p>
+  <b>Birthday:</b>
+  <%= @employee.birthday %>
+</p>
+
+<p>
+  <b>Experience:</b>
+  <%= @employee.experience %>
+</p>
+
+<p>
+  <b>Entrance date:</b>
+  <%= @employee.entrance_date %>
+</p>
+
+<p>
+  <b>Postalcode:</b>
+  <%= @employee.postalcode %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @employee.address %>
+</p>
+
+<p>
+  <b>Station:</b>
+  <%= @employee.station %>
+</p>
+
+<p>
+  <b>Education:</b>
+  <%= @employee.education %>
+</p>
+
+<p>
+  <b>Self pr:</b>
+  <%= @employee.self_pr %>
+</p>
+
+<p>
+  <b>Tech flg:</b>
+  <%= @employee.tech_flg %>
+</p>
+
+<p>
+  <b>Staff flg:</b>
+  <%= @employee.staff_flg %>
+</p>
+
+<p>
+  <b>Del flg:</b>
+  <%= @employee.del_flg %>
+</p>
+
+<p>
+  <b>Department:</b>
+  <%= @employee.department_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_employee_path(@employee) %> |
+<%= link_to 'Back', employees_path %>

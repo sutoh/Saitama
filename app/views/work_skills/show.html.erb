@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Work detail:</b>
+  <%= @work_skill.work_detail_id %>
+</p>
+
+<p>
+  <b>Skill:</b>
+  <%= @work_skill.skill_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_work_work_detail_work_skill_path(params[:work_id], params[:work_detail_id], @work_skill) %> |
+<%= link_to 'Back', work_work_detail_work_skills_path(params[:work_id], params[:work_detail_id]) %>

@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  family_name: MyString
+  given_name: MyString
+  family_name_kana: MyString
+  given_name_kana: MyString
+  gender: 1
+  birthday: 2013-01-21
+  experience: 1
+  entrance_date: 2013-01-21
+  postalcode: MyString
+  address: MyString
+  station: MyString
+  education: MyString
+  self_pr: MyText
+  tech_flg: 1
+  staff_flg: 1
+  del_flg: 1
+  department_id: 1
+
+two:
+  family_name: MyString
+  given_name: MyString
+  family_name_kana: MyString
+  given_name_kana: MyString
+  gender: 1
+  birthday: 2013-01-21
+  experience: 1
+  entrance_date: 2013-01-21
+  postalcode: MyString
+  address: MyString
+  station: MyString
+  education: MyString
+  self_pr: MyText
+  tech_flg: 1
+  staff_flg: 1
+  del_flg: 1
+  department_id: 1

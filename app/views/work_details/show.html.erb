@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Work:</b>
+  <%= @work_detail.work_id %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @work_detail.title %>
+</p>
+
+<p>
+  <b>Subject:</b>
+  <%= @work_detail.subject %>
+</p>
+
+<p>
+  <b>Role:</b>
+  <%= @work_detail.role %>
+</p>
+
+<p>
+  <b>Work role:</b>
+  <%= @work_detail.work_role %>
+</p>
+
+<p>
+  <b>Work class:</b>
+  <%= @work_detail.work_class %>
+</p>
+
+<p>
+  <b>Job class:</b>
+  <%= @work_detail.job_class %>
+</p>
+
+<p>
+  <b>Personnel num:</b>
+  <%= @work_detail.personnel_num %>
+</p>
+
+<p>
+  <b>Period form:</b>
+  <%= @work_detail.period_form %>
+</p>
+
+<p>
+  <b>Period to:</b>
+  <%= @work_detail.period_to %>
+</p>
+
+
+<%= link_to 'Edit', edit_work_work_detail_path(params[:work_id], @work_detail) %> |
+<%= link_to 'Back', work_work_details_path(params[:work_id]) %>

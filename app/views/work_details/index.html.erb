@@ -1,0 +1,42 @@
+<h1>Listing work_details</h1>
+
+<table>
+  <tr>
+    <th>Work</th>
+    <th>Title</th>
+    <th>Subject</th>
+    <th>Role</th>
+    <th>Work role</th>
+    <th>Work class</th>
+    <th>Job class</th>
+    <th>Personnel num</th>
+    <th>Period form</th>
+    <th>Period to</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @work_details.each do |work_detail| %>
+  <tr>
+    <td><%= work_detail.work_id %></td>
+    <td><%= work_detail.title %></td>
+    <td><%= work_detail.subject %></td>
+    <td><%= work_detail.role %></td>
+    <td><%= work_detail.work_role %></td>
+    <td><%= work_detail.work_class %></td>
+    <td><%= work_detail.job_class %></td>
+    <td><%= work_detail.personnel_num %></td>
+    <td><%= work_detail.period_form %></td>
+    <td><%= work_detail.period_to %></td>
+    <td><%= link_to 'Show', work_work_detail_path(params[:work_id], work_detail) %></td>
+    <td><%= link_to 'Edit', edit_work_work_detail_path(params[:work_id], work_detail) %></td>
+    <td><%= link_to 'Destroy', work_work_detail_path(params[:work_id], work_detail), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Skill', work_work_detail_work_skills_path(params[:work_id], work_detail) %> </td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Work detail', new_work_work_detail_path %>

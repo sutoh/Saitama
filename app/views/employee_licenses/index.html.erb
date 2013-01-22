@@ -1,0 +1,27 @@
+<h1>Listing employee_licenses</h1>
+
+<table>
+  <tr>
+    <th>Employee</th>
+    <th>License</th>
+    <th>Acquisition date</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @employee_licenses.each do |employee_license| %>
+  <tr>
+    <td><%= employee_license.employee_id %></td>
+    <td><%= employee_license.license_id %></td>
+    <td><%= employee_license.acquisition_date %></td>
+    <td><%= link_to 'Show', employee_employee_license_path(params[:employee_id], employee_license) %></td>
+    <td><%= link_to 'Edit', edit_employee_employee_license_path(params[:employee_id], employee_license) %></td>
+    <td><%= link_to 'Destroy', employee_employee_license_path(params[:employee_id], employee_license), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Employee license', new_employee_employee_license_path %>

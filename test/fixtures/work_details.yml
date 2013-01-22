@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  work_id: 1
+  title: MyString
+  subject: MyText
+  role: MyText
+  work_role: MyText
+  work_class: 1
+  job_class: MyString
+  personnel_num: 1
+  period_form: 2013-01-21
+  period_to: 2013-01-21
+
+two:
+  work_id: 1
+  title: MyString
+  subject: MyText
+  role: MyText
+  work_role: MyText
+  work_class: 1
+  job_class: MyString
+  personnel_num: 1
+  period_form: 2013-01-21
+  period_to: 2013-01-21

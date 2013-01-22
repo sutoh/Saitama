@@ -1,0 +1,66 @@
+<h1>Listing employees</h1>
+
+<table>
+  <tr>
+    <!--
+    <th>Family name</th>
+    <th>Given name</th>
+    
+    <th>Family name kana</th>
+    <th>Given name kana</th>
+    <th>Gender</th>
+    <th>Birthday</th>
+    <th>Experience</th>
+    <th>Entrance date</th>
+    <th>Postalcode</th>
+    <th>Address</th>
+    <th>Station</th>
+    <th>Education</th>
+    <th>Self pr</th>
+    <th>Tech flg</th>
+    <th>Staff flg</th>
+    <th>Del flg</th>
+    <th>Department</th>
+-->
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @employees.each do |employee| %>
+  <tr>
+    <!--
+    <td><%= employee.family_name %></td>
+    <td><%= employee.given_name %></td>
+    
+    <td><%= employee.family_name_kana %></td>
+    <td><%= employee.given_name_kana %></td>
+    <td><%= employee.gender %></td>
+    <td><%= employee.birthday %></td>
+    <td><%= employee.experience %></td>
+    <td><%= employee.entrance_date %></td>
+    <td><%= employee.postalcode %></td>
+    <td><%= employee.address %></td>
+    <td><%= employee.station %></td>
+    <td><%= employee.education %></td>
+    <td><%= employee.self_pr %></td>
+    <td><%= employee.tech_flg %></td>
+    <td><%= employee.staff_flg %></td>
+    <td><%= employee.del_flg %></td>
+    <td><%= employee.department_id %></td>
+--><!--
+    <td><%= link_to 'Show', employee %></td>
+-->
+    <td><%= link_to employee.family_name + " " + employee.given_name, employee %></td>
+    <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
+    <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'License', employee_employee_licenses_path(employee) %> </td>
+    <td><%= link_to 'Skill', employee_employee_skills_path(employee) %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Employee', new_employee_path %>

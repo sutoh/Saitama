@@ -1,0 +1,57 @@
+<%= form_for([@work, @work_detail]) do |f| %>
+  <% if @work_detail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@work_detail.errors.count, "error") %> prohibited this work_detail from being saved:</h2>
+
+      <ul>
+      <% @work_detail.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :work_id %><br />
+    <%= f.number_field :work_id %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :subject %><br />
+    <%= f.text_area :subject %>
+  </div>
+  <div class="field">
+    <%= f.label :role %><br />
+    <%= f.text_area :role %>
+  </div>
+  <div class="field">
+    <%= f.label :work_role %><br />
+    <%= f.text_area :work_role %>
+  </div>
+  <div class="field">
+    <%= f.label :work_class %><br />
+    <%= f.number_field :work_class %>
+  </div>
+  <div class="field">
+    <%= f.label :job_class %><br />
+    <%= f.text_field :job_class %>
+  </div>
+  <div class="field">
+    <%= f.label :personnel_num %><br />
+    <%= f.number_field :personnel_num %>
+  </div>
+  <div class="field">
+    <%= f.label :period_form %><br />
+    <%= f.date_select :period_form %>
+  </div>
+  <div class="field">
+    <%= f.label :period_to %><br />
+    <%= f.date_select :period_to %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
