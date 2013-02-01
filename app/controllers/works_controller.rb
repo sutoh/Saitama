@@ -1,5 +1,4 @@
 class WorksController < ApplicationController
-  before_filter :authenticate_user!
   # GET /works
   # GET /works.json
   def index

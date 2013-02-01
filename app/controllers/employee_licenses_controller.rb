@@ -1,5 +1,4 @@
 class EmployeeLicensesController < ApplicationController
-  before_filter :authenticate_user!
   # GET /employee_licenses
   # GET /employee_licenses.json
   def index
