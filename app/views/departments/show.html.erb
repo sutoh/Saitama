@@ -1,10 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @department.name %>
-</p>
+<table class="table table-striped">
+	<tr>
+		<td>
+	  	<b>Name:</b>
+		</td>
+		<td>
+	  	<%= @department.name %>
+		</td>
+	</tr>
+</table>
 
-
-<%= link_to 'Edit', edit_department_path(@department) %> |
-<%= link_to 'Back', departments_path %>
+<div class="btn-group">
+	<%= link_to 'Edit', edit_department_path(@department), :class => "btn" %> |
+	<%= link_to 'Back', departments_path, :class => "btn" %>
+</div>

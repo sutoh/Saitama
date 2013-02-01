@@ -1,20 +1,35 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Employee:</b>
-  <%= @work.employee_id %>
-</p>
+<table class="table table-striped">
+<tr>
+	<td>
+	  <b>Employee:</b>
+	</td>
+	<td>
+  	<%= @work.employee_id %>
+  </td>
+</tr>
 
-<p>
-  <b>Sales staff:</b>
-  <%= @work.sales_staff_id %>
-</p>
+<tr>
+	<td>
+	  <b>Sales staff:</b>
+	</td>
+	<td>
+  	<%= @work.sales_staff_id %>
+  </td>
+</tr>
 
-<p>
-  <b>Customer:</b>
-  <%= @work.customer_id %>
-</p>
+<tr>
+	<td>
+	  <b>Customer:</b>
+	</td>
+	<td>
+  	<%= @work.customer_id %>
+  </td>
+</tr>
+</table>
 
-
-<%= link_to 'Edit', edit_work_path(@work) %> |
-<%= link_to 'Back', works_path %>
+<div class="btn-group">
+<%= link_to 'Edit', edit_work_path(@work), :class => "btn" %>
+<%= link_to 'Back', works_path, :class => "btn" %>
+</div>

@@ -2,5 +2,7 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @employee %> |
-<%= link_to 'Back', employees_path %>
+<div class="btn-group">
+	<%= link_to 'Show', @employee, :class => "btn" %> |
+	<%= link_to 'Back', employees_path, :class => "btn" %>
+</div>

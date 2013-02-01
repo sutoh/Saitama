@@ -2,5 +2,7 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', employee_employee_skill_path(params[:employee_id], @employee_skill) %> |
-<%= link_to 'Back', employee_employee_skills_path(params[:employee_id]) %>
+<div class="btn-group">
+	<%= link_to 'Show', employee_employee_skill_path(params[:employee_id], @employee_skill), :class => "btn" %> 
+	<%= link_to 'Back', employee_employee_skills_path(params[:employee_id]), :class => "btn" %>
+</div>

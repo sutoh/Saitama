@@ -1,55 +1,98 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Work:</b>
-  <%= @work_detail.work_id %>
-</p>
+<table class="table table-striped">
+<tr>
+  <td>
+    <b>Work:</b>
+  </td>
+  <td>
+    <%= @work_detail.work_id %>
+  </td>
+</tr>
 
-<p>
-  <b>Title:</b>
-  <%= @work_detail.title %>
-</p>
+<tr>
+  <td>
+    <b>Title:</b>
+  </td>
+  <td>
+    <%= @work_detail.title %>
+  </td>
+</tr>
 
-<p>
-  <b>Subject:</b>
-  <%= @work_detail.subject %>
-</p>
+<tr>
+  <td>
+    <b>Subject:</b>
+  </td>
+  <td>
+    <%= @work_detail.subject %>
+  </td>
+</tr>
 
-<p>
-  <b>Role:</b>
-  <%= @work_detail.role %>
-</p>
+<tr>
+  <td>
+    <b>Role:</b>
+  </td>
+  <td>
+    <%= @work_detail.role %>
+  </td>
+</tr>
 
-<p>
-  <b>Work role:</b>
-  <%= @work_detail.work_role %>
-</p>
+<tr>
+  <td>
+    <b>Work role:</b>
+  </td>
+  <td>
+    <%= @work_detail.work_role %>
+  </td>
+</tr>
 
-<p>
-  <b>Work class:</b>
-  <%= @work_detail.work_class %>
-</p>
+<tr>
+  <td>
+    <b>Work class:</b>
+  </td>
+  <td>
+    <%= @work_detail.work_class %>
+  </td>
+</tr>
 
-<p>
-  <b>Job class:</b>
-  <%= @work_detail.job_class %>
-</p>
+<tr>
+  <td>
+    <b>Job class:</b>
+  </td>
+  <td>
+    <%= @work_detail.job_class %>
+  </td>
+</tr>
 
-<p>
-  <b>Personnel num:</b>
-  <%= @work_detail.personnel_num %>
-</p>
+<tr>
+  <td>
+    <b>Personnel num:</b>
+  </td>
+  <td>
+    <%= @work_detail.personnel_num %>
+  </td>
+</tr>
 
-<p>
-  <b>Period form:</b>
-  <%= @work_detail.period_form %>
-</p>
+<tr>
+  <td>
+    <b>Period form:</b>
+  </td>
+  <td>
+    <%= @work_detail.period_form %>
+  </td>
+</tr>
 
-<p>
-  <b>Period to:</b>
-  <%= @work_detail.period_to %>
-</p>
+<tr>
+  <td>
+    <b>Period to:</b>
+  </td>
+  <td>
+    <%= @work_detail.period_to %>
+  </td>
+</tr>
+</table>
 
-
-<%= link_to 'Edit', edit_work_work_detail_path(params[:work_id], @work_detail) %> |
-<%= link_to 'Back', work_work_details_path(params[:work_id]) %>
+<div class="btn-group">
+<%= link_to 'Edit', edit_work_work_detail_path(params[:work_id], @work_detail), :class => "btn" %>
+<%= link_to 'Back', work_work_details_path(params[:work_id]), :class => "btn" %>
+</div>

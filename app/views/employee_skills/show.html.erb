@@ -1,20 +1,35 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Employee:</b>
-  <%= @employee_skill.employee_id %>
-</p>
+<table class="table table-striped">
+	<tr>
+		<td>
+  		<b>Employee:</b>
+	  </td>
+  	<td>
+  		<%= @employee_skill.employee_id %>
+	  </td>
+	</tr>
 
-<p>
-  <b>Skill:</b>
-  <%= @employee_skill.skill_id %>
-</p>
+	<tr>
+		<td>
+  		<b>Skill:</b>
+	  </td>
+  	<td>
+  		<%= @employee_skill.skill_id %>
+	  </td>
+	</tr>
 
-<p>
-  <b>Level:</b>
-  <%= @employee_skill.level %>
-</p>
+	<tr>
+		<td>
+  		<b>Level:</b>
+	  </td>
+  	<td>
+  		<%= @employee_skill.level %>
+	  </td>
+	</tr>
+</table>
 
-
-<%= link_to 'Edit', edit_employee_employee_skill_path(params[:employee_id], @employee_skill) %> |
-<%= link_to 'Back', employee_employee_skills_path(params[:employee_id]) %>
+<div class="btn-group">
+<%= link_to 'Edit', edit_employee_employee_skill_path(params[:employee_id], @employee_skill), :class => "btn" %>
+<%= link_to 'Back', employee_employee_skills_path(params[:employee_id]), :class => "btn" %>
+</div>

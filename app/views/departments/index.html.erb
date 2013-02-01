@@ -11,13 +11,16 @@
 <% @departments.each do |department| %>
   <tr>
     <td><%= department.name %></td>
-    <td><%= link_to 'Show', department %></td>
-    <td><%= link_to 'Edit', edit_department_path(department) %></td>
-    <td><%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td>
+      <div class="btn-group">
+        <%= link_to 'Show', department, :class => "btn" %>
+        <%= link_to 'Edit', edit_department_path(department), :class => "btn" %>
+        <%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-warning" %>
+    </td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Department', new_department_path %>
+<%= link_to 'New Department', new_department_path, :class => "btn btn-primary" %>

@@ -1,13 +1,10 @@
 <h1>Listing works</h1>
 
-<table>
+<table class="table table-hover">
   <tr>
     <th>Employee</th>
     <th>Sales staff</th>
     <th>Customer</th>
-    <th></th>
-    <th></th>
-    <th></th>
     <th></th>
   </tr>
 
@@ -16,14 +13,17 @@
     <td><%= work.employee_id %></td>
     <td><%= work.sales_staff_id %></td>
     <td><%= work.customer_id %></td>
-    <td><%= link_to 'Show', work %></td>
-    <td><%= link_to 'Edit', edit_work_path(work) %></td>
-    <td><%= link_to 'Destroy', work, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <td><%= link_to 'details', work_work_details_path(work) %></td>
+    <td>
+      <div class="btn-group">
+      <%= link_to 'Show', work, :class => "btn" %>
+      <%= link_to 'Edit', edit_work_path(work), :class => "btn" %>
+      <%= link_to 'details', work_work_details_path(work), :class => "btn" %>
+      <%= link_to 'Destroy', work, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-warning" %>
+    </td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Work', new_work_path %>
+<%= link_to 'New Work', new_work_path, :class => "btn btn-primary" %>

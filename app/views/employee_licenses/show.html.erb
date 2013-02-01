@@ -1,20 +1,35 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Employee:</b>
-  <%= @employee_license.employee_id %>
-</p>
+<table class="table table-striped">
+	<tr>
+		<td>
+	  	<b>Employee:</b>
+	  </td>
+	  <td>
+  		<%= @employee_license.employee_id %>
+  	</td>
+  </tr>
 
-<p>
-  <b>License:</b>
-  <%= @employee_license.license_id %>
-</p>
+	<tr>
+		<td>
+  		<b>License:</b>
+		</td>
+		<td>
+  		<%= @employee_license.license_id %>
+		</td>
+	</tr>
 
-<p>
-  <b>Acquisition date:</b>
-  <%= @employee_license.acquisition_date %>
-</p>
+	<tr>
+		<td>
+  		<b>Acquisition date:</b>
+		</td>
+		<td>
+  		<%= @employee_license.acquisition_date %>
+		</td>
+	</tr>
+</table>
 
-
-<%= link_to 'Edit', edit_employee_employee_license_path(@employee,@employee_license) %> |
-<%= link_to 'Back', employee_employee_licenses_path %>
+<div class="btn-group">
+	<%= link_to 'Edit', edit_employee_employee_license_path(@employee,@employee_license), :class => "btn" %> |
+	<%= link_to 'Back', employee_employee_licenses_path, :class => "btn" %>
+</div>

@@ -1,85 +1,109 @@
 <h1>Profile#index</h1>
 <p>Find me in app/views/profile/index.html.erb</p>
 
-<% if user_signed_in? %>
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-<% else %>
-<%= link_to "ログイン", new_user_session_path %>
-<% end %>
-
-<table>
-	<tr>
-		<th><b>Family name:</b></th>
-		<th><b>Given name:</b></th>
-		<th><b>Family name kana:</b></th>
-		<th><b>Given name kana:</b></th>
-		<th><b>Gender:</b></th>
-		<th><b>Birthday:</b></th>
-  	<th><b>Experience:</b></th>
-	  <th><b>Entrance date:</b></th>
-	  <th><b>Postalcode:</b></th>
-  	<th><b>Address:</b></th>
-	  <th><b>Station:</b></th>
-	  <th><b>Education:</b></th>
-	  <th><b>Self pr:</b></th>
-	  <th><b>Tech flg:</b></th>
-	  <th><b>Staff flg:</b></th>
-		<th><b>Del flg:</b></th>
-  	<th><b>Department:</b></th>
-
-  </tr>
-  <tr>
-	  <td><%= @employee.family_name %></td>
-		<td><%= @employee.given_name %></td>
-		<td><%= @employee.family_name_kana %></td>
-		<td><%= @employee.given_name_kana %></td>
-		<td><%= @employee.gender %></td>
-		<td><%= @employee.birthday %></td>
-		<td><%= @employee.experience %></td>
-		<td><%= @employee.entrance_date %></td>
-		<td><%= @employee.postalcode %></td>
-		<td><%= @employee.address %></td>
-		<td><%= @employee.station %></td>
-		<td><%= @employee.education %></td>
-		<td><%= @employee.self_pr %></td>
-		<td><%= @employee.tech_flg %></td>
-		<td><%= @employee.staff_flg %></td>
-		<td><%= @employee.del_flg %></td>
-		<td><%= @employee.department_id %></td>
-</tr>
-</table>
 
 
-<table>
-  <tr>
-    <th>Employee</th>
-    <th>License</th>
-    <th>Acquisition date</th>
-  </tr>
+<div class="span5">
+	<table class="table table-striped">
+		<tr>
+			<td><b>name:</b></td>
+			<td><%= @employee.family_name + " " + @employee.given_name%></td>
+		</tr>
+		<tr>
+			<td><b>kana:</b></td>
+			<td><%= @employee.family_name_kana + " " + @employee.given_name_kana %></td>
+		</tr>
+		<tr>
+			<td><b>Gender:</b></td>
+			<td><%= @employee.gender %></td>
+		</tr>
+		<tr>
+			<td><b>Birthday:</b></td>
+			<td><%= @employee.birthday %></td>
+		</tr>
+		<tr>
+  		<td><b>Experience:</b></td>
+ 			<td><%= @employee.experience %></td>
+		</tr>
+		<tr>
+	  	<td><b>Entrance date:</b></td>
+			<td><%= @employee.entrance_date %></td>
+		</tr>
+		<tr>
+		  <td><b>Postalcode:</b></td>
+			<td><%= @employee.postalcode %></td>
+		</tr>
+		<tr>
+  		<td><b>Address:</b></td>
+	  	<td><%= @employee.address %></td>
+		</tr>
+		<tr>
+		  <td><b>Station:</b></td>
+	  	<td><%= @employee.station %></td>
+		</tr>
+		<tr>
+	  	<td><b>Education:</b></td>
+		  <td><%= @employee.education %></td>
+		</tr>
+		<tr>
+		  <td><b>Self pr:</b></td>
+	  	<td><%= @employee.self_pr %></td>
+		</tr>
+		<tr>
+	  	<td><b>Tech flg:</b></td>
+		  <td><%= @employee.tech_flg %></td>
+		</tr>
+		<tr>
+		  <td><b>Staff flg:</b></td>
+	  	<td><%= @employee.staff_flg %></td>
+		</tr>
+		<tr>
+			<td><b>Del flg:</b></td>
+			<td><%= @employee.del_flg %></td>
+		</tr>
+		<tr>
+  		<td><b>Department:</b></td>
+	  	<td><%= @employee.department_id %></td>
+  	</tr>
+	</table>
+	<%= link_to "Edit", edit_employee_path(@employee), :class => "btn" %>
+</div>
 
-<% @employee_licenses.each do |employee_license| %>
-  <tr>
-    <td><%= employee_license.employee_id %></td>
-    <td><%= employee_license.license_id %></td>
-    <td><%= employee_license.acquisition_date %></td>
-  </tr>
-<% end %>
-</table>
+<div class="span7">
+	<b>Licenses</b>
+	<table class="table table-striped table-hover">
+	  <tr>
+  	  <td>License</td>
+    	<td>Acquisition date</td>
+	  </tr>
 
+		<% @licenses.licenses.each do |license| %>
+		  <% employee_license = license.employee_licenses.find(:first) %>
+  		<tr>
+    		<td>
+    			<%= link_to(license.name, edit_employee_employee_license_path(@employee, employee_license))
+    			%>
+    		</td>
+		    <td><%= link_to employee_license.acquisition_date, edit_employee_employee_license_path(@employee, employee_license) %>
+		    </td>
+		  </tr>
+		<% end %>
+	</table>
 
-<table>
-  <tr>
-    <th>Employee</th>
-    <th>Skill</th>
-    <th>Level</th>
-  </tr>
+	<b>Skills</b>
+	<table class="table table-striped table-hover">
+  	<tr>
+    	<td>Skill</td>
+	    <td>Level</td>
+  	</tr>
 
-<% @employee_skills.each do |employee_skill| %>
-  <tr>
-    <td><%= employee_skill.employee_id %></td>
-    <td><%= employee_skill.skill_id %></td>
-    <td><%= employee_skill.level %></td>
-  </tr>
-<% end %>
-</table>
+		<% @skills.skills.each do |skill| %>
+			<% employee_skill = skill.employee_skills.find(:first) %>
+	  	<tr>
+  	  	<td><%= link_to skill.name, edit_employee_employee_skill_path(@employee, employee_skill) %></td>
+    		<td><%= link_to employee_skill.level, edit_employee_employee_skill_path(@employee, employee_skill) %></td>
+	  	</tr>
+		<% end %>
+	</table>
+</div>
 

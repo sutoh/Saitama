@@ -1,12 +1,10 @@
 <h1>Listing skills</h1>
 
-<table>
+<table class="table table-hover">
   <tr>
     <th>Name</th>
     <th>Category</th>
     <th>Note</th>
-    <th></th>
-    <th></th>
     <th></th>
   </tr>
 
@@ -15,13 +13,17 @@
     <td><%= skill.name %></td>
     <td><%= skill.category %></td>
     <td><%= skill.note %></td>
-    <td><%= link_to 'Show', skill %></td>
-    <td><%= link_to 'Edit', edit_skill_path(skill) %></td>
-    <td><%= link_to 'Destroy', skill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td>
+      <div class="btn-group">
+        <%= link_to 'Show', skill, :class => "btn" %>
+        <%= link_to 'Edit', edit_skill_path(skill), :class => "btn" %>
+        <%= link_to 'Destroy', skill, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-warning" %>
+      </div>
+    </td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Skill', new_skill_path %>
+<%= link_to 'New Skill', new_skill_path, :class => "btn" %>

@@ -1,6 +1,6 @@
 <h1>Listing employees</h1>
 
-<table>
+<table class="table table-hover">
   <tr>
     <!--
     <th>Family name</th>
@@ -23,8 +23,6 @@
     <th>Department</th>
 -->
     <th>Name</th>
-    <th></th>
-    <th></th>
     <th></th>
   </tr>
 
@@ -49,18 +47,22 @@
     <td><%= employee.staff_flg %></td>
     <td><%= employee.del_flg %></td>
     <td><%= employee.department_id %></td>
---><!--
-    <td><%= link_to 'Show', employee %></td>
 -->
+    
     <td><%= link_to employee.family_name + " " + employee.given_name, employee %></td>
-    <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
-    <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <td><%= link_to 'License', employee_employee_licenses_path(employee) %> </td>
-    <td><%= link_to 'Skill', employee_employee_skills_path(employee) %></td>
+    <td>
+        <div class="btn-group">
+            <%= link_to 'Show', employee, :class => "btn" %>
+            <%= link_to 'Edit', edit_employee_path(employee) , :class => "btn"%>
+            <%= link_to 'License', employee_employee_licenses_path(employee), :class => "btn" %>
+            <%= link_to 'Skill', employee_employee_skills_path(employee), :class => "btn" %>
+            <%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-warning" %>
+        </div>
+    </td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Employee', new_employee_path %>
+<%= link_to 'New Employee', new_employee_path, :class => "btn btn-success" %>

@@ -1,90 +1,161 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Family name:</b>
-  <%= @employee.family_name %>
-</p>
+<table class="table table-striped">
+  <tr>
+    <td>
+     <b>Family name:</b>
+    </td>
+    <td>
+      <%= @employee.family_name %>
+    </td>
+  </tr>
 
-<p>
-  <b>Given name:</b>
-  <%= @employee.given_name %>
-</p>
+  <tr>
+    <td>
+      <b>Given name:</b>
+    </td>
+    <td>
+      <%= @employee.given_name %>
+    </td>
+  </tr>
 
-<p>
-  <b>Family name kana:</b>
-  <%= @employee.family_name_kana %>
-</p>
+  <tr>
+    <td>
+      <b>Family name kana:</b>
+    </td>
+    <td>
+      <%= @employee.family_name_kana %>
+    </td>
+  </tr>
 
-<p>
-  <b>Given name kana:</b>
-  <%= @employee.given_name_kana %>
-</p>
+  <tr>
+    <td>
+      <b>Given name kana:</b>
+    </td>
+    <td>
+      <%= @employee.given_name_kana %>
+    </td>
+  </tr>
 
-<p>
-  <b>Gender:</b>
-  <%= @employee.gender %>
-</p>
+  <tr>
+    <td>
+      <b>Gender:</b>
+    </td>
+    <td>
+      <%= @employee.gender %>
+    </td>
+  </tr>
 
-<p>
-  <b>Birthday:</b>
-  <%= @employee.birthday %>
-</p>
+  <tr>
+    <td>
+      <b>Birthday:</b>
+    </td>
+    <td>
+      <%= @employee.birthday %>
+    </td>
+  </tr>
 
-<p>
-  <b>Experience:</b>
-  <%= @employee.experience %>
-</p>
+  <tr>
+    <td>
+      <b>Experience:</b>
+    </td>
+    <td>
+      <%= @employee.experience %>
+    </td>
+  </tr>
 
-<p>
-  <b>Entrance date:</b>
-  <%= @employee.entrance_date %>
-</p>
+  <tr>
+    <td>
+      <b>Entrance date:</b>
+    </td>
+    <td>
+      <%= @employee.entrance_date %>
+    </td>
+  </tr>
 
-<p>
-  <b>Postalcode:</b>
-  <%= @employee.postalcode %>
-</p>
+  <tr>
+    <td>
+      <b>Postalcode:</b>
+    </td>
+    <td>
+      <%= @employee.postalcode %>
+    </td>
+  </tr>
 
-<p>
-  <b>Address:</b>
-  <%= @employee.address %>
-</p>
+  <tr>
+    <td>
+      <b>Address:</b>
+    </td>
+    <td>
+      <%= @employee.address %>
+    </td>
+  </tr>
 
-<p>
-  <b>Station:</b>
-  <%= @employee.station %>
-</p>
+  <tr>
+    <td>
+      <b>Station:</b>
+    </td>
+    <td>
+      <%= @employee.station %>
+    </td>
+  </tr>
 
-<p>
-  <b>Education:</b>
-  <%= @employee.education %>
-</p>
+  <tr>
+    <td>
+      <b>Education:</b>
+    </td>
+    <td>
+      <%= @employee.education %>
+    </td>
+  </tr>
 
-<p>
-  <b>Self pr:</b>
-  <%= @employee.self_pr %>
-</p>
+  <tr>
+    <td>
+      <b>Self pr:</b>
+    </td>
+    <td>
+      <%= @employee.self_pr %>
+    </td>
+  </tr>
 
-<p>
-  <b>Tech flg:</b>
-  <%= @employee.tech_flg %>
-</p>
+  <tr>
+    <td>
+      <b>Tech flg:</b>
+    </td>
+    <td>
+      <%= @employee.tech_flg %>
+    </td>
+  </tr>
 
-<p>
-  <b>Staff flg:</b>
-  <%= @employee.staff_flg %>
-</p>
+  <tr>
+    <td>
+      <b>Staff flg:</b>
+    </td>
+    <td>
+      <%= @employee.staff_flg %>
+    </td>
+  </tr>
 
-<p>
-  <b>Del flg:</b>
-  <%= @employee.del_flg %>
-</p>
+  <tr>
+    <td>
+      <b>Del flg:</b>
+    </td>
+    <td>
+      <%= @employee.del_flg %>
+    </td>
+  </tr>
 
-<p>
-  <b>Department:</b>
-  <%= @employee.department_id %>
-</p>
+  <tr>
+    <td>
+      <b>Department:</b>
+    </td>
+    <td>
+      <%= @employee.department_id %>
+    </td>
+  </tr>
+</table>
 
-
-<%= link_to 'Edit', edit_employee_path(@employee) %> |
-<%= link_to 'Back', employees_path %>
+<div class="btn-group">
+  <%= link_to 'Edit', edit_employee_path(@employee), :class => "btn" %> |
+  <%= link_to 'Back', employees_path, :class => "btn" %>
+</div>

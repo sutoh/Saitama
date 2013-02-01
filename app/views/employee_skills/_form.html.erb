@@ -1,5 +1,5 @@
 
-<%= form_for([@employee, @employee_skill]) do |f| %>
+<%= form_for([@employee, @employee_skill], :html =>{:class => "form-horizontal"}) do |f| %>
   <% if @employee_skill.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@employee_skill.errors.count, "error") %> prohibited this employee_skill from being saved:</h2>
@@ -12,19 +12,27 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :employee_id %><br />
-    <%= f.number_field :employee_id %>
+  <div class="field control-group">
+    <%= f.label :employee_id, :class => "control-label" %>
+    <div class="controls">
+      <%= f.number_field :employee_id %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :skill_id %><br />
-    <%= f.number_field :skill_id %>
+  <div class="field control-group">
+    <%= f.label :skill_id, :class => "control-label" %>
+    <div class="controls">
+      <%= f.number_field :skill_id %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :level %><br />
-    <%= f.number_field :level %>
+  <div class="field control-group">
+    <%= f.label :level, :class => "control-label" %>
+    <div class="controls">
+      <%= f.number_field :level %>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions control-group">
+    <div class="controls">
+      <%= f.submit :class => "btn btn-primary" %>
+    </div>
   </div>
 <% end %>

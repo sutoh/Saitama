@@ -1,5 +1,5 @@
-<%= form_for(@employee) do |i| %>
-<%= form_for(@employee_license ) do |f| %>
+
+<%= form_for([@employee, @employee_license], :html =>{:class => "form-horizontal"}) do |f| %>
   <% if @employee_license.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@employee_license.errors.count, "error") %> prohibited this employee_license from being saved:</h2>
@@ -12,20 +12,28 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :employee_id %><br />
-    <%= f.number_field :employee_id %>
-  </div>
-  <div class="field">
-    <%= f.label :license_id %><br />
-    <%= f.number_field :license_id %>
-  </div>
-  <div class="field">
-    <%= f.label :acquisition_date %><br />
-    <%= f.date_select :acquisition_date %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+  <div class="container">
+    <div class="control-group">
+      <%= f.label :employee_id, :class => "control-label" %>
+      <div class="controls">
+        <%= f.number_field :employee_id %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :license_id, :class => "control-label" %>
+      <div class="controls">
+        <%= f.number_field :license_id %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :acquisition_date, :class => "control-label" %>
+      <div class="controls">
+        <%= f.date_select :acquisition_date %>
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="actions controls">
+        <%= f.submit :class => "btn btn-primary" %>
+      </div>
+    </div>
 <% end %>
