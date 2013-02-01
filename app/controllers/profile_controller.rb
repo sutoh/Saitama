@@ -1,4 +1,5 @@
 class ProfileController < ApplicationController
+	before_filter :authenticate_user!
   def index
   	@employee = Employee.find(current_user.employee_id)
   	#@employee_licenses = @employee.employee_licenses.all

@@ -1,4 +1,5 @@
 class WorkDetailsController < ApplicationController
+  before_filter :authenticate_user!
   # GET /work_details
   # GET /work_details.json
   def index
