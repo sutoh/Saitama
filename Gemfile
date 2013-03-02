@@ -23,6 +23,7 @@ end
 gem 'jquery-rails'
 
 gem 'devise'
+gem 'thin'
 
 group :development, :test do
   gem "rspec-rails", "~> 2.13.0"
