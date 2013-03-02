@@ -24,6 +24,20 @@ gem 'jquery-rails'
 
 gem 'devise'
 
+group :development, :test do
+  gem "rspec-rails", "~> 2.13.0"
+  gem "factory_girl_rails", "~> 4.2.1" 
+  gem "quiet_assets", "~> 1.0.2" 
+end
+
+group :test do
+ gem "email_spec", "~> 1.4.0"
+ gem "cucumber-rails", "~> 1.3.0", :require => false
+ gem "capybara", "~> 2.0.2"
+ gem "database_cleaner", "~> 0.9.1"
+end 
+
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
