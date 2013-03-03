@@ -7,59 +7,57 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<div class="navbar">
-		<div class="navbar-inner">
-			<div class="container">
-				<div class="brand">Saitama</div>
-				<ul class="nav">
-					<li class="divider-vertical"></li>
-					<li>
-						<%= link_to 'Employee', employees_path %>
-					</li>
-					<li class="divider-vertical"></li>
-					<li>
-						<%= link_to 'Work', works_path %>
-					</li>
-					<li class="divider-vertical"></li>
-					<li>
-						<%= link_to 'Customer', customers_path %>
-					</li>
-					<li class="divider-vertical"></li>
-					<li>
-						<%= link_to 'Skill', skills_path %>
-					</li>
-					<li class="divider-vertical"></li>
-					<li>
-						<%= link_to 'License', licenses_path %>
-					</li>
-					<li class="divider-vertical"></li>
-					<li>
-						<%= link_to 'department', departments_path %>
-					</li>
-					<li class="divider-vertical"></li>
-					<li>
-						<%= link_to 'profile', profile_index_path %>
-					</li>
-					<li class="divider-vertical"></li>
-				</ul>
-				<ul class="nav pull-right">
-					<li>
-						<% if user_signed_in? %>
-							<%= link_to "ログアウト", destroy_user_session_path, method: :delete, :class => "btn" %>
-						<% else %>
-							<%= link_to "ログイン", new_user_session_path, :class => "btn" %>	
-						<% end %>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="container">
+        <div class="brand">Saitama</div>
+        <% if user_signed_in? %>
+        <ul class="nav">
+          <li class="divider-vertical"></li>
+          <li>
+            <%= link_to 'Employee', employees_path %>
+          </li>
+          <li class="divider-vertical"></li>
+          <li>
+            <%= link_to 'Work', works_path %>
+          </li>
+          <li class="divider-vertical"></li>
+          <li>
+            <%= link_to 'Customer', customers_path %>
+          </li>
+          <li class="divider-vertical"></li>
+          <li>
+            <%= link_to 'Skill', skills_path %>
+          </li>
+          <li class="divider-vertical"></li>
+          <li>
+            <%= link_to 'License', licenses_path %>
+          </li>
+          <li class="divider-vertical"></li>
+          <li>
+            <%= link_to 'department', departments_path %>
+          </li>
+          <li class="divider-vertical"></li>
+          <li>
+            <%= link_to 'profile', profile_index_path %>
+          </li>
+          <li class="divider-vertical"></li>
+        </ul>
+        <ul class="nav pull-right">
+          <li>
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, :class => "btn" %>
+          </li>
+        </ul>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
-	<div class="container">
-		<div class="row">
-				<%= yield %>
-			</div>
-		</div>
-	</div>
+  <div class="container">
+    <div class="row">
+      <%= yield %>
+    </div>
+  </div>
+</div>
 </body>
 </html>
