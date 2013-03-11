@@ -12,11 +12,13 @@ class User < ActiveRecord::Base
   before_create :create_employee
 
   def create_employee
-    employee = Employee.new 
-    employee.family_name = "default"
-    employee.given_name = "default"
-    employee.family_name_kana = "default"
-    employee.given_name_kana = "default"
+    employee = Employee.create(
+      family_name: "default",
+      given_name: "default",
+      family_name_kana: "default",
+      given_name_kana: "default"
+      )
+    
     self.employee = employee
   end
 
