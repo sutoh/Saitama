@@ -1,9 +1,13 @@
 Saitama::Application.routes.draw do
-  devise_for :users
-
+  devise_for :users do
+    get "/", :to => "devise/sessions#new"
+  end
+  
   get "profile/index"
 
   resources :customers
+  
+  
 
 
   resources :works do
@@ -78,7 +82,7 @@ Saitama::Application.routes.draw do
   # just remember to delete public/index.html.
   #root :to => 'Employees#index'
   #match "profile/index", :as => :user_root # ログイン後の遷移パス
-  root :to => "profile#index"
+  root to: "devise/sessions#new"
 
   # See how all your routes lay out with "rake routes"
 
