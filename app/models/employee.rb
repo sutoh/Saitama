@@ -6,5 +6,5 @@ class Employee < ActiveRecord::Base
   has_many :skills, :through => :employee_skills, :uniq => true
   belongs_to :department
   has_many :works
-  has_one :user
+  belongs_to :user
 end
