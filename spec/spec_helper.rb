@@ -34,8 +34,8 @@ RSpec.configure do |config|
   # order dependency and want to debug it, you can fix the order by providing
   # the seed, which is printed after each run.
   #     --seed 1234
-  config.order = "random"
   
+  config.order = "random"
   # Database Cleaner for RSpec
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation
@@ -46,5 +46,4 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
-  
 end
