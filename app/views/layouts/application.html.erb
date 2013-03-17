@@ -21,10 +21,12 @@
           
           <% if user_signed_in? %>
           <ul class="nav">
-            <li><%= link_to root_path do %>
-              <i class="icon-home"></i> Home
+            <li>
+              <%= link_to profile_index_path do %>
+              <i class="icon-user"></i> Profile
               <% end %>
             </li>
+            
               
             <li class="divider-vertical"></li>
             <li>
@@ -65,13 +67,6 @@
             <li>
               <%= link_to departments_path do %>
               <i class="icon-tag"></i> Department
-              <% end %>
-            </li>
-              
-            <li class="divider-vertical"></li>
-            <li>
-              <%= link_to profile_index_path do %>
-              <i class="icon-user"></i> Profile
               <% end %>
             </li>
               
