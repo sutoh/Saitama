@@ -28,6 +28,7 @@ class EmployeeLicensesController < ApplicationController
   def new
     @employee = Employee.find(params[:employee_id])
     @employee_license = EmployeeLicense.new
+    @licenses = License.find(:all, :select => "Licenses.name, Licenses.id")
 
     respond_to do |format|
       format.html # new.html.erb
@@ -39,6 +40,7 @@ class EmployeeLicensesController < ApplicationController
   def edit
     @employee = Employee.find(params[:employee_id])
     @employee_license = EmployeeLicense.find(params[:id])
+    @licenses = License.find(:all, :select => "Licenses.name, Licenses.id")
   end
 
   # POST /employee_licenses
@@ -46,6 +48,7 @@ class EmployeeLicensesController < ApplicationController
   def create
     @employee = Employee.find(params[:employee_id])
     @employee_license = EmployeeLicense.new(params[:employee_license])
+    @employee_license.employee = @employee
 
     respond_to do |format|
       if @employee_license.save

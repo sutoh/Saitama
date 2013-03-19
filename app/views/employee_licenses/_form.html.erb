@@ -14,15 +14,9 @@
 
   <div class="container">
     <div class="control-group">
-      <%= f.label :employee_id, :class => "control-label" %>
-      <div class="controls">
-        <%= f.number_field :employee_id %>
-      </div>
-    </div>
-    <div class="control-group">
       <%= f.label :license_id, :class => "control-label" %>
       <div class="controls">
-        <%= f.number_field :license_id %>
+        <%= f.select :license_id, @licenses.map{|l|[l.name, l.id]} %>
       </div>
     </div>
     <div class="control-group">
