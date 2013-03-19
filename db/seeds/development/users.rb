@@ -5,7 +5,7 @@ regist_data_user = {
   password: 'rubeus', 
   password_confirmation: 'rubeus', 
   login_id: 'admin',
-  role: 1,
+  role_id: 1,
 }
 
 User.create(regist_data_user, without_protection: true)
