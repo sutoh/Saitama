@@ -49,6 +49,7 @@ class EmployeeLicensesController < ApplicationController
     @employee = Employee.find(params[:employee_id])
     @employee_license = EmployeeLicense.new(params[:employee_license])
     @employee_license.employee = @employee
+    @licenses = License.find(:all, :select => "Licenses.name, Licenses.id")
 
     respond_to do |format|
       if @employee_license.save
@@ -66,6 +67,7 @@ class EmployeeLicensesController < ApplicationController
   def update
     @employee = Employee.find(params[:employee_id])
     @employee_license = EmployeeLicense.find(params[:id])
+    @licenses = License.find(:all, :select => "Licenses.name, Licenses.id")
 
     respond_to do |format|
       if @employee_license.update_attributes(params[:employee_license])
