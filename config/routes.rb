@@ -7,9 +7,6 @@ Saitama::Application.routes.draw do
 
   resources :customers
   
-  
-
-
   resources :works do
     resources :work_details do
       resources :work_skills
@@ -17,19 +14,36 @@ Saitama::Application.routes.draw do
   end
 
   resources :skills
-
-
   resources :licenses
-
-
   resources :departments
-
 
   resources :employees do
     resources :employee_skills
     resources :employee_licenses
   end
 
+  #ひとまずadmin用のrouteを追加
+  #TODO 一般ユーザ用とadmin用のrouteを調整する（一般ユーザは照会系と自身のデータ更新のみ）
+  namespace :admin do
+    root to: "top#index"
+    resources :customers
+  
+    resources :works do
+      resources :work_details do
+        resources :work_skills
+      end
+    end
+
+    resources :skills
+    resources :licenses
+    resources :departments
+
+    resources :employees do
+      resources :employee_skills
+      resources :employee_licenses
+    end
+    
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
