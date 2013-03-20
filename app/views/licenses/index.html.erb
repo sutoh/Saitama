@@ -1,10 +1,5 @@
-<h1>Listing licenses</h1>
+<%= render "shared/toolbar_for_index", model_name: params[:controller].classify %>
 
-<div class="btn-toolbar">
-    <%= link_to 'New License', new_license_path, :class => "btn btn-primary" %>
-    <button class="btn">Import</button>
-    <button class="btn">Export</button>
-</div>
 <div class="well">
 <table class="table">
   <thead>
@@ -26,17 +21,15 @@
       <td><%= license.publisher %></td>
       <td><%= license.note %></td>
       <td>
-          <%= link_to edit_license_path(license) do %>
-          <i class="icon-pencil"></i>
+          <%= link_to edit_license_path(license), title: "Edit" do %>
+          <i class="icon-edit"></i>
           <% end %>
           
-          <%= link_to license, method: :delete, data: { confirm: 'Are you sure?' } do %>
-          <i class="icon-remove"></i>
+          <%= link_to license, title: "Delete", method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <i class="icon-trash"></i>
           <% end %>
       </td>
     </tr>
   <% end %>
-
-
 </table>
-
+</div>
