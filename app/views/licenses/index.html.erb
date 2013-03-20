@@ -1,33 +1,42 @@
 <h1>Listing licenses</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Validity term</th>
-    <th>Publisher</th>
-    <th>Note</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="btn-toolbar">
+    <%= link_to 'New License', new_license_path, :class => "btn btn-primary" %>
+    <button class="btn">Import</button>
+    <button class="btn">Export</button>
+</div>
+<div class="well">
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Validity term</th>
+      <th>Publisher</th>
+      <th>Note</th>
+      <th style="width: 36px;"></th>
+    </tr>
+  </thead>
+  <tbody>
+    
+  </tbody>
+  <% @licenses.each do |license| %>
+    <tr>
+      <td><%= link_to license.name, license %></td>
+      <td><%= license.validity_term %></td>
+      <td><%= license.publisher %></td>
+      <td><%= license.note %></td>
+      <td>
+          <%= link_to edit_license_path(license) do %>
+          <i class="icon-pencil"></i>
+          <% end %>
+          
+          <%= link_to license, method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <i class="icon-remove"></i>
+          <% end %>
+      </td>
+    </tr>
+  <% end %>
 
-<% @licenses.each do |license| %>
-  <tr>
-    <td><%= license.name %></td>
-    <td><%= license.validity_term %></td>
-    <td><%= license.publisher %></td>
-    <td><%= license.note %></td>
-    <td>
-      <div class="btn-group">
-        <%= link_to 'Show', license, :class => "btn" %>
-        <%= link_to 'Edit', edit_license_path(license), :class => "btn" %>
-        <%= link_to 'Destroy', license, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-warning" %>
-      </div>
-    </td>
-  </tr>
-<% end %>
+
 </table>
 
-<br />
-
-<%= link_to 'New License', new_license_path, :class => "btn btn-success" %>
