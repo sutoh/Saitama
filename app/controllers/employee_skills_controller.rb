@@ -25,8 +25,9 @@ class EmployeeSkillsController < ApplicationController
   # GET /employee_skills/new
   # GET /employee_skills/new.json
   def new
-    @employee = Employee.find(params[:employee_id])
+    @employee = current_user.employee
     @employee_skill = EmployeeSkill.new
+    @skills = Skill.find(:all, :select => "Skills.name, Skills.id")
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,14 +37,18 @@ class EmployeeSkillsController < ApplicationController
 
   # GET /employee_skills/1/edit
   def edit
-    @employee = Employee.find(params[:employee_id])
+    @employee = current_user.employee
     @employee_skill = EmployeeSkill.find(params[:id])
+    @skills = Skill.find(:all, :select => "Skills.name, Skills.id")
+
   end
 
   # POST /employee_skills
   # POST /employee_skills.json
   def create
     @employee_skill = EmployeeSkill.new(params[:employee_skill])
+    @employee_skill.employee_id = params[:employee_id]
+    @skills = Skill.find(:all, :select => "Skills.name, Skills.id")
 
     respond_to do |format|
       if @employee_skill.save
@@ -60,6 +65,7 @@ class EmployeeSkillsController < ApplicationController
   # PUT /employee_skills/1.json
   def update
     @employee_skill = EmployeeSkill.find(params[:id])
+    @skills = Skill.find(:all, :select => "Skills.name, Skills.id")
 
     respond_to do |format|
       if @employee_skill.update_attributes(params[:employee_skill])

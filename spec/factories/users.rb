@@ -8,7 +8,7 @@ FactoryGirl.define do
     password 'rubeus' 
     password_confirmation 'rubeus' 
     login_id 'admin'
-    role 1
+    role_id 1
   end
 
   # 任意の指定の場合、:class指定必要
@@ -17,6 +17,6 @@ FactoryGirl.define do
     password 'rubeus' 
     password_confirmation 'rubeus' 
     login_id 'sutoh'
-    role 1
+    role_id 1
   end
 end
