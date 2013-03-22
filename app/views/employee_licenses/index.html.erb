@@ -1,8 +1,8 @@
 <h1>Listing employee_licenses</h1>
+<h2><%= @employee.family_name + " " + @employee.given_name %></h2>
 
 <table class="table table-hover">
   <tr>
-    <th>Employee</th>
     <th>License</th>
     <th>Acquisition date</th>
     <th></th>
@@ -10,8 +10,7 @@
 
 <% @employee_licenses.each do |employee_license| %>
   <tr>
-    <td><%= employee_license.employee_id %></td>
-    <td><%= employee_license.license_id %></td>
+    <td><%= employee_license.name %></td>
     <td><%= employee_license.acquisition_date %></td>
     <td>
       <div class="btn-group">
@@ -22,11 +21,27 @@
     </td>
   </tr>
 <% end %>
+
+
+<%= form_for([@employee, @employee_license]) do |f| %>
+  <tr>
+    <td>
+      <%= f.select :license_id, @licenses.map{|l|[l.name, l.id]} %>
+    </td>
+    <td>
+      <%= f.date_select :acquisition_date, {},{:class => "input-small"} %>
+    </td>
+    <td>
+      <%= f.submit :class => "btn btn-primary" %>
+    </td>
+  </tr>
+<% end %>
+
+
 </table>
 
 <br />
 
 
-<%= link_to 'New Employee license', new_employee_employee_license_path, :class => "btn btn-success" %>
 <%= link_to 'Back', employees_path, :class => "btn" %>
 

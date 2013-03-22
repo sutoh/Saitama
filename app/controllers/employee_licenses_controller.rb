@@ -3,7 +3,10 @@ class EmployeeLicensesController < ApplicationController
   # GET /employee_licenses.json
   def index
     #@employee_licenses = EmployeeLicense.all
-    @employee_licenses = Employee.find(params[:employee_id]).employee_licenses.all
+    @employee = Employee.find(params[:employee_id])
+    @employee_licenses = @employee.employee_licenses.find(:all,:select => "employee_licenses.*, licenses.name" ,:joins => :license)
+    @employee_license = EmployeeLicense.new
+    @licenses = License.find(:all, :select => "Licenses.name, Licenses.id")
 
     respond_to do |format|
       format.html # index.html.erb
