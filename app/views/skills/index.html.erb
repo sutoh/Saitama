@@ -1,29 +1,37 @@
-<h1>Listing skills</h1>
+<%= render "shared/toolbar_for_index", model_name: params[:controller].classify %>
 
-<table class="table table-hover">
-  <tr>
-    <th>Name</th>
-    <th>Category</th>
-    <th>Note</th>
-    <th></th>
-  </tr>
 
-<% @skills.each do |skill| %>
-  <tr>
-    <td><%= skill.name %></td>
-    <td><%= skill.category %></td>
-    <td><%= skill.note %></td>
-    <td>
-      <div class="btn-group">
-        <%= link_to 'Show', skill, :class => "btn" %>
-        <%= link_to 'Edit', edit_skill_path(skill), :class => "btn" %>
-        <%= link_to 'Destroy', skill, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-warning" %>
-      </div>
-    </td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Skill', new_skill_path, :class => "btn btn-success" %>
+<div class="well">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Postalcode</th>
+        <th>Address</th>
+        <th>Website</th>
+        <th>Phone num</th>
+        <th style="width: 36px;"></th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% @skills.each do |skill| %>
+      <tr>
+        <td><%= link_to skill.name, skill %></td>
+        <td><%= skill.category %></td>
+        <td><%= skill.note %></td>
+        <td>
+          <%= link_to edit_skill_path(skill), title: "Edit" do %>
+          <i class="icon-edit"></i>
+          <% end %>
+    
+          <%= link_to skill, title: "Delete", method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <i class="icon-trash"></i>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<%= paginate @skills %>
