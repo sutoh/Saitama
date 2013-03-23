@@ -1,47 +1,38 @@
 <%= render "shared/toolbar_for_index", model_name: params[:controller].classify %>
 
 <div class="well">
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Postalcode</th>
-      <th>Address</th>
-      <th>Website</th>
-      <th>Phone num</th>
-      <th style="width: 36px;"></th>
-    </tr>
-  </thead>
-  <tbody>
-
-<table class="table table-hover">
-  <tr>
-    <th>Name</th>
-    <th>Postalcode</th>
-    <th>Address</th>
-    <th>Website</th>
-    <th>Phone num</th>
-    <th></th>
-  </tr>
-
-<% @customers.each do |customer| %>
-  <tr>
-    <td><%= link_to customer.name, customer %></td>
-    <td><%= customer.postalcode %></td>
-    <td><%= customer.address %></td>
-    <td><%= customer.website %></td>
-    <td><%= customer.phone_num %></td>
-    <td>
-        <%= link_to edit_customer_path(customer), title: "Edit" do %>
-        <i class="icon-edit"></i>
-        <% end %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Postalcode</th>
+        <th>Address</th>
+        <th>Website</th>
+        <th>Phone num</th>
+        <th style="width: 36px;"></th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <% @customers.each do |customer| %>
+      <tr>
+        <td><%= link_to customer.name, customer %></td>
+        <td><%= customer.postalcode %></td>
+        <td><%= customer.address %></td>
+        <td><%= customer.website %></td>
+        <td><%= customer.phone_num %></td>
+        <td>
+          <%= link_to edit_customer_path(customer), title: "Edit" do %>
+          <i class="icon-edit"></i>
+          <% end %>
         
-        <%= link_to customer, title: "Delete", method: :delete, data: { confirm: 'Are you sure?' } do %>
-        <i class="icon-trash"></i>
-        <% end %>
-    </td>
-  </tr>
-<% end %>
-</table>
+          <%= link_to customer, title: "Delete", method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <i class="icon-trash"></i>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 <%= paginate @customers %>
