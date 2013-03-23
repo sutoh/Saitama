@@ -1,4 +1,18 @@
-<h1>Listing customers</h1>
+<%= render "shared/toolbar_for_index", model_name: params[:controller].classify %>
+
+<div class="well">
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Postalcode</th>
+      <th>Address</th>
+      <th>Website</th>
+      <th>Phone num</th>
+      <th style="width: 36px;"></th>
+    </tr>
+  </thead>
+  <tbody>
 
 <table class="table table-hover">
   <tr>
@@ -12,22 +26,22 @@
 
 <% @customers.each do |customer| %>
   <tr>
-    <td><%= customer.name %></td>
+    <td><%= link_to customer.name, customer %></td>
     <td><%= customer.postalcode %></td>
     <td><%= customer.address %></td>
     <td><%= customer.website %></td>
     <td><%= customer.phone_num %></td>
     <td>
-      <div class="btn-group">
-        <%= link_to 'Show', customer, :class => "btn" %>
-        <%= link_to 'Edit', edit_customer_path(customer), :class => "btn" %>
-        <%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-warning" %>
-      </div>
+        <%= link_to edit_customer_path(customer), title: "Edit" do %>
+        <i class="icon-edit"></i>
+        <% end %>
+        
+        <%= link_to customer, title: "Delete", method: :delete, data: { confirm: 'Are you sure?' } do %>
+        <i class="icon-trash"></i>
+        <% end %>
     </td>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Customer', new_customer_path, :class =>"btn btn-success" %>
+</div>
+<%= paginate @customers %>
