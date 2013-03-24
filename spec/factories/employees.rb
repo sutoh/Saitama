@@ -2,6 +2,7 @@
 
 
 FactoryGirl.define do
+  dept_ruby = Department.where('name LIKE ?', '%技術%').first
   
   factory :employee do 
     family_name "Saitama"
@@ -39,7 +40,7 @@ FactoryGirl.define do
       tech_flg 1
       staff_flg 1
       del_flg 0
-      association :department, factory: :department, name: "Ruby部"
+      department Department.where('name LIKE ?', '%Ruby%').first
     end
     
     trait :sutoh do
@@ -59,7 +60,6 @@ FactoryGirl.define do
       tech_flg 1
       staff_flg 1
       del_flg 0
-      association :department, factory: :department, name: "技術部"
     end
     
     trait :maeda do
@@ -74,7 +74,7 @@ FactoryGirl.define do
       postalcode "330-0855"
       address "Saitama"
       station "Kawagoe"
-      association :department, factory: :department, name: "Ruby部"
+      department dept_ruby
     end
     
     trait :yawata do
@@ -83,8 +83,7 @@ FactoryGirl.define do
       family_name_kana "ヤワタ"
       given_name_kana "Taro"
       gender 1
-      birthday "2013/03/03"      
-      association :department, factory: :department, name: "Ruby部"
+      birthday "2013/03/03" 
     end
     
     factory :employee_sutoh, traits: [:sutoh]
