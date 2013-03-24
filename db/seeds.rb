@@ -47,47 +47,28 @@ begin
     puts "login_id: #{user.login_id} Create ok"
     user = fg.create(:user,:rubeus)
     puts "login_id: #{user.login_id} Create ok"
-    user = fg.create(:user_sutoh)
-    puts "login_id: #{user.login_id} Create ok"
-    user = fg.create(:user_maeda)
-    puts "login_id: #{user.login_id} Create ok"
-    user = fg.create(:user_yawata)
-    puts "login_id: #{user.login_id} Create ok"
-    user = fg.create(:user_lee)
-    puts "login_id: #{user.login_id} Create ok"
-    user = fg.create(:user_izumi)
-    puts "login_id: #{user.login_id} Create ok"
-    user = fg.create(:user_kashiyama)
-    puts "login_id: #{user.login_id} Create ok"
+    user_a = [:user_sutoh,:user_maeda,:user_yawata,:user_lee,:user_izumi,:user_kashiyama]
+    user_a.each do |u|
+      user = fg.create(u)
+      puts "login_id: #{user.login_id} Create ok"
+    end
   end
+
+  license_a = [:ruby_silver,:ruby_gold,:rails_bronze,:java_1_4,:oracle_bronze]
   
-  license = fg.create(:ruby_silver)
-  puts "license: #{license.name} #{license.note} Create ok"
-  license = fg.create(:ruby_gold)
-  puts "license: #{license.name} #{license.note} Create ok"
-  license = fg.create(:rails_bronze)
-  puts "license: #{license.name} #{license.note} Create ok"
-  license = fg.create(:java_1_4)
-  puts "license: #{license.name} #{license.note} Create ok"
-  license = fg.create(:oracle_bronze)
-  puts "license: #{license.name} #{license.note} Create ok"
-  
+  license_a.each do |l|
+    license = fg.create(])
+    puts "license: #{license.name} #{license.note} Create ok"
+  end
+    
   dept = fg.create(:department)
   puts "department: #{dept.id} #{dept.name} Create ok"
-  dept = fg.create(:department, name: "技術部")
-  puts "department: #{dept.id} #{dept.name} Create ok"
-  dept = fg.create(:department, name: "R&B")
-  puts "department: #{dept.id} #{dept.name} Create ok"
-  dept = fg.create(:department, name: "営業本部")
-  puts "department: #{dept.id} #{dept.name} Create ok"
-  dept = fg.create(:department, name: "開発部")
-  puts "department: #{dept.id} #{dept.name} Create ok"
-  dept = fg.create(:department, name: "カスタマー部")
-  puts "department: #{dept.id} #{dept.name} Create ok"
-  dept = fg.create(:department, name: "管理本部")
-  puts "department: #{dept.id} #{dept.name} Create ok"
-  dept = fg.create(:department, name: "Ruby部")
-  puts "department: #{dept.id} #{dept.name} Create ok"
+  
+  dept_a = ["技術部","R&B","営業本部","カスタマー部","管理本部","Ruby部"]
+  dept_a.each do |d|
+    dept = fg.create(:department,name: d)
+    puts "department: #{dept.id} #{dept.name} Create ok"
+  end
   
   skill = fg.create(:skill)
   puts "skill: #{skill.id} #{skill.name} Create ok"
@@ -135,9 +116,8 @@ begin
   puts "employee: #{employee.family_name} #{employee.department.id} #{employee.department.name} Create ok"
   employee = fg.create(:employee_sutoh)
   puts "employee: #{employee.family_name} #{employee.department.id} #{employee.department.name} Create ok"
-  
-rescue => ex
+rescue => e
   puts 'create error'
-  puts ex
+  puts e
 end
 
