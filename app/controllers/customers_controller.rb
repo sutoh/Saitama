@@ -3,7 +3,7 @@ class CustomersController < ApplicationController
   # GET /customers.json
   def index
     @customers = Customer.page(params[:page]).per(10)
-
+    @controller = params[:controller].classify
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @customers }
