@@ -3,6 +3,8 @@ require 'spec_helper'
 describe "customers/edit" do
   before(:each) do
     @customer = assign(:customer, stub_model(Customer))
+    assign(:controller, "customer".classify)
+    assign(:action_name, "edit".capitalize)
   end
 
   it "renders the edit customer form" do
