@@ -1,8 +1,7 @@
-#coding: utf-8
+# -*- encoding: UTF-8 ?*-
 
 
 FactoryGirl.define do
-  dept_ruby = Department.where('name LIKE ?', '%技術%').first
   
   factory :employee do 
     family_name "Saitama"
@@ -40,7 +39,6 @@ FactoryGirl.define do
       tech_flg 1
       staff_flg 1
       del_flg 0
-      department Department.where('name LIKE ?', '%Ruby%').first
     end
     
     trait :sutoh do
@@ -74,7 +72,6 @@ FactoryGirl.define do
       postalcode "330-0855"
       address "Saitama"
       station "Kawagoe"
-      department dept_ruby
     end
     
     trait :yawata do
