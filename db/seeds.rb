@@ -57,7 +57,7 @@ begin
   license_a = [:ruby_silver,:ruby_gold,:rails_bronze,:java_1_4,:oracle_bronze]
   
   license_a.each do |l|
-    license = fg.create(])
+    license = fg.create(l)
     puts "license: #{license.name} #{license.note} Create ok"
   end
     
