@@ -1,6 +1,6 @@
 <div class="well">
   <%= form_for(@customer, html: {class: "form-horizontal"}) do |f| %>
-  <legend><%= controller.action_name.capitalize + " " + params[:controller].classify %> </legend>
+  <legend><%= @action_name.capitalize + " " + @controller.classify %> </legend>
   <% if @customer.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
