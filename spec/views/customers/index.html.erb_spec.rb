@@ -2,10 +2,11 @@ require 'spec_helper'
 
 describe "customers/index" do
   before(:each) do
-    assign(:customers, [
-      stub_model(Customer),
-      stub_model(Customer)
-    ])
+    assign(:customers, Kaminari.paginate_array([
+        FactoryGirl.build_stubbed(:customer),
+        FactoryGirl.build_stubbed(:customer)
+      ]).page(1))
+    assign(:controller, "customer".classify)
   end
 
   it "renders a list of customers" do
