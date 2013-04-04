@@ -3,6 +3,8 @@ require 'spec_helper'
 describe "licenses/new" do
   before(:each) do
     assign(:license, stub_model(License).as_new_record)
+    assign(:controller, "license".classify)
+    assign(:action_name, "new".capitalize)
   end
 
   it "renders new license form" do

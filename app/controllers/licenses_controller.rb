@@ -3,6 +3,7 @@ class LicensesController < ApplicationController
   # GET /licenses.json
   def index
     @licenses = License.page(params[:page]).per(10)
+    @controller = params[:controller].classify
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,7 +26,8 @@ class LicensesController < ApplicationController
   # GET /licenses/new.json
   def new
     @license = License.new
-
+    @controller = params[:controller].classify
+    @action_name = action_name.capitalize
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @license }
@@ -35,6 +37,8 @@ class LicensesController < ApplicationController
   # GET /licenses/1/edit
   def edit
     @license = License.find(params[:id])
+    @controller = params[:controller].classify
+    @action_name = action_name.capitalize
   end
 
   # POST /licenses

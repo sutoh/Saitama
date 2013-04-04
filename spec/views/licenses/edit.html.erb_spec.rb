@@ -3,6 +3,8 @@ require 'spec_helper'
 describe "licenses/edit" do
   before(:each) do
     @license = assign(:license, stub_model(License))
+    assign(:controller, "license".classify)
+    assign(:action_name, "edit".capitalize)
   end
 
   it "renders the edit license form" do
