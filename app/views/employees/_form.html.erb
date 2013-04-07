@@ -1,122 +1,123 @@
-<%= form_for(@employee, :html =>{:class => "form-horizontal"}) do |f| %>
+<div class="well">
+  <%= form_for(@employee, html: {class: "form-horizontal"}) do |f| %>
+  <legend><%= controller.action_name.capitalize + " " + params[:controller].classify %> </legend>
   <% if @employee.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+  <div id="error_explanation">
+    <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
 
-      <ul>
+    <ul>
       <% @employee.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+      <li><%= msg %></li>
       <% end %>
-      </ul>
-    </div>
+    </ul>
+  </div>
   <% end %>
 
-<div class="container">
   <div class="field control-group">
-    <%= f.label :family_name ,:class => "control-label"%>
+    <%= f.label :family_name ,class: "control-label"%>
     <div class="controls">
       <%= f.text_field :family_name %>
     </div>
   </div>
   <div class="field contorol-group">
-    <%= f.label :given_name, :class => "control-label" %>
+    <%= f.label :given_name, class: "control-label" %>
     <div class="controls">
       <%= f.text_field :given_name %>
     </div>
   </div>
   <div class="field control-group">
-    <%= f.label :family_name_kana, :class => "control-label" %>
+    <%= f.label :family_name_kana, class: "control-label" %>
     <div class="controls">
       <%= f.text_field :family_name_kana %>
     </div>
   </div>
   <div class="field control-group">
-    <%= f.label :given_name_kana, :class => "control-label" %>
+    <%= f.label :given_name_kana, class: "control-label" %>
     <div class="controls">
       <%= f.text_field :given_name_kana %>
     </div>
   </div>
   <div class="field control-group">
-    <%= f.label :gender, :class => "control-label" %>
+    <%= f.label :gender, class: "control-label" %>
     <div class="controls">
       <%= f.number_field :gender %>
     </div>
   </div>
   <div class="field control-group">
-    <%= f.label :birthday, :class => "control-label" %>
+    <%= f.label :birthday, class: "control-label" %>
     <div class="controls">
       <%= f.date_select :birthday %>
     </div>
   </div>
   <div class="field control-group">
-    <%= f.label :experience, :class => "control-label"%>
+    <%= f.label :experience, class: "control-label"%>
     <div class="controls">
       <%= f.number_field :experience %>
     </div>
   </div>
   <div class="field control-group">
-    <%= f.label :entrance_date, :class => "control-label" %>
+    <%= f.label :entrance_date, class: "control-label" %>
     <div class="controls">
       <%= f.date_select :entrance_date %>
     </div>
   </div>
   <div class="field control-group">
-    <%= f.label :postalcode, :class => "control-label" %>
+    <%= f.label :postalcode, class: "control-label" %>
     <div class="controls">
       <%= f.text_field :postalcode %>
     </div>
   </div>
   <div class="field control-group">
-    <%= f.label :address, :class => "control-label"%>
+    <%= f.label :address, class: "control-label"%>
     <div class="contorols">
       <%= f.text_field :address %>
     </div>
   </div>
   <div class="field control-group">
-    <%= f.label :station, :class => "control-label" %>
+    <%= f.label :station, class: "control-label" %>
     <div class="controls">
       <%= f.text_field :station %>
     </div>
   </div>
   <div class="field control-group">
-    <%= f.label :education, :class => "control-label" %>
+    <%= f.label :education, class: "control-label" %>
     <div class="controls">
       <%= f.text_field :education %>
     </div>
   </div>
   <div class="field control-group">
-    <%= f.label :self_pr, :class => "control-label" %>
+    <%= f.label :self_pr, class: "control-label" %>
     <div class="controls">
-      <%= f.text_area :self_pr %>
+      <%= f.text_area :self_pr, rows: "8", class: "span8" %>
     </div>
   </div>
   <div class="field control-group">
-    <%= f.label :tech_flg, :class => "control-label" %>
+    <%= f.label :tech_flg, class: "control-label" %>
     <div class="controls">
       <%= f.number_field :tech_flg %>
     </div>
   </div>
   <div class="field control-group">
-    <%= f.label :staff_flg, :class => "control-label" %>
+    <%= f.label :staff_flg, class: "control-label" %>
     <div class="controls">
       <%= f.number_field :staff_flg %>
     </div>
   </div>
   <div class="field control-group">
-    <%= f.label :del_flg, :class => "control-label" %>
+    <%= f.label :del_flg, class: "control-label" %>
     <div class="controls">
       <%= f.number_field :del_flg %>
     </div>
   </div>
   <div class="field control-group">
-    <%= f.label :department_id, :class => "control-label" %>
+    <%= f.label :department_id, class: "control-label" %>
     <div class="controls">
       <%= f.number_field :department_id %>
     </div>
   </div>
   <div class="actions control-group">
     <div class="controls">
-      <%= f.submit :class => "btn btn-primary" %>
+      <%= f.submit class: "btn btn-primary" %>
     </div>
   </div>
 </div>
