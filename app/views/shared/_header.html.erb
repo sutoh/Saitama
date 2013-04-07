@@ -1,45 +1,15 @@
-<div class="navbar">
+<div class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-inner">
-    <div class="container-fluid">
+    <div class="container">
+      <%= link_to "Saitama", "#", {name: "top", class: "brand"} %>
+      <% if user_signed_in? %>
       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <%= link_to "Saitama", "#", {name: "top", class: "brand"} %>
-      
+
       <div class="nav-collapse collapse">
-        <% if user_signed_in? %>
-        
-        <div class="btn-group pull-right">
-          <%= link_to "#", class: "btn dropdown-toggle", "data-toggle" => "dropdown" do %>
-          <i class="icon-user"></i> admin <span class="caret"></span>
-          <% end %>
-            
-          <ul class="dropdown-menu">
-            <% if controller.kind_of?(Admin::Base) %>
-            <li>
-              <%= link_to :admin_root do %>
-              <i class="icon-wrench"></i> Administration
-              <% end %>
-            </li>
-            <li class="divider"></li>
-            <% end %>
-            
-            <li>
-              <%= link_to "#" do %>
-              <i class="icon-wrench"></i> Settings
-              <% end %>
-            </li>
-            <li class="divider"></li>
-            
-            <li>
-              <%= link_to destroy_user_session_path, method: :delete do %>
-              <i class="icon-share"></i> Logout
-              <% end %>
-            </li>
-          </ul>
-        </div>
         <ul class="nav">
           <li>
             <%= link_to profile_index_path do %>
@@ -93,6 +63,35 @@
             </ul>
           </li>
         </ul>
+        <div class="btn-group pull-right">
+          <%= link_to "#", class: "btn dropdown-toggle me", "data-toggle" => "dropdown" do %>
+          <i class="icon-user"></i> admin <span class="caret"></span>
+          <% end %>
+            
+          <ul class="dropdown-menu">
+            <% if controller.kind_of?(Admin::Base) %>
+            <li>
+              <%= link_to :admin_root do %>
+              <i class="icon-wrench"></i> Administration
+              <% end %>
+            </li>
+            <li class="divider"></li>
+            <% end %>
+            
+            <li>
+              <%= link_to "#" do %>
+              <i class="icon-wrench"></i> Settings
+              <% end %>
+            </li>
+            <li class="divider"></li>
+            
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+              <i class="icon-share"></i> Logout
+              <% end %>
+            </li>
+          </ul>
+        </div>
         <% end %>
       </div>
     </div>

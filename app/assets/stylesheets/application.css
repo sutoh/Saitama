@@ -25,10 +25,11 @@
 	float: left;
 	position: relative;
 }
+body {
+  position: relative;
+  padding-top: 60px;
+}
 
-/* Header layout */
-.container-fluid{
-  width: 960px;
-  margin-right: auto;
-  margin-left: auto;
+.me{
+  float: right
 }
