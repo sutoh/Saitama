@@ -9,8 +9,37 @@
       <%= link_to "Saitama", "#", {name: "top", class: "brand"} %>
       
       <div class="nav-collapse collapse">
-        
         <% if user_signed_in? %>
+        
+        <div class="btn-group pull-right">
+          <%= link_to "#", class: "btn dropdown-toggle", "data-toggle" => "dropdown" do %>
+          <i class="icon-user"></i> admin <span class="caret"></span>
+          <% end %>
+            
+          <ul class="dropdown-menu">
+            <% if controller.kind_of?(Admin::Base) %>
+            <li>
+              <%= link_to :admin_root do %>
+              <i class="icon-wrench"></i> Administration
+              <% end %>
+            </li>
+            <li class="divider"></li>
+            <% end %>
+            
+            <li>
+              <%= link_to "#" do %>
+              <i class="icon-wrench"></i> Settings
+              <% end %>
+            </li>
+            <li class="divider"></li>
+            
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+              <i class="icon-share"></i> Logout
+              <% end %>
+            </li>
+          </ul>
+        </div>
         <ul class="nav">
           <li>
             <%= link_to profile_index_path do %>
@@ -40,59 +69,31 @@
           </li>
             
           <li class="divider-vertical"></li>
-          <li>
-            <%= link_to skills_path do %>
-            <i class="icon-star"></i> Skill
-            <% end %>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              <i class="icon-thumbs-down"></i> Master
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <li>
+                <%= link_to skills_path do %>
+                <i class="icon-star"></i> Skill
+                <% end %>
+              </li>
+                
+              <li>
+                <%= link_to licenses_path do %>
+                <i class="icon-book"></i> License
+                <% end %>
+              </li>
+              <li>
+                <%= link_to departments_path do %>
+                <i class="icon-tag"></i> Department
+                <% end %>
+              </li>
+            </ul>
           </li>
-            
-          <li class="divider-vertical"></li>
-          <li>
-            <%= link_to licenses_path do %>
-            <i class="icon-book"></i> License
-            <% end %>
-          </li>
-            
-          <li class="divider-vertical"></li>
-          <li>
-            <%= link_to departments_path do %>
-            <i class="icon-tag"></i> Department
-            <% end %>
-          </li>
-            
-          <li class="divider-vertical"></li>
         </ul>
-          
-        <div class="btn-group pull-right">
-          <%= link_to "#", class: "btn dropdown-toggle", "data-toggle" => "dropdown" do %>
-          <i class="icon-user"></i> admin <span class="caret"></span>
-          <% end %>
-            
-          <ul class="dropdown-menu">
-            <% if controller.kind_of?(Admin::Base) %>
-            <li>
-              <%= link_to :admin_root do %>
-              <i class="icon-wrench"></i> Administration
-              <% end %>
-            </li>
-            <li class="divider"></li>
-            <% end %>
-            
-            <li>
-              <%= link_to "#" do %>
-              <i class="icon-wrench"></i> Settings
-              <% end %>
-            </li>
-            <li class="divider"></li>
-            
-            <li>
-              <%= link_to destroy_user_session_path, method: :delete do %>
-              <i class="icon-share"></i> Logout
-              <% end %>
-            </li>
-          </ul>
-          <% end %>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>
