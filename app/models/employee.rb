@@ -7,4 +7,9 @@ class Employee < ActiveRecord::Base
   belongs_to :department
   has_many :works
   belongs_to :user
+  
+  def full_name
+    family_name + " " + given_name 
+  end
+  
 end
