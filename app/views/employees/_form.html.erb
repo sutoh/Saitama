@@ -1,6 +1,6 @@
 <div class="well">
   <%= form_for(@employee, html: {class: "form-horizontal"}) do |f| %>
-  <legend><%= controller.action_name.capitalize + " " + params[:controller].classify %> </legend>
+  <legend><%= legend_view %> </legend>
   <% if @employee.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
@@ -120,5 +120,5 @@
       <%= f.submit class: "btn btn-primary" %>
     </div>
   </div>
-</div>
 <% end %>
+</div>

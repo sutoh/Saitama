@@ -26,7 +26,8 @@ class EmployeesController < ApplicationController
   # GET /employees/new.json
   def new
     @employee = Employee.new
-
+    @action_name = action_name
+    @controller = controller_name
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @employee }
@@ -36,6 +37,8 @@ class EmployeesController < ApplicationController
   # GET /employees/1/edit
   def edit
     @employee = Employee.find(params[:id])
+    @action_name = action_name
+    @controller = controller_name
   end
 
   # POST /employees

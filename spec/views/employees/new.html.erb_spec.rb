@@ -3,6 +3,8 @@ require 'spec_helper'
 describe "employees/new" do
   before(:each) do
     assign(:employee, stub_model(Employee).as_new_record)
+    assign(:controller, "employee".classify)
+    assign(:action_name, "edit".capitalize)
   end
 
   it "renders new employee form" do
