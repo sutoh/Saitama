@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require_directory ./bootstrap
+ *= require gmaps4rails.css
  */
 #container {
  width:7000px;
@@ -33,3 +34,12 @@ body {
 .me{
   float: right
 }
+
+/* GoogleMaps */
+#map img {
+  max-width: none;
+}
+#map label {
+  width: auto; display:inline;
+}
+

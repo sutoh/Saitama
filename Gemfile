@@ -30,6 +30,7 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'thin'
 gem 'kaminari'
+gem 'gmaps4rails'
 
 group :development, :test do
   gem "rspec-rails", "~> 2.13.0"

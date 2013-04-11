@@ -14,3 +14,4 @@
 //= require jquery_ujs
 //= require_directory ./bootstrap
 //= require bootstrap.js.coffee
+//= require_directory ./gmaps4rails

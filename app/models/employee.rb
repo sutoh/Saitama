@@ -1,5 +1,7 @@
 class Employee < ActiveRecord::Base
-  attr_accessible :address, :birthday, :del_flg, :department_id, :education, :entrance_date, :experience, :family_name, :family_name_kana, :gender, :given_name, :given_name_kana, :postalcode, :self_pr, :staff_flg, :station, :tech_flg
+  acts_as_gmappable
+  
+  attr_accessible :address, :birthday, :del_flg, :department_id, :education, :entrance_date, :experience, :family_name, :family_name_kana, :gender, :given_name, :given_name_kana, :postalcode, :self_pr, :staff_flg, :station, :tech_flg, :latitude, :longitude, :gmaps
   has_many :employee_licenses
   has_many :licenses, :through => :employee_licenses, :uniq => true
   has_many :employee_skills
@@ -12,4 +14,10 @@ class Employee < ActiveRecord::Base
     family_name + " " + given_name 
   end
   
+  def gmaps4rails_address
+    "#{self.address}"
+  end
+  def gmaps4rails_infowindow
+    "<h3>#{full_name}</h3>"
+  end
 end

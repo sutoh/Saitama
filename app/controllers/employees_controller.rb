@@ -4,6 +4,7 @@ class EmployeesController < ApplicationController
   # GET /employees.json
   def index
     @employees = Employee.all
+    @json = Employee.all.to_gmaps4rails
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +16,7 @@ class EmployeesController < ApplicationController
   # GET /employees/1.json
   def show
     @employee = Employee.find(params[:id])
-
+    @json = Employee.find(params[:id]).to_gmaps4rails
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @employee }
