@@ -1,3 +1,12 @@
 // Place all the styles related to the profile controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "compass/utilities";
+@import "compass/css3";
+
+.row {
+	padding-top: 3px;
+}
+.well {
+	@include border-radius(10px);
+}
