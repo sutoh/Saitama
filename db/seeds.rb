@@ -42,17 +42,6 @@ end
 begin
   fg = FactoryGirl
   #TODO カッコ悪いんでかっこ良く治したい
-  if (yn.chomp=='y') then
-    user = fg.create(:user)
-    puts "login_id: #{user.login_id} Create ok"
-    user = fg.create(:user,:rubeus)
-    puts "login_id: #{user.login_id} Create ok"
-    user_a = [:user_sutoh,:user_maeda,:user_yawata,:user_lee,:user_izumi,:user_kashiyama]
-    user_a.each do |u|
-      user = fg.create(u)
-      puts "login_id: #{user.login_id} Create ok"
-    end
-  end
 
   license_a = [:ruby_silver,:ruby_gold,:rails_bronze,:java_1_4,:oracle_bronze]
   
@@ -116,6 +105,23 @@ begin
   puts "employee: #{employee.family_name} #{employee.department.id} #{employee.department.name} Create ok"
   employee = fg.create(:employee_sutoh)
   puts "employee: #{employee.family_name} #{employee.department.id} #{employee.department.name} Create ok"
+  
+  
+  if (yn.chomp=='y') then
+    user = fg.create(:user,:rubeus)
+    puts "login_id: #{user.login_id} Create ok"
+    user_a = [:user_sutoh,:user_maeda,:user_yawata,:user_lee,:user_izumi,:user_kashiyama]
+    user_a.each do |u|
+      user = fg.create(u)
+      puts "login_id: #{user.login_id} Create ok"
+    end
+  end
+  
+  user = fg.create(:user)
+  puts "login_id: #{user.login_id} Create ok"
+  employee = fg.create(:employee, user: user)
+  puts "employee: #{employee.id} #{employee.family_name} #{employee.department.id} #{employee.department.name} Create ok"
+  
 rescue => e
   puts 'create error'
   puts e

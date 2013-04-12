@@ -1,0 +1,9 @@
+report.start_new_page do |page|
+  page.values employee: @employee.id, 
+              name: @employee.family_name, 
+              address: @employee.address, 
+              birthday: @employee.birthday, 
+              created_at: @employee.created_at, 
+              updated_at: @employee.updated_at
+end
+
