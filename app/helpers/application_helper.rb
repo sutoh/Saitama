@@ -6,6 +6,6 @@ module ApplicationHelper
     controller.action_name 
   end
   def controller_name
-    params[:controller] 
+    params[:controller].classify
   end
 end

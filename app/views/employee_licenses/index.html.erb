@@ -1,45 +1,48 @@
-<h1>Listing employee_licenses</h1>
-<h2><%= @employee.family_name + " " + @employee.given_name %></h2>
+<div class="page-header">
+  <h1>Listing employee_licenses</h1>
+</div>
+<h2><%= @employee.full_name %></h2>
 
-<table class="table table-hover">
-  <tr>
-    <th>License</th>
-    <th>Acquisition date</th>
-    <th></th>
-  </tr>
+<div class="well">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>License</th>
+        <th>Acquisition date</th>
+        <th></th>
+      </tr>
+    </thead>
 
-<% @employee_licenses.each do |employee_license| %>
-  <tr>
-    <td><%= employee_license.name %></td>
-    <td><%= employee_license.acquisition_date %></td>
-    <td>
-      <div class="btn-group">
-        <%= link_to 'Show', employee_employee_license_path(params[:employee_id], employee_license), :class => "btn" %>
-        <%= link_to 'Edit', edit_employee_employee_license_path(params[:employee_id], employee_license), :class => "btn" %>
-        <%= link_to 'Destroy', employee_employee_license_path(params[:employee_id], employee_license), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-warning" %>
-      </div>
-    </td>
-  </tr>
-<% end %>
-
-
-<%= form_for([@employee, @employee_license]) do |f| %>
-  <tr>
-    <td>
-      <%= f.select :license_id, @licenses.map{|l|[l.name, l.id]} %>
-    </td>
-    <td>
-      <%= f.date_select :acquisition_date, {},{:class => "input-small"} %>
-    </td>
-    <td>
-      <%= f.submit :class => "btn btn-primary" %>
-    </td>
-  </tr>
-<% end %>
-
-
-</table>
-
+    <tbody>
+      <% @employee_licenses.each do |employee_license| %>
+        <tr>
+          <td><%= employee_license.name %></td>
+          <td><%= employee_license.acquisition_date %></td>
+          <td>
+            <div class="btn-group">
+              <%= link_to 'Show', employee_employee_license_path(params[:employee_id], employee_license), :class => "btn" %>
+              <%= link_to 'Edit', edit_employee_employee_license_path(params[:employee_id], employee_license), :class => "btn" %>
+              <%= link_to 'Destroy', employee_employee_license_path(params[:employee_id], employee_license), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-warning" %>
+            </div>  
+          </td>
+        </tr>
+      <% end %>
+      <%= form_for([@employee, @employee_license]) do |f| %>
+        <tr>
+          <td>
+            <%= f.select :license_id, @licenses.map{|l|[l.name, l.id]} %>
+          </td>
+          <td>
+            <%= f.date_select :acquisition_date, {},{:class => "input-small"} %>
+          </td>
+          <td>
+            <%= f.submit :class => "btn btn-primary" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 <br />
 
 

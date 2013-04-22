@@ -1,29 +1,31 @@
-<h1>Listing works</h1>
+<%= render "shared/toolbar_for_index", model_name: controller_name %>
 
-<table class="table table-hover">
-  <tr>
-    <th>Employee</th>
-    <th>Sales staff</th>
-    <th>Customer</th>
-    <th></th>
-  </tr>
+<div class="well">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Employee</th>
+        <th>Sales staff</th>
+        <th>Customer</th>
+        <th></th>
+      </tr>
+    </thead>
 
-<% @works.each do |work| %>
-  <tr>
-    <td><%= work.employee_id %></td>
-    <td><%= work.sales_staff_id %></td>
-    <td><%= work.customer_id %></td>
-    <td>
-      <div class="btn-group">
-      <%= link_to 'Show', work, :class => "btn" %>
-      <%= link_to 'Edit', edit_work_path(work), :class => "btn" %>
-      <%= link_to 'details', work_work_details_path(work), :class => "btn" %>
-      <%= link_to 'Destroy', work, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-warning" %>
-    </td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Work', new_work_path, :class => "btn btn-success" %>
+    <tbody>
+      <% @works.each do |work| %>
+        <tr>
+          <td><%= work.employee_id %></td>
+          <td><%= work.sales_staff_id %></td>
+          <td><%= work.customer_id %></td>
+          <td>
+            <div class="btn-group">
+              <%= link_to 'Show', work, :class => "btn" %>
+              <%= link_to 'Edit', edit_work_path(work), :class => "btn" %>
+              <%= link_to 'details', work_work_details_path(work), :class => "btn" %>
+              <%= link_to 'Destroy', work, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-warning" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

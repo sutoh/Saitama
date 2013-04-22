@@ -3,7 +3,6 @@ class LicensesController < ApplicationController
   # GET /licenses.json
   def index
     @licenses = License.page(params[:page]).per(10)
-    @controller = params[:controller].classify
 
     respond_to do |format|
       format.html # index.html.erb

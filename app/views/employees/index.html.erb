@@ -1,7 +1,5 @@
-<div class="span12">
-  <%= render "shared/toolbar_for_index", model_name: params[:controller].classify %>
-  <%= link_to "Print Employee", employees_path(format:'pdf'), class: "btn btn-primary" %>
-</div>
+<%= render "shared/toolbar_for_index", model_name: controller_name %>
+<%= link_to "Print Employee", employees_path(format:'pdf'), class: "btn btn-primary" %>
 
 <div class="well">
   <table class="table">
@@ -28,7 +26,8 @@
       <% end %>
     </tbody>
   </table>
-</div>
-<div class="gmap">
+  <div class="gmap">
   <%= gmaps4rails(@json) %>
 </div>
+</div>
+

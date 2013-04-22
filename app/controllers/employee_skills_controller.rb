@@ -3,6 +3,7 @@ class EmployeeSkillsController < ApplicationController
   # GET /employee_skills.json
   def index
     #@employee_skills = EmployeeSkill.all
+    @employee = Employee.find(params[:employee_id])
     @employee_skills = Employee.find(params[:employee_id]).employee_skills.all
 
     respond_to do |format|
