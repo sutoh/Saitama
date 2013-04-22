@@ -1,11 +1,11 @@
 module ApplicationHelper
   def legend_view
-    @action_name + " " +  @controller
+    action_name + " " +  controller_name
   end
   def action_name
-    controller.action_name.capitalize
+    controller.action_name 
   end
   def controller_name
-    params[:controller].classify
+    params[:controller] 
   end
 end
