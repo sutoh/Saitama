@@ -32,6 +32,7 @@ gem 'thin'
 gem 'kaminari'
 gem 'gmaps4rails'
 gem 'thinreports-rails'
+gem "paperclip", "~> 3.0"
 
 group :development, :test do
   gem "rspec-rails", "~> 2.13.0"

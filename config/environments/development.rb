@@ -35,4 +35,7 @@ Saitama::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  # ImageMagick path
+  #  which convert 入力。convert を削った Path が入力すべき文字列になる。
+  Paperclip.options[:command_path] = "/opt/local/bin/"
 end

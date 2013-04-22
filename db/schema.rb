@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130411031439) do
+ActiveRecord::Schema.define(:version => 20130422142512) do
 
   create_table "customers", :force => true do |t|
     t.string   "name"
@@ -63,12 +63,16 @@ ActiveRecord::Schema.define(:version => 20130411031439) do
     t.integer  "staff_flg"
     t.integer  "del_flg"
     t.integer  "department_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.integer  "user_id"
     t.float    "latitude"
     t.float    "longitude"
     t.boolean  "gmaps"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "licenses", :force => true do |t|

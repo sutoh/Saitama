@@ -153,6 +153,15 @@
       <%= @employee.department_id %>
     </td>
   </tr>
+  
+  <tr>
+    <td>
+      <b>Image:</b>
+    </td>
+    <td>
+      <%= image_tag @employee.image.url(:medium) %>
+    </td>
+  </tr>
 </table>
 
 <div class="btn-group">
