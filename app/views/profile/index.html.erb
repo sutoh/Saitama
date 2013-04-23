@@ -1,7 +1,7 @@
 <div class="row">
   <div class="span6 well">
     <div class="span2">
-       <%= link_to image_tag(@employee.image.url(:thumb)), edit_employee_path(@employee) %>
+       <%= link_to image_tag(@employee.image.url(:thumb), {class: "logo"}), edit_employee_path(@employee) %>
     </div>
     <div class="span3">
       <p><%= @employee.user.login_id %></p>
