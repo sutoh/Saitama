@@ -1,7 +1,7 @@
 <div class="row">
   <div class="span6 well card">
-    <div class="span1"><a href="http://critterapp.pagodabox.com/others/admin" class="thumbnail">
-      <img src="http://critterapp.pagodabox.com/img/user.jpg" alt=""></a>
+    <div class="span2">
+       <%= link_to image_tag(@employee.image.url(:thumb), {class: "logo"}), edit_employee_path(@employee) %>
     </div>
     <div class="span3">
       <p><%= @employee.user.login_id %></p>
