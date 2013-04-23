@@ -9,4 +9,9 @@
 }
 .well {
 	@include border-radius(10px);
+td{
+	width: 90px;
+}
+td:first-child{
+	background: #aad4ff;
 }
