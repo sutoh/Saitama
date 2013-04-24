@@ -14,41 +14,26 @@
 
 .card{
 	position: relative;
-	-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0 10px 8px -6px #8d8c8c;
+    -moz-box-shadow: 0 10px 8px -6px #8d8c8c;
+     box-shadow: 0 10px 8px -6px #8d8c8c;
+
 }
-.card:after, .card:before {
-	position: absolute;
-    width: 40%;
-    height: 10px;
-    content: ' ';
-    left: 12px;
-    bottom: 12px;
-    background: transparent;
-    -webkit-transform: skew(-5deg) rotate(-5deg);
-    -moz-transform: skew(-5deg) rotate(-5deg);
-    -ms-transform: skew(-5deg) rotate(-5deg);
-    -o-transform: skew(-5deg) rotate(-5deg);
-    transform: skew(-5deg) rotate(-5deg);
-    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    z-index: -1;
-}
-.card:after
-{
-    left: auto;
-    right: 12px;
-    -webkit-transform: skew(5deg) rotate(5deg);
-    -moz-transform: skew(5deg) rotate(5deg);
-    -ms-transform: skew(5deg) rotate(5deg);
-    -o-transform: skew(5deg) rotate(5deg);
-    transform: skew(5deg) rotate(5deg);
+.frame {
+	position: relative;
+	display: inline-block;
+	border-radius: 50%;
+	width: 100%;
+	height: 100%;
 }
 td{
 	width: 90px;
 }
 td:first-child{
-	background: #aad4ff;
+	background: #EEEEEE
+
+}
+
+.nav-pills{
+	border-bottom: 1px solid #ddd;
 }

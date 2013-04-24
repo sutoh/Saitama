@@ -1,7 +1,7 @@
 <div class="row">
   <div class="span6 well card">
     <div class="span2">
-       <%= link_to image_tag(@employee.image.url(:thumb), {class: "logo"}), edit_employee_path(@employee) %>
+       <%= link_to image_tag(@employee.image.url(:thumb), {class: "logo frame"}), edit_employee_path(@employee) %>
     </div>
     <div class="span3">
       <p><%= @employee.user.login_id %></p>
@@ -13,7 +13,7 @@
 </div>
 
     <div class="tabbable">
-      <ul class="nav nav-tabs">
+      <ul class="nav nav-pills">
         <li class="active"><a href="#info" data-toggle="tab">Basic Info</a>
         <li><a href="#licenses" data-toggle="tab">Licenses</a>
         <li><a href="#skills" data-toggle="tab">Skills</a>
@@ -92,21 +92,25 @@
     <div class="row">
       <div class="span12">
         <table class="table">
-          <tr>
-            <td>License</td>
-            <td>Acquisition date</td>
-          </tr>
-          <% @licenses.licenses.each do |license| %>
-          <% employee_license = license.employee_licenses.find(:first) %>
-          <tr>
-            <td>
-              <%= link_to(license.name, edit_employee_employee_license_path(@employee, employee_license))%>
-            </td>
-            <td><%= link_to employee_license.acquisition_date, 
+          <thead>
+            <tr>
+              <th>License</th>
+              <th>Acquisition date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @licenses.licenses.each do |license| %>
+              <% employee_license = license.employee_licenses.find(:first) %>
+              <tr>
+                <td>
+                  <%= link_to(license.name, edit_employee_employee_license_path(@employee, employee_license))%>
+                </td>
+                <td><%= link_to employee_license.acquisition_date, 
               edit_employee_employee_license_path(@employee, employee_license) %>
-            </td>
-          </tr>
-          <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
         </table>
         <%= link_to "Edit", employee_employee_licenses_path(@employee), :class => "btn btn-success" %>
       </div>
@@ -116,18 +120,22 @@
   <div class="tab-pane" id="skills">
     <div class="row">
       <div class="span12">
-        <table class="table table-striped table-hover">
-          <tr>
-            <td>Skill</td>
-            <td>Level</td>
-          </tr>
-          <% @skills.skills.each do |skill| %>
-          <% employee_skill = skill.employee_skills.find(:first) %>
-          <tr>
-            <td><%= link_to skill.name, edit_employee_employee_skill_path(@employee, employee_skill) %></td>
-            <td><%= link_to employee_skill.level, edit_employee_employee_skill_path(@employee, employee_skill) %></td>
-          </tr>
-          <% end %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Skill</th>
+              <th>Level</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @skills.skills.each do |skill| %>
+              <% employee_skill = skill.employee_skills.find(:first) %>
+              <tr>
+                <td><%= link_to skill.name, edit_employee_employee_skill_path(@employee, employee_skill) %></td>
+                <td><%= link_to employee_skill.level, edit_employee_employee_skill_path(@employee, employee_skill) %></td>
+              </tr>
+            <% end %>
+          </tbody>
         </table>
         <%= link_to "Edit", employee_employee_skills_path(@employee), :class => "btn btn-success" %>
       </div>
