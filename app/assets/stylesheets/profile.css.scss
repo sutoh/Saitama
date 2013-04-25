@@ -52,3 +52,29 @@ td{
 td:first-child{
 	background: #aad4ff;
 }
+
+/* 
+ * Google+ Layout作成
+ * 
+ */
+body {
+  background-color: rgba(0,51,0,.1);
+}
+.col {
+  display: inline-block;
+  margin-left: 30px;
+  vertical-align: top;
+  width: 415px;
+  &:first-child { margin-left: 0; }
+  
+}
+.waku {
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1px 2px #c4c4c4;
+  box-shadow: 0 1px 2px #c4c4c4;
+  background-color: #fff;
+  border-top: 5px solid #fff;
+  margin-bottom: 30px;
+  width: 415px;
+}
