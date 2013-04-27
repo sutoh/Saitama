@@ -13,7 +13,6 @@
 }
 
 .card{
-	position: relative;
 	-webkit-box-shadow: 0 10px 8px -6px #8d8c8c;
     -moz-box-shadow: 0 10px 8px -6px #8d8c8c;
      box-shadow: 0 10px 8px -6px #8d8c8c;
@@ -58,4 +57,28 @@ body {
   border-top: 5px solid #fff;
   margin-bottom: 30px;
   width: 415px;
+  padding: 10px;
+}
+.waku-name{
+	font-size: 20px;
+	border-bottom: solid 3px #666;
+	margin-bottom: 5px;
+	padding-bottom: 1px;
+
+}
+.waku-detail{
+	display: table;
+	table-layout: fixed;
+}
+
+.waku-detail-header{
+	display: table-cell;
+	text-align:left;
+	width: 20%;
+	text-indent: 10px;
+}
+.waku-detail-data{
+	display: table-cell;
+	text-align:left;
+	width: 300px;
 }
