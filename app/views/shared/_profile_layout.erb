@@ -55,19 +55,31 @@
         <div class="waku-name">技能</div>
       </div>
       <div>
-        <table class="table table-striped table-hover">
-          <tr>
-            <td>Skill</td>
-            <td>Level</td>
-          </tr>
+        <ul class="listview iconic">
+          <li>
+            <div class="icon">
+              <%= image_tag 'lisences/ruby-logo.jpg', {class: "lisence_logo"} %>
+              </div>
+            <div class="data">
+              <h4>使える技能</h4>
+              <p>★スキルレベル☆</p>
+            </div>
+          </li>
           <% @skills.skills.each do |skill| %>
           <% employee_skill = skill.employee_skills.find(:first) %>
-          <tr>
-            <td><%= link_to skill.name, edit_employee_employee_skill_path(@employee, employee_skill) %></td>
-            <td><%= link_to employee_skill.level, edit_employee_employee_skill_path(@employee, employee_skill) %></td>
-          </tr>
+          <li>
+            <div class="icon">
+              <i class="icon-digg"></i>
+            </div>
+            <div class="data">
+              <h4><%= link_to skill.name, edit_employee_employee_skill_path(@employee, employee_skill) %></h4>
+              <p>
+                <% employee_skill.level.times do %>★<% end %>
+              </p>
+            </div>
+          </li>
           <% end %>
-        </table>
+        </ul>
         <div class="waku-detail">
           <div class="waku-detail-header">入社年月日</div>
           <div class="waku-detail-data"><%= @employee.experience %></div>
