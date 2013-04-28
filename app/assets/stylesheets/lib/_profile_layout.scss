@@ -14,8 +14,10 @@
 
 .card{
 	-webkit-box-shadow: 0 10px 8px -6px #8d8c8c;
-    -moz-box-shadow: 0 10px 8px -6px #8d8c8c;
-     box-shadow: 0 10px 8px -6px #8d8c8c;
+	-moz-box-shadow: 0 10px 8px -6px #8d8c8c;
+	box-shadow: 0 10px 8px -6px #8d8c8c;
+	float: left;
+	min-height: 1px;
 
 }
 .frame {
