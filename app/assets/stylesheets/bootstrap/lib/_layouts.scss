@@ -14,3 +14,16 @@
   padding-left: $gridGutterWidth;
   @include clearfix();
 }
+
+.waku {
+  width: 415px;
+}
+.col {
+  width: 415px;
+  margin-left: 30px;
+  &:first-child { margin-left: 0; }
+}
+.container {
+  width: 850px;
+  margin-left: 30px;
+}

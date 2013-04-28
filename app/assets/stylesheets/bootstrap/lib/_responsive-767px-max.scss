@@ -4,7 +4,6 @@
 
 
 @media (max-width: 767px) {
-
   // Padding to set content in a bit
   body {
     padding-left: 20px;
@@ -42,6 +41,7 @@
   // Remove width from containers
   .container {
     width: auto;
+    margin-left: auto;
   }
   // Fluid rows
   .row-fluid {
@@ -114,7 +114,14 @@
       top: -1px;
     }
   }
-
+  // col & wakus
+  .waku {
+    width: 415px;
+  }
+  .col {
+    width: 415px;
+    margin-left: 0px;
+  }
 }
 
 
@@ -193,5 +200,13 @@
   .carousel-caption {
     position: static;
   }
-
+  
+  // col & wakus
+  .waku {
+    width: 415px;
+  }
+  .col {
+    width: 415px;
+    margin-left: 0px;
+  }
 }

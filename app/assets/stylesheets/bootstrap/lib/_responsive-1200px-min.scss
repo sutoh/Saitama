@@ -24,5 +24,13 @@
   .row-fluid .thumbnails {
     margin-left: 0;
   }
+  .waku {
+    width: 555px;
+  }
+  .col {
+    width: 555px;
+    margin-left: 30px;
+    &:first-child { margin-left: 0; }
+  }
 
 }
