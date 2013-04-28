@@ -42,4 +42,6 @@ body {
 #map label {
   width: auto; display:inline;
 }
-
+.nav > .active {
+  border-bottom: 2px solid #1e6ef2;
+}
