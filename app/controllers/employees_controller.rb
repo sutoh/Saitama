@@ -18,8 +18,10 @@ class EmployeesController < ApplicationController
   # GET /employees/1.json
   def show
     @employee = Employee.find(params[:id])
-    @json = Employee.find(params[:id]).to_gmaps4rails
-    
+  	@licenses = Employee.find(@employee, include: :licenses)
+  	@skills = Employee.find(@employee, include: :skills)
+  	@work = @employee.works.all
+    @json = @employee.to_gmaps4rails
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @employee }

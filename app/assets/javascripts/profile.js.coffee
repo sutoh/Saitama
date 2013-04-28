@@ -2,16 +2,6 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 #= require_directory ./gmaps4rails
-
+#= require_directory ./lib
 jQuery ->
   $("ul.nav li").eq(0).addClass("active")
-  
-  $(document).ready ->
-  called = false
-  $("img.logo").error ->
-    unless called
-      $(this).attr
-        src: "/images/missing_default.jpg"
-        alt: "画像が見つかりません。"
-        style: "border: 1px solid #999999;"
-      called = true

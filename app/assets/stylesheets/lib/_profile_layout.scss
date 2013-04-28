@@ -1,0 +1,98 @@
+// Place all the styles related to the profile controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "compass/utilities";
+@import "compass/css3";
+
+.row {
+	padding-top: 24px;
+}
+.well {
+//	@include border-radius(10px);
+	border: none;
+}
+
+.card{
+	-webkit-box-shadow: 0 10px 8px -6px #8d8c8c;
+    -moz-box-shadow: 0 10px 8px -6px #8d8c8c;
+     box-shadow: 0 10px 8px -6px #8d8c8c;
+
+}
+.frame {
+	position: relative;
+	display: inline-block;
+	border-radius: 50%;
+	width: 80%;
+	height: 80%;
+}
+td{
+	width: 90px;
+}
+td:first-child{
+	background: #EEEEEE
+
+}
+
+/* 
+ * Google+ Layout作成
+ * 
+ */
+body {
+  background-color: rgba(0,0,51,.1);
+}
+.col {
+  display: inline-block;
+  vertical-align: top;
+  
+}
+.waku {
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1px 2px #c4c4c4;
+  box-shadow: 0 1px 2px #c4c4c4;
+  background-color: #fff;
+  border-top: 5px solid #fff;
+  margin-bottom: 30px;
+  padding: 10px;
+}
+.waku-name{
+	font-size: 20px;
+	border-bottom: solid 3px #666;
+	margin-bottom: 5px;
+	padding-bottom: 1px;
+
+}
+.waku-detail{
+	display: table;
+	table-layout: fixed;
+}
+
+.waku-detail-header{
+	display: table-cell;
+	text-align:left;
+	width: 20%;
+	text-indent: 10px;
+}
+.waku-detail-data{
+	display: table-cell;
+	text-align:left;
+	width: 300px;
+}
+.kihon {
+  border-top-color: #e46f61;
+}
+.work {
+  border-top-color: #fbcb43;
+}
+.appeal {
+  border-top-color: #8cc474;
+}
+.sumika {
+  border-top-color: #76a7fa;
+}
+.skill {
+  border-top-color: #4dbfd9;
+}
+.work-detail {
+  border-top-color: #bc5679;
+}
