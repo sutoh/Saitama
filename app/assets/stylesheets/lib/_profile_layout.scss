@@ -57,12 +57,14 @@ body {
   margin-bottom: 30px;
   padding: 10px;
 }
-.waku-name{
-	font-size: 20px;
+.waku-header{
 	border-bottom: solid 3px #666;
-	margin-bottom: 5px;
 	padding-bottom: 1px;
-
+}
+.waku-name{
+	margin-bottom: 5px;
+	font-size: 20px;
+	display:inline;
 }
 .waku-detail{
 	display: table;
@@ -97,4 +99,9 @@ body {
 }
 .work-detail {
   border-top-color: #bc5679;
+}
+.edit {
+	position: relative;
+	display: inline-block;
+	float: right;
 }

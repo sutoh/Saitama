@@ -28,6 +28,9 @@
     <div class="waku kihon">
       <div class="waku-header">
         <div class="waku-name">基本情報</div>
+        <div class="edit">
+          <%= link_to "編集", edit_employee_path(@employee)%>
+        </div>
       </div>
       <div>
         <div class="waku-detail">
@@ -45,14 +48,14 @@
           <div class="waku-detail-data"><%= @employee.birthday %></div>
         </div>
       </div>
-      <div class="edit">
-        <%= link_to "編集", edit_employee_path(@employee), :class => "btn btn-success" %>
-      </div>
     </div>
     
     <div class="waku work">
       <div class="waku-header">
         <div class="waku-name">技能</div>
+        <div class="edit">
+          <%= link_to "編集", employee_employee_skills_path(@employee) %>
+        </div>
       </div>
       <div>
         <ul class="listview iconic">
@@ -93,23 +96,20 @@
           <div class="waku-detail-data"><%= @employee.education %></div>
         </div>
       </div>
-      <div class="edit">
-        <%= link_to "編集", employee_employee_skills_path(@employee), :class => "btn btn-success" %>
-      </div>
     </div>
     
     <div class="waku appeal">
       <div class="waku-header">
         <div class="waku-name">アピール</div>
+        <div class="edit">
+          <%= link_to "編集", '#'%>
+        </div>
       </div>
       <div>
         <div class="waku-detail">
           <div class="waku-detail-header">自己PR</div>
           <div class="waku-detail-data"><%= @employee.self_pr %></div>
         </div>
-      </div>
-      <div class="edit">
-        <%= link_to "編集", '#', :class => "btn btn-success" %>
       </div>
     </div>
   </div>
@@ -118,6 +118,9 @@
     <div class="waku sumika">
       <div class="waku-header">
         <div class="waku-name">住処</div>
+        <div class="edit">
+          <%= link_to "編集", '#'%>
+        </div>
       </div>
       <div>
         <div class="gmap">
@@ -136,14 +139,14 @@
           <div class="waku-detail-data"><%= @employee.address %></div>
         </div>
       </div>
-      <div class="edit">
-        <%= link_to "編集", '#', :class => "btn btn-success" %>
-      </div>
     </div>
     
     <div class="waku skill">
       <div class="waku-header">
         <div class="waku-name">資格</div>
+        <div class="edit">
+          <%= link_to "編集", employee_employee_licenses_path(@employee)%>
+        </div>
       </div>
       <div>
         <table class="table">
@@ -168,14 +171,14 @@
           </tbody>
         </table>
       </div>
-      <div class="edit">
-        <%= link_to "Edit", employee_employee_licenses_path(@employee), :class => "btn btn-success" %>
-      </div>
     </div>
     
     <div class="waku work-detail">
       <div class="waku-header">
         <div class="waku-name">経歴</div>
+        <div class="edit">
+          <%= link_to "編集", employee_employee_licenses_path(@employee)%>
+        </div>
       </div>
       <div>
         <table class="table">
@@ -195,9 +198,6 @@
           </tr>
           <% end %>
         </table>
-      </div>
-      <div class="edit">
-        <%= link_to "Edit", employee_employee_licenses_path(@employee), :class => "btn btn-success" %>
       </div>
     </div>
   </div>
