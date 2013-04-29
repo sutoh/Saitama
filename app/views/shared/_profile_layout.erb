@@ -114,9 +114,6 @@
         </div>
       </div>
     </div>
-  </div>
-  
-  <div class="col">
     <div class="waku sumika">
       <div class="waku-header">
         <div class="waku-name">住処</div>
@@ -142,7 +139,36 @@
         </div>
       </div>
     </div>
-    
+  </div>
+  
+  <div class="col">
+        <div class="waku work-detail">
+      <div class="waku-header">
+        <div class="waku-name">経歴</div>
+        <div class="edit">
+          <%= link_to "編集", employee_employee_licenses_path(@employee)%>
+        </div>
+      </div>
+      <div class="waku-detail-group">
+        <table class="table">
+          <tr>
+            <td>License</td>
+            <td>Acquisition date</td>
+          </tr>
+          <% @licenses.licenses.each do |license| %>
+          <% employee_license = license.employee_licenses.find(:first) %>
+          <tr>
+            <td>
+              <%= link_to(license.name, edit_employee_employee_license_path(@employee, employee_license))%>
+            </td>
+            <td><%= link_to employee_license.acquisition_date, 
+              edit_employee_employee_license_path(@employee, employee_license) %>
+            </td>
+          </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
     <div class="waku skill">
       <div class="waku-header">
         <div class="waku-name">資格</div>
@@ -179,34 +205,6 @@
           </li>
           <% end %>
         </ul>
-      </div>
-    </div>
-    
-    <div class="waku work-detail">
-      <div class="waku-header">
-        <div class="waku-name">経歴</div>
-        <div class="edit">
-          <%= link_to "編集", employee_employee_licenses_path(@employee)%>
-        </div>
-      </div>
-      <div class="waku-detail-group">
-        <table class="table">
-          <tr>
-            <td>License</td>
-            <td>Acquisition date</td>
-          </tr>
-          <% @licenses.licenses.each do |license| %>
-          <% employee_license = license.employee_licenses.find(:first) %>
-          <tr>
-            <td>
-              <%= link_to(license.name, edit_employee_employee_license_path(@employee, employee_license))%>
-            </td>
-            <td><%= link_to employee_license.acquisition_date, 
-              edit_employee_employee_license_path(@employee, employee_license) %>
-            </td>
-          </tr>
-          <% end %>
-        </table>
       </div>
     </div>
   </div>
