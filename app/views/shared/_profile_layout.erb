@@ -29,7 +29,7 @@
       <div class="waku-header">
         <div class="waku-name">基本情報</div>
         <div class="edit">
-          <%= link_to "編集", edit_employee_path(@employee)%>
+          <a href="#kihon">編集</a>
         </div>
       </div>
       <div class="waku-detail-group">
@@ -54,7 +54,7 @@
       <div class="waku-header">
         <div class="waku-name">技能</div>
         <div class="edit">
-          <%= link_to "編集", employee_employee_skills_path(@employee) %>
+          <a href="#work">編集</a>
         </div>
       </div>
       <div>
@@ -104,7 +104,7 @@
       <div class="waku-header">
         <div class="waku-name">アピール</div>
         <div class="edit">
-          <%= link_to "編集", '#'%>
+          <a href="#appeal">編集</a>
         </div>
       </div>
       <div class="waku-detail-group">
@@ -146,7 +146,7 @@
       <div class="waku-header">
         <div class="waku-name">経歴</div>
         <div class="edit">
-          <%= link_to "編集", employee_employee_licenses_path(@employee)%>
+          <a href="#work-detail">編集</a>
         </div>
       </div>
       <div class="waku-detail-group">
@@ -173,7 +173,7 @@
       <div class="waku-header">
         <div class="waku-name">資格</div>
         <div class="edit">
-          <%= link_to "編集", employee_employee_licenses_path(@employee)%>
+          <a href="#skill">編集</a>
         </div>
       </div>
       <div class="waku-detail-group">
@@ -210,3 +210,32 @@
   </div>
 </div>
 
+<div id="modal">
+  <div id="kihon" class="open">
+    <a href="#" class="close_overlay">×</a>
+    <span class="modal_window">
+      <h2>基本情報</h2>
+      <%= form_for(@employee, html: {class: "form-horizontal"}) do |f| %>
+        <div class="field control-group">
+          <%= f.label :gender, class: "control-label" %>
+          <div class="controls">
+            <%= f.number_field :gender %>
+          </div>
+        </div>
+        <div class="field control-group">
+          <%= f.label :birthday, class: "control-label" %>
+          <div class="controls">
+            <%= f.date_select :birthday %>
+          </div>
+        </div>
+        <div class="actions control-group">
+          <div class="controls">
+            <%= f.submit class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+      <a href="#">【×】CLOSE</a>
+    </span>
+  </div>
+  
+</div>
