@@ -1,8 +1,6 @@
 <div class="page-header">
-<h1>Listing <%= model_name %></h1>
+<h1><%= title_name %>情報</h1>
 </div>
 <div class="btn-toolbar">
-  <%= link_to "New #{model_name}", "new_#{model_name.downcase}".to_sym, class: "btn btn-primary" %>
-  <button class="btn">Import</button>
-  <button class="btn">Export</button>
+  <%= link_to "追加", "new_#{model_name.downcase}".to_sym, class: "btn btn-primary" %>
 </div>

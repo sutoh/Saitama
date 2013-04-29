@@ -1,5 +1,5 @@
-<%= render "shared/toolbar_for_index", model_name: controller_name %>
-<%= link_to "Print Employee", employees_path(format:'pdf'), class: "btn btn-primary" %>
+<%= render "shared/toolbar_for_index", model_name: controller_name , title_name: "社員" %>
+<%= link_to "出力", employees_path(format:'pdf'), class: "btn btn-primary" %>
 
 <div class="well">
   <table class="table">
@@ -16,10 +16,10 @@
         <td><%= link_to employee.family_name + " " + employee.given_name, employee %></td>
         <td>
           <div class="btn-group">
-            <%= link_to 'License', employee_employee_licenses_path(employee), :class => "btn" %>
-            <%= link_to 'Skill', employee_employee_skills_path(employee), :class => "btn" %>
-            <%= link_to 'Edit', edit_employee_path(employee), :class => "btn"%>
-            <%= link_to 'Delete', employee,  method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-warning" %>
+            <%= link_to '資格', employee_employee_licenses_path(employee), :class => "btn" %>
+            <%= link_to 'スキル', employee_employee_skills_path(employee), :class => "btn" %>
+            <%= link_to '編集', edit_employee_path(employee), :class => "btn"%>
+            <%= link_to '削除', employee,  method: :delete, data: { confirm: '削除してもよろしいですか?' }, :class => "btn btn-warning" %>
           </div>
         </td>
       </tr>
