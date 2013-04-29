@@ -41,7 +41,7 @@
           <li class="divider-vertical"></li>
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-              <i class="icon-thumbs-down"></i> Master
+              <i class="icon-thumbs-down"></i> Master <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
               <li>
@@ -63,35 +63,35 @@
             </ul>
           </li>
         </ul>
-        <div class="btn-group pull-right">
-          <%= link_to "#", class: "btn dropdown-toggle me", "data-toggle" => "dropdown" do %>
-          <i class="icon-user"></i> admin <span class="caret"></span>
-          <% end %>
-            
-          <ul class="dropdown-menu">
+        <ul class="nav pull-right">
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              <i class="icon-user"></i> admin <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
             <% if controller.kind_of?(Admin::Base) %>
-            <li>
-              <%= link_to :admin_root do %>
-              <i class="icon-wrench"></i> Administration
-              <% end %>
-            </li>
-            <li class="divider"></li>
+              <li>
+                <%= link_to :admin_root do %>
+                  <i class="icon-wrench"></i> Administration
+                <% end %>
+              </li>
+              <li class="divider"></li>
             <% end %>
-            
-            <li>
-              <%= link_to "#" do %>
-              <i class="icon-wrench"></i> Settings
-              <% end %>
-            </li>
-            <li class="divider"></li>
-            
-            <li>
-              <%= link_to destroy_user_session_path, method: :delete do %>
-              <i class="icon-share"></i> Logout
-              <% end %>
-            </li>
-          </ul>
-        </div>
+              <li>
+                <%= link_to "#" do %>
+                  <i class="icon-wrench"></i> Settings
+                <% end %>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                  <i class="icon-share"></i> Logout
+                <% end %>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
         <% end %>
       </div>
     </div>

@@ -25,12 +25,15 @@
     margin-left: 0;
   }
   .waku {
-    width: 555px;
+    width: 535px;
   }
   .col {
     width: 555px;
     margin-left: 30px;
     &:first-child { margin-left: 0; }
+  }
+  .card {
+    width: 1105px;
   }
 
 }
