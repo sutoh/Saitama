@@ -215,7 +215,8 @@
 .navbar-static-top .container,
 .navbar-fixed-top .container,
 .navbar-fixed-bottom .container {
-  @include grid-core-span($gridColumns, $gridColumnWidth, $gridGutterWidth);
+  //@include grid-core-span($gridColumns, $gridColumnWidth, $gridGutterWidth);
+  width: 850px;
 }
 
 // Fixed to top
