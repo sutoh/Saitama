@@ -149,27 +149,34 @@
         </div>
       </div>
       <div>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>License</th>
-              <th>Acquisition date</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @licenses.licenses.each do |license| %>
-              <% employee_license = license.employee_licenses.find(:first) %>
-              <tr>
-                <td>
-                  <%= link_to(license.name, edit_employee_employee_license_path(@employee, employee_license))%>
-                </td>
-                <td><%= link_to employee_license.acquisition_date, 
+      
+      
+        <ul class="listview iconic">
+          <li>
+            <div class="icon">
+              <%= image_tag 'lisences/ruby-logo.jpg', {class: "lisence_logo"} %>
+              </div>
+            <div class="data">
+              <h4>取得資格</h4>
+              <p>取得日</p>
+            </div>
+          </li>
+          <% @licenses.licenses.each do |license| %>
+            <% employee_license = license.employee_licenses.find(:first) %>
+          <li>
+            <div class="icon">
+              <i class="icon-digg"></i>
+            </div>
+            <div class="data">
+              <%= link_to(license.name, edit_employee_employee_license_path(@employee, employee_license))%>
+              <p>
+                <%= link_to employee_license.acquisition_date, 
               edit_employee_employee_license_path(@employee, employee_license) %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+              </p>
+            </div>
+          </li>
+          <% end %>
+        </ul>
       </div>
     </div>
     
