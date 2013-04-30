@@ -1,9 +1,13 @@
 class ProfileController < ApplicationController
   def index
-  	@employee = current_user.employee
-  	@licenses = Employee.find(@employee, include: :licenses)
-  	@skills = Employee.find(@employee, include: :skills)
-  	@work = @employee.works.all
+    @employee = current_user.employee
+    @licenses = Employee.find(@employee, include: :licenses)
+    @skills = Employee.find(@employee, include: :skills)
+    @work = @employee.works.all
+    @work_details = []
+    @work.each do |w|
+      @work_details << w.work_details.all
+    end
     @json = @employee.to_gmaps4rails
     respond_to do |format|
       format.html # profile.html.erb
@@ -15,25 +19,7 @@ class ProfileController < ApplicationController
 #                                     type: 'application/pdf',
 #                                     disposition: 'inline'
 #       }
-      format.pdf { render_profile(@employee,@licenses,@skills,@work) }
+      format.pdf { render_profile(@employee,@licenses,@skills,@work,@work_details) }
     end
   end
-  
-  def render_profile(employee)
-    report = ThinReports::Report.new layout: File.join(Rails.root, 'app', 'reports', 'profile.tlf')
-
-    report.start_new_page do |page|
-      page.values employee: employee.id, 
-                  name: employee.family_name, 
-                  address: employee.address, 
-                  birthday: employee.birthday, 
-                  created_at: employee.created_at, 
-                  updated_at: employee.updated_at
-    end
-
-    send_data report.generate, filename: 'profile.pdf', 
-                               type: 'application/pdf', 
-                               disposition: 'inline'
-  end
-  
 end

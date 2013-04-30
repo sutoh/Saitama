@@ -18,20 +18,20 @@ class EmployeesController < ApplicationController
   # GET /employees/1.json
   def show
     @employee = Employee.find(params[:id])
-  	@licenses = Employee.find(@employee, include: :licenses)
-  	@skills = Employee.find(@employee, include: :skills)
-  	@work = @employee.works.all
+    @licenses = Employee.find(@employee, include: :licenses)
+    @skills = Employee.find(@employee, include: :skills)
+    @work = @employee.works.all
+    @work_details = []
+    @work.each do |w|
+      @work_details << w.work_details_all
+    end
     @json = @employee.to_gmaps4rails
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @employee }
       # Example: Using thinreports-rails gem
       # see https://github.com/takeshinoda/thinreports-rails
-      format.pdf {
-        send_data render_to_string, filename: "employee#{@employee.id}.pdf",
-                                    type: 'application/pdf',
-                                    disposition: 'inline'
-      }
+      format.pdf { render_profile(@employee,@licenses,@skills,@work,@work_details) }
     end
   end
 
@@ -93,24 +93,5 @@ class EmployeesController < ApplicationController
     end
   end
   
-  private
-
-  def render_employee_list(employees)
-    report = ThinReports::Report.new layout: File.join(Rails.root, 'app', 'reports', 'employees.tlf')
-
-    employees.each do |employee|
-      report.list.add_row do |row|
-        row.values id: employee.id, 
-                   name: employee.family_name, 
-                   birthday: employee.birthday, 
-                   address: employee.address
-        row.item(:name).style(:color, 'red') 
-      end
-    end
-    
-    send_data report.generate, filename: 'employees.pdf', 
-                               type: 'application/pdf', 
-                               disposition: 'attachment'
-  end
   
 end
