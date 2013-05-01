@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
   
   # Profile印刷
   def render_profile(employee,licenses,skills,work,work_details)
+    rc = 0
     report = ThinReports::Report.new layout: File.join(Rails.root, 'app', 'reports', 'profile.tlf')
     
     report.start_new_page do |page|
@@ -37,11 +38,10 @@ class ApplicationController < ActionController::Base
                       license: 'n' , 
                        appeal: 'o' 
     end
-    
     work_details.each do |work|
-      report.page.list(:default).add_row do |row|
-        rc.nil? ? rc=0 : rc+=1
-        row.values d_no: rc,
+      report.list(:work_detail).add_row do |row|
+        
+        row.values d_no: rc+=1,
              period_from: '' ,
                period_to: '' ,
                     d_mc: '' ,
