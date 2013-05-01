@@ -92,6 +92,23 @@ class EmployeesController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
-  
+    private
+
+  def render_employee_list(employees)
+    report = ThinReports::Report.new layout: File.join(Rails.root, 'app', 'reports', 'employees.tlf')
+
+    employees.each do |employee|
+      report.list.add_row do |row|
+        row.values id: employee.id, 
+                   name: employee.family_name, 
+                   birthday: employee.birthday, 
+                   address: employee.address
+        row.item(:name).style(:color, 'red') 
+      end
+    end
+    
+    send_data report.generate, filename: 'employees.pdf', 
+                               type: 'application/pdf', 
+                               disposition: 'attachment'
+  end
 end
