@@ -7,7 +7,7 @@
       <p><%= @employee.user.login_id if !@employee.user.nil? %></p>
       <p><strong><%= @employee.family_name + " " + @employee.given_name%></strong></p>
       <p><strong><%= @employee.family_name_kana + " " + @employee.given_name_kana %></strong></p>
-      <%= link_to "Edit", edit_employee_path(@employee), :class => "btn btn-success" %>
+      <%= link_to "変更", edit_employee_path(@employee), :class => "btn btn-success" %>
     </div>
   </div>
   <div class="collapse">
@@ -116,7 +116,7 @@
     </div>
     <div class="waku sumika">
       <div class="waku-header">
-        <div class="waku-name">住処</div>
+        <div class="waku-name">住所</div>
         <div class="edit">
           <%= link_to "編集", '#'%>
         </div>

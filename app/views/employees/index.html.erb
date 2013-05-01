@@ -5,7 +5,7 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Name</th>
+        <th>社員名</th>
         <th></th>
       </tr>
     </thead>
@@ -16,9 +16,9 @@
         <td><%= link_to employee.family_name + " " + employee.given_name, employee %></td>
         <td>
           <div class="btn-group">
-            <%= link_to '資格', employee_employee_licenses_path(employee), :class => "btn" %>
-            <%= link_to 'スキル', employee_employee_skills_path(employee), :class => "btn" %>
-            <%= link_to '編集', edit_employee_path(employee), :class => "btn"%>
+            <%= link_to '資格登録', employee_employee_licenses_path(employee), :class => "btn" %>
+            <%= link_to 'スキル登録', employee_employee_skills_path(employee), :class => "btn" %>
+            <%= link_to '修正', edit_employee_path(employee), :class => "btn"%>
             <%= link_to '削除', employee,  method: :delete, data: { confirm: '削除してもよろしいですか?' }, :class => "btn btn-warning" %>
           </div>
         </td>
