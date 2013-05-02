@@ -49,6 +49,7 @@ class EmployeesController < ApplicationController
   # GET /employees/1/edit
   def edit
     @employee = Employee.find(params[:id])
+    @genders = {'Men' => 0, 'Women' => 1}
   end
 
   # POST /employees
