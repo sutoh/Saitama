@@ -65,6 +65,11 @@ class EmployeeSkillsController < ApplicationController
   # PUT /employee_skills/1
   # PUT /employee_skills/1.json
   def update
+    if params[:employee_skill]
+      EmployeeSkill.update(params[:employee_skill].keys, params[:employee_skill].values)
+      redirect_to profile_index_path
+      return
+    end
     @employee_skill = EmployeeSkill.find(params[:id])
     @skills = Skill.find(:all, :select => "Skills.name, Skills.id")
 

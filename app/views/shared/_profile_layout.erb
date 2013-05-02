@@ -65,7 +65,7 @@
       <div class="waku-header">
         <div class="waku-name">住所</div>
         <div class="edit">
-          <%= link_to "編集", '#'%>
+          <a href="#sumika">編集</a>
         </div>
       </div>
       <div class="waku-detail-group">
@@ -102,7 +102,7 @@
     </div>
     <div class="waku work">
       <div class="waku-header">
-        <div class="waku-name">技能</div>
+        <div class="waku-name">スキル</div>
         <div class="edit">
           <a href="#work">編集</a>
         </div>
@@ -217,29 +217,118 @@
 <div id="modal">
   <div id="kihon" class="open">
     <a href="#" class="close_overlay">×</a>
-    <span class="modal_window">
-      <h2>基本情報</h2>
-      <%= form_for(@employee, html: {class: "form-horizontal"}) do |f| %>
-        <div class="field control-group">
-          <%= f.label :gender, class: "control-label" %>
-          <div class="controls">
-            <%= f.number_field :gender %>
+    <span class="modal_window waku kihon">
+      <div class="waku-header">
+        <div class="waku-name">基本情報</div>
+      </div>
+      <%= form_for(@employee) do |f| %>
+        <div class="waku-detail-group">
+          <div class="waku-detail">
+            <div class="waku-detail-header">性別</div>
+            <div class="waku-detail-data"><%= f.number_field :gender %></div>
+          </div>
+          <div class="waku-detail">
+            <div class="waku-detail-header">年齢</div>
+            <div class="waku-detail-data">
+              <%= nenrei(@employee.birthday) if !@employee.birthday.nil?  %>
+            </div>
+          </div>
+          <div class="waku-detail">
+            <div class="waku-detail-header">誕生日</div>
+            <div class="waku-detail-data"><%= f.date_select :birthday, {},{class: "select_date"} %></div>
+          </div>
+          <div class="waku-detail">
+            <div class="waku-detail-header">入社年月日</div>
+            <div class="waku-detail-data"><%= f.date_select :entrance_date, {}, {class: "select_date"} %></div>
+          </div>
+          <div class="waku-detail">
+            <div class="waku-detail-header">経験年数</div>
+            <div class="waku-detail-data"><%= f.number_field :experience %></div>
+          </div>
+          <div class="waku-detail">
+            <div class="waku-detail-header">最終学歴</div>
+            <div class="waku-detail-data"><%= f.text_field :education %></div>
           </div>
         </div>
-        <div class="field control-group">
-          <%= f.label :birthday, class: "control-label" %>
-          <div class="controls">
-            <%= f.date_select :birthday %>
-          </div>
-        </div>
-        <div class="actions control-group">
-          <div class="controls">
-            <%= f.submit class: "btn btn-primary" %>
-          </div>
-        </div>
+        <a href="#" class="btn btn-warning">CLOSE</a>
+        <%= f.submit class: "btn btn-primary" %>
       <% end %>
-      <a href="#">【×】CLOSE</a>
     </span>
   </div>
   
+  <div id="sumika" class="open">
+    <a href="#" class="close_overlay">×</a>
+    <span class="modal_window waku sumika">
+      <div class="waku-header">
+        <div class="waku-name">住所</div>
+      </div>
+      <%= form_for(@employee) do |f| %>
+        <div class="waku-detail-group">
+          <div class="waku-detail">
+            <div class="waku-detail-header">郵便番号</div>
+            <div class="waku-detail-data"><%= f.text_field :postalcode %></div>
+          </div>
+          <div class="waku-detail">
+            <div class="waku-detail-header">最寄り駅</div>
+            <div class="waku-detail-data"><%= f.text_field :station %></div>
+          </div>
+          <div class="waku-detail">
+            <div class="waku-detail-header">住所</div>
+            <div class="waku-detail-data"><%= f.text_area :address, size: "60x4"%></div>
+          </div>
+        </div>
+        <a href="#" class="btn btn-warning">CLOSE</a>
+        <%= f.submit class: "btn btn-primary" %>
+      <% end %>
+    </span>
+  </div>
+
+  <div id="appeal" class="open">
+    <a href="#" class="close_overlay">×</a>
+    <span class="modal_window waku appeal">
+      <div class="waku-header">
+        <div class="waku-name">アピール</div>
+      </div>
+      <%= form_for(@employee) do |f| %>
+        <div class="waku-detail-group">
+          <div class="waku-detail">
+            <div class="waku-detail-header">自己PR</div>
+            <div class="waku-detail-data"><%= f.text_area :self_pr, rows: "8"%></div>
+          </div>
+        </div>
+        <a href="#" class="btn btn-warning">CLOSE</a>
+        <%= f.submit class: "btn btn-primary" %>
+      <% end %>
+    </span>
+  </div>
+
+
+  <div id="work" class="open">
+    <a href="#" class="close_overlay">×</a>
+    <span class="modal_window waku work">
+      <div class="waku-header">
+        <div class="waku-name">技能</div>
+      </div>
+      <%= form_for([@employee, @employee_skill]) do %>
+        <div class="waku-detail-group">
+          <div class="waku-detail">
+            <div class="waku-detail-data">スキル名</div>
+            <div class="waku-detail-data2">レベル</div>
+          </div>
+          <% @employee_skills.each do |employee_skill| %>
+            <%= fields_for("employee_skill[]",employee_skill) do |skill| %>
+              <div class="waku-detail">
+                <div class="waku-detail-data"><%= skill.select :skill_id, @skills.skills.map{|s|[s.name, s.id]} %></div>
+                <div class="waku-detail-data2"><%= skill.number_field :level %></div>
+              </div>
+            <% end %>
+          <% end %> 
+        </div> 
+        <a href="#" class="btn btn-warning">CLOSE</a>
+        <%= submit_tag "更新", :class => "btn btn-primary" %>
+      <% end %>
+    </span>
+  </div>
+
+
 </div>

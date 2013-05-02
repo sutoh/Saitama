@@ -3,6 +3,8 @@ class ProfileController < ApplicationController
     @employee = current_user.employee
     @licenses = Employee.find(@employee, include: :licenses)
     @skills = Employee.find(@employee, include: :skills)
+    @employee_skill = EmployeeSkill.find(@employee)
+    @employee_skills = @employee.employee_skills.all
     @work = @employee.works.all
     @work_details = []
     @work.each do |w|
