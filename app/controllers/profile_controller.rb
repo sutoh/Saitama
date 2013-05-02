@@ -6,7 +6,9 @@ class ProfileController < ApplicationController
     @work = @employee.works.all
     @work_details = []
     @work.each do |w|
-      @work_details << w.work_details.all
+      w.work_details.all.each do |wd|
+        @work_details << wd
+      end
     end
     @json = @employee.to_gmaps4rails
     respond_to do |format|
