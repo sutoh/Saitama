@@ -20,8 +20,10 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
     @licenses = Employee.find(@employee, include: :licenses)
     @skills = Employee.find(@employee, include: :skills)
-    @employee_skill = EmployeeSkill.find(@employee)
+    @employee_skill = @employee.employee_skills.find(:first)
     @employee_skills = @employee.employee_skills.all
+    @employee_license = @employee.employee_licenses.find(:first)
+    @employee_licenses = @employee.employee_licenses.all
     @work = @employee.works.all
     @work_details = []
     @work.each do |w|
