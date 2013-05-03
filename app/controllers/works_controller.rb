@@ -26,6 +26,8 @@ class WorksController < ApplicationController
   def new
     @work = Work.new
     @employee = Employee.all
+    @customer = Customer.all
+    @staff = Employee.where(staff_flg:1)
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @work }
@@ -35,6 +37,9 @@ class WorksController < ApplicationController
   # GET /works/1/edit
   def edit
     @work = Work.find(params[:id])
+    @employee = Employee.all
+    @customer = Customer.all
+    @staff = Employee.where(staff_flg:1)
   end
 
   # POST /works

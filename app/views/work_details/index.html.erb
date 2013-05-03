@@ -4,7 +4,6 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Work</th>
         <th>Title</th>
         <th>Subject</th>
         <th>Role</th>
@@ -23,7 +22,6 @@
     <tbody>
       <% @work_details.each do |work_detail| %>
         <tr>
-          <td><%= work_detail.work_id %></td>
           <td><%= work_detail.title %></td>
           <td><%= work_detail.subject %></td>
           <td><%= work_detail.role %></td>

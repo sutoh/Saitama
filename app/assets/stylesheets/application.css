@@ -45,3 +45,6 @@ body {
 .nav > .active {
   border-bottom: 2px solid #1e6ef2;
 }
+.Notes {
+  color: gray;
+}
