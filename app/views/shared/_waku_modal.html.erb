@@ -1,0 +1,9 @@
+  <div id=<%= waku_id %> class="open">
+    <a href="#" class="close_overlay">×</a>
+    <%= raw "<span class=\"modal_window waku #{waku_id}\">" %>
+      <div class="waku-header">
+        <div class="waku-name"><%= title %></div>
+      </div>
+      <%= yield %> 
+    </span>
+  </div>
