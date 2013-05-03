@@ -26,7 +26,7 @@ class EmployeeSkillsController < ApplicationController
   # GET /employee_skills/new
   # GET /employee_skills/new.json
   def new
-    @employee = current_user.employee
+    @employee = Employee.find(params[:employee_id])
     @employee_skill = EmployeeSkill.new
     @skills = Skill.find(:all, :select => "Skills.name, Skills.id")
 
@@ -38,7 +38,7 @@ class EmployeeSkillsController < ApplicationController
 
   # GET /employee_skills/1/edit
   def edit
-    @employee = current_user.employee
+    @employee = Employee.find(params[:employee_id])
     @employee_skill = EmployeeSkill.find(params[:id])
     @skills = Skill.find(:all, :select => "Skills.name, Skills.id")
 
