@@ -56,7 +56,7 @@ class EmployeeLicensesController < ApplicationController
 
     respond_to do |format|
       if @employee_license.save
-        format.html { redirect_to employee_employee_license_path(@employee, @employee_license), notice: 'Employee license was successfully created.' }
+        format.html { redirect_to employee_employee_licenses_path(@employee), notice: 'Employee license was successfully created.' }
         format.json { render json: @employee_license, status: :created, location: @employee_license }
       else
         format.html { render action: "new" }
@@ -79,7 +79,7 @@ class EmployeeLicensesController < ApplicationController
 
     respond_to do |format|
       if @employee_license.update_attributes(params[:employee_license])
-        format.html { redirect_to employee_employee_license_path(@employee, @employee_license), notice: 'Employee license was successfully updated.' }
+        format.html { redirect_to employee_employee_licenses_path(@employee), notice: 'Employee license was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

@@ -20,7 +20,6 @@
           <td><%= employee_license.acquisition_date %></td>
           <td>
             <div class="btn-group">
-              <%= link_to 'Show', employee_employee_license_path(params[:employee_id], employee_license), :class => "btn" %>
               <%= link_to 'Edit', edit_employee_employee_license_path(params[:employee_id], employee_license), :class => "btn" %>
               <%= link_to 'Destroy', employee_employee_license_path(params[:employee_id], employee_license), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-warning" %>
             </div>  
