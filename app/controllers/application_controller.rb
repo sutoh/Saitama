@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   
   #権限管理用定数
   ADMIN = 1
+  $genders_list = [['Men', 0],['Women', 1]]
   
   private
   
@@ -68,6 +69,5 @@ class ApplicationController < ActionController::Base
                                type: 'application/pdf', 
                                disposition: 'inline'
   end
-  
   
 end

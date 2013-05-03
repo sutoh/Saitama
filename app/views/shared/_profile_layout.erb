@@ -35,7 +35,7 @@
       <div class="waku-detail-group">
         <div class="waku-detail">
           <div class="waku-detail-header">性別</div>
-          <div class="waku-detail-data"><%= @employee.gender %></div>
+          <div class="waku-detail-data"><%= $genders_list.select{|s| s[1] == @employee.gender}[0][0] %></div>
         </div>
         <div class="waku-detail">
           <div class="waku-detail-header">年齢</div>
@@ -222,7 +222,7 @@
   <%= render :layout => "/shared/waku_modal", locals: {waku_id: "kihon", title: "基本情報"} do %>
     <%= form_for(@employee) do |f| %>
       <div class="waku-detail-group">
-        <%= render :layout => "/shared/waku_modal_detail", locals: {detail_header: "性別", f: f} do %><%= f.number_field :gender %><% end %>
+        <%= render :layout => "/shared/waku_modal_detail", locals: {detail_header: "性別", f: f} do %><%= f.select :gender, $genders_list %><% end %>
         <%= render :layout => "/shared/waku_modal_detail", locals: {detail_header: "年齢", f: f} do %><%= nenrei(@employee.birthday) if !@employee.birthday.nil?  %><% end %>
         <%= render :layout => "/shared/waku_modal_detail", locals: {detail_header: "誕生日", f: f} do %><%= f.date_select :birthday, {},{class: "select_date"} %><% end %>
         <%= render :layout => "/shared/waku_modal_detail", locals: {detail_header: "入社年月日", f: f} do %><%= f.date_select :entrance_date, {}, {class: "select_date"} %><% end %>

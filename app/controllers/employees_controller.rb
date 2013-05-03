@@ -45,7 +45,6 @@ class EmployeesController < ApplicationController
   # GET /employees/new.json
   def new
     @employee = Employee.new
-    @genders = [['Men',0]['Women',1]]
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @employee }
@@ -55,7 +54,6 @@ class EmployeesController < ApplicationController
   # GET /employees/1/edit
   def edit
     @employee = Employee.find(params[:id])
-    @genders = {'Men' => 0, 'Women' => 1}
   end
 
   # POST /employees
