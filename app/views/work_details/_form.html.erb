@@ -10,13 +10,8 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field control-group">
-    <%= f.label :work_id, :class => "control-label" %>
-    <div class="controls">
-      <%= f.number_field :work_id %>
-    </div>
-  </div>
+  <%= f.hidden_field :work_id ,{value: params[:work_id] }%>
+  
   <div class="field control-group">
     <%= f.label :title, :class => "control-label" %>
     <div class="controls">

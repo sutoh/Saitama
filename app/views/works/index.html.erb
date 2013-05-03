@@ -13,9 +13,10 @@
     <tbody>
       <% @works.each do |work| %>
         <tr>
-          <td><%= work.employee_id %></td>
-          <td><%= work.sales_staff_id %></td>
-          <td><%= work.customer_id %></td>
+          <td><%= work.employee_id %> : <%= full_name(work.employee.family_name, work.employee.given_name)  %>
+          </td>
+          <td><%= work.sales_staff_id %> : <%= work.sales_staff_id ? staff_name(work.sales_staff_id) : "存在しない" %> </td>
+          <td><%= work.customer_id %> : <%= work.customer ? work.customer.name : "存在しない" %></td>
           <td>
             <div class="btn-group">
               <%= link_to 'Show', work, :class => "btn" %>
