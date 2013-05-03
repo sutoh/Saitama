@@ -68,6 +68,11 @@ class EmployeeLicensesController < ApplicationController
   # PUT /employee_licenses/1
   # PUT /employee_licenses/1.json
   def update
+    if params[:employee_license_]
+      EmployeeLicense.update(params[:employee_license_].keys, params[:employee_license_].values)
+      redirect_to profile_index_path
+      return
+    end
     @employee = Employee.find(params[:employee_id])
     @employee_license = EmployeeLicense.find(params[:id])
     @licenses = License.find(:all, :select => "Licenses.name, Licenses.id")

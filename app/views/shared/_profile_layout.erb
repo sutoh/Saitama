@@ -252,49 +252,51 @@
       <%= render "shared/waku_modal_button", f: f %>
     <% end %>
   <% end %>
-<% if @employee_skill %>
-  <%= render :layout => "/shared/waku_modal", locals: {waku_id: "skill", title: "スキル"} do %>
-    <%= form_for([@employee, @employee_skill]) do %>
-      <div class="waku-detail-group">
-        <div class="waku-detail">
-          <div class="waku-detail-data">スキル名</div>
-          <div class="waku-detail-data2">レベル</div>
+
+  <% if @employee_skill %>
+    <%= render :layout => "/shared/waku_modal", locals: {waku_id: "skill", title: "スキル"} do %>
+      <%= form_for([@employee, @employee_skill]) do %>
+        <div class="waku-detail-group">
+          <div class="waku-detail">
+            <div class="waku-detail-data">スキル名</div>
+            <div class="waku-detail-data2">レベル</div>
+          </div>
+          <% @employee_skills.each do |employee_skill_| %>
+            <%= fields_for("employee_skill_[]",employee_skill_) do |skill| %>
+              <div class="waku-detail">
+                <div class="waku-detail-data"><%= skill.select :skill_id, @skills.skills.map{|s|[s.name, s.id]} %></div>
+                <div class="waku-detail-data2"><%= skill.number_field :level %></div>
+              </div>
+            <% end %>
+          <% end %> 
         </div>
-        <% @employee_skills.each do |employee_skill| %>
-          <%= fields_for("employee_skill[]",employee_skill) do |skill| %>
-            <div class="waku-detail">
-              <div class="waku-detail-data"><%= skill.select :skill_id, @skills.skills.map{|s|[s.name, s.id]} %></div>
-              <div class="waku-detail-data2"><%= skill.number_field :level %></div>
-            </div>
-          <% end %>
-        <% end %> 
-      </div>
         <a href="#" class="btn btn-warning">CLOSE</a>
         <%= submit_tag "更新", :class => "btn btn-primary" %>
+      <% end %>
     <% end %>
   <% end %>
-  <% end %>
+
   <% if @employee_license %>
-  <%= render :layout => "/shared/waku_modal", locals: {waku_id: "license", title: "資格"} do %>
-    <%= form_for([@employee, @employee_license]) do %>
-      <div class="waku-detail-group">
-        <div class="waku-detail">
-          <div class="waku-detail-data">資格名</div>
-          <div class="waku-detail-data2">取得日</div>
+    <%= render :layout => "/shared/waku_modal", locals: {waku_id: "license", title: "資格"} do %>
+      <%= form_for([@employee, @employee_license]) do %>
+        <div class="waku-detail-group">
+          <div class="waku-detail">
+            <div class="waku-detail-data">資格名</div>
+            <div class="waku-detail-data2">取得日</div>
+          </div>
+          <% @employee_licenses.each do |employee_license_| %>
+            <%= fields_for("employee_license_[]",employee_license_) do |license| %>
+              <div class="waku-detail">
+                <div class="waku-detail-data"><%= license.select :license_id, @licenses.licenses.map{|s|[s.name, s.id]} %></div>
+                <div class="waku-detail-data2"><%= license.date_select :acquisition_date, {}, {class: "select_date"} %></div>
+              </div>
+            <% end %>
+          <% end %> 
         </div>
-        <% @employee_licenses.each do |employee_license| %>
-          <%= fields_for("employee_license[]",employee_license) do |license| %>
-            <div class="waku-detail">
-              <div class="waku-detail-data"><%= license.select :license_id, @licenses.licenses.map{|s|[s.name, s.id]} %></div>
-              <div class="waku-detail-data2"><%= license.date_select :acquisition_date, {}, {class: "select_date"} %></div>
-            </div>
-          <% end %>
-        <% end %> 
-      </div>
         <a href="#" class="btn btn-warning">CLOSE</a>
         <%= submit_tag "更新", :class => "btn btn-primary" %>
+      <% end %>
     <% end %>
-  <% end %>
   <% end %>
 
 

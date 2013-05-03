@@ -65,8 +65,8 @@ class EmployeeSkillsController < ApplicationController
   # PUT /employee_skills/1
   # PUT /employee_skills/1.json
   def update
-    if params[:employee_skill]
-      EmployeeSkill.update(params[:employee_skill].keys, params[:employee_skill].values)
+    if params[:employee_skill_]
+      EmployeeSkill.update(params[:employee_skill_].keys, params[:employee_skill_].values)
       redirect_to profile_index_path
       return
     end
