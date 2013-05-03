@@ -92,7 +92,7 @@ body {
 .kihon {
   border-top-color: #e46f61;
 }
-.work {
+.license {
   border-top-color: #fbcb43;
 }
 .appeal {
@@ -111,6 +111,15 @@ body {
 	position: relative;
 	display: inline-block;
 	float: right;
+	-webkit-transition: all .3s ease;
+}
+.edit a{
+	color: blue;
+	-webkit-transition: all .3s ease;
+}
+.edit a:hover{
+	background-color: blue;
+	color: white;
 }
 .waku-detail-group {
   padding: 5px 20px 17px;
