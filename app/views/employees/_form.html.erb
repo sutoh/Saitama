@@ -40,7 +40,7 @@
   <div class="field control-group">
     <%= f.label :"性別", class: "control-label" %>
     <div class="controls">
-      <%= f.select :gender, @genders.keys.map{|l|[l, @genders.values_at(l).to_s.to_i]} %>
+      <%= f.select :gender, @genders %>
     </div>
   </div>
   <div class="field control-group">

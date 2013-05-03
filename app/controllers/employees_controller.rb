@@ -45,7 +45,7 @@ class EmployeesController < ApplicationController
   # GET /employees/new.json
   def new
     @employee = Employee.new
-    @genders = {'Men' => 0, 'Women' => 1}
+    @genders = [['Men',0]['Women',1]]
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @employee }
