@@ -143,7 +143,7 @@
       <div class="waku-header">
         <div class="waku-name">経歴</div>
         <div class="edit">
-          <a href="#work-detail">編集</a>
+          <%= link_to "編集", works_path %>
         </div>
       </div>
       <div class="waku-detail-group">
@@ -173,11 +173,11 @@
         </ul>
       </div>
     </div>
-    <div class="waku skill">
+    <div class="waku license">
       <div class="waku-header">
         <div class="waku-name">資格</div>
         <div class="edit">
-          <a href="#skill">編集</a>
+          <a href="#license">編集</a>
         </div>
       </div>
       <div class="waku-detail-group">
@@ -215,7 +215,7 @@
 </div>
 
 <div id="modal">
-  <%= render :layout => "/shared/waku_modal", locals: {waku_id: "kihon", title: "基本情報", employee: @employee} do %>
+  <%= render :layout => "/shared/waku_modal", locals: {waku_id: "kihon", title: "基本情報"} do %>
     <%= form_for(@employee) do |f| %>
       <div class="waku-detail-group">
         <%= render :layout => "/shared/waku_modal_detail", locals: {detail_header: "性別", f: f} do %><%= f.number_field :gender %><% end %>
@@ -229,7 +229,7 @@
     <% end %>
   <% end %>
   
-  <%= render :layout => "/shared/waku_modal", locals: {waku_id: "sumika", title: "住所", employee: @employee} do %>
+  <%= render :layout => "/shared/waku_modal", locals: {waku_id: "sumika", title: "住所"} do %>
     <%= form_for(@employee) do |f| %>
       <div class="waku-detail-group">
         <%= render :layout => "/shared/waku_modal_detail", locals: {detail_header: "郵便番号", f: f} do %><%= f.text_field :postalcode %><% end %>
@@ -240,7 +240,7 @@
     <% end %>
   <% end %>
 
-  <%= render :layout => "/shared/waku_modal", locals: {waku_id: "appeal", title: "アピール", employee: @employee} do %>
+  <%= render :layout => "/shared/waku_modal", locals: {waku_id: "appeal", title: "アピール"} do %>
     <%= form_for(@employee) do |f| %>
       <div class="waku-detail-group">
         <%= render :layout => "/shared/waku_modal_detail", locals: {detail_header: "自己PR", f: f} do %><%= f.text_area :self_pr, rows: "8"%><% end %>
@@ -249,7 +249,7 @@
     <% end %>
   <% end %>
 
-  <%= render :layout => "/shared/waku_modal", locals: {waku_id: "skill", title: "スキル", employee: @employee} do %>
+  <%= render :layout => "/shared/waku_modal", locals: {waku_id: "skill", title: "スキル"} do %>
     <%= form_for([@employee, @employee_skill]) do %>
       <div class="waku-detail-group">
         <div class="waku-detail">
@@ -261,6 +261,27 @@
             <div class="waku-detail">
               <div class="waku-detail-data"><%= skill.select :skill_id, @skills.skills.map{|s|[s.name, s.id]} %></div>
               <div class="waku-detail-data2"><%= skill.number_field :level %></div>
+            </div>
+          <% end %>
+        <% end %> 
+      </div>
+        <a href="#" class="btn btn-warning">CLOSE</a>
+        <%= submit_tag "更新", :class => "btn btn-primary" %>
+    <% end %>
+  <% end %>
+
+  <%= render :layout => "/shared/waku_modal", locals: {waku_id: "license", title: "資格"} do %>
+    <%= form_for([@employee, @employee_license]) do %>
+      <div class="waku-detail-group">
+        <div class="waku-detail">
+          <div class="waku-detail-data">資格名</div>
+          <div class="waku-detail-data2">取得日</div>
+        </div>
+        <% @employee_licenses.each do |employee_license| %>
+          <%= fields_for("employee_license[]",employee_license) do |license| %>
+            <div class="waku-detail">
+              <div class="waku-detail-data"><%= license.select :license_id, @licenses.licenses.map{|s|[s.name, s.id]} %></div>
+              <div class="waku-detail-data2"><%= license.date_select :acquisition_date, {}, {class: "select_date"} %></div>
             </div>
           <% end %>
         <% end %> 
