@@ -10,17 +10,11 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field control-group">
-    <%= f.label :work_detail_id, :class => "control-label" %>
-    <div class="controls">
-      <%= f.number_field :work_detail_id %>
-    </div>
-  </div>
+  <%= f.hidden_field :work_detail_id , {value:params[:work_detail_id]} %>
   <div class="field control-group">
     <%= f.label :skill_id, :class => "control-label" %>
     <div class="controls">
-      <%= f.number_field :skill_id %>
+      <%= select :work_skill, :skill_id, @skill.map{|e| [e.name, e.id]} , :include_blank => true, selected: @work_skill.skill_id || '*' %>
     </div>
   </div>
   <div class="actions control-group">

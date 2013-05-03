@@ -4,7 +4,7 @@ class WorkSkillsController < ApplicationController
   def index
     #@work_skills = WorkSkill.all
     @work_skills = Work.find(params[:work_id]).work_details.find(params[:work_detail_id]).work_skills.all
-
+    @work_title = Work.find(params[:work_id]).customer.name || " "
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @work_skills }
@@ -29,6 +29,7 @@ class WorkSkillsController < ApplicationController
     @work_detail = @work.work_details.find(params[:work_detail_id])
     #@work_skill = WorkSkill.new
     @work_skill = @work_detail.work_skills.new
+    @skill = Skill.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,6 +42,7 @@ class WorkSkillsController < ApplicationController
     @work = Work.find(params[:work_id])
     @work_detail = @work.work_details.find(params[:work_detail_id])
     @work_skill = WorkSkill.find(params[:id])
+    @skill = Skill.all
   end
 
   # POST /work_skills

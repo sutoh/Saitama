@@ -1,10 +1,9 @@
-<%= render "shared/toolbar_for_index", model_name: controller_name %>
+<%= render "shared/toolbar_for_index", model_name: "work_work_detail_work_skill" , title_name: @work_title + " 業務利用スキル" %>
 
 <div class="well">
   <table class="table">
     <thead>
       <tr>
-        <th>Work detail</th>
         <th>Skill</th>
         <th></th>
       </tr>
@@ -13,8 +12,9 @@
     <tbody>
       <% @work_skills.each do |work_skill| %>
         <tr>
-          <td><%= work_skill.work_detail_id %></td>
-          <td><%= work_skill.skill_id %></td>
+          <td>
+            <%= work_skill.skill_id %> : <%= work_skill.skill_id ? skill_name(work_skill.skill_id) : "存在しない" %> </td>
+          </td>
           <td>
             <div class="btn-group">
               <%= link_to 'Show', work_work_detail_work_skill_path(params[:work_id], params[:work_detail_id], work_skill), :class => "btn" %>
