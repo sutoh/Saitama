@@ -1,40 +1,44 @@
-<table class="table table-striped">
-	<tr>
-		<td>
-  		<b>Name:</b>
-		</td>
-		<td>
-  		<%= @license.name %>
-		</td>
-	</tr>
+<p id="notice"><%= notice %></p>
+<div class="well">
+	<legend>license_detail</legend>
+	<table class="table">
+		<tr>
+			<td>
+  			<b>Name:</b>
+			</td>
+			<td>
+  			<%= @license.name %>
+			</td>
+		</tr>
 
-	<tr>
-		<td>
-  		<b>Validity term:</b>
-		</td>
-		<td>
-  		<%= @license.validity_term %>
-		</td>
-	</tr>
+		<tr>
+			<td>
+  			<b>Validity term:</b>
+			</td>
+			<td>
+  			<%= @license.validity_term %>
+			</td>
+		</tr>
 
-	<tr>
-		<td>
-  		<b>Publisher:</b>
-		</td>
-		<td>
-  		<%= @license.publisher %>
-		</td>
-	</tr>
+		<tr>
+			<td>
+  			<b>Publisher:</b>
+			</td>
+			<td>
+  			<%= @license.publisher %>
+			</td>
+		</tr>
 
-	<tr>
-		<td>
-  		<b>Note:</b>
-		</td>
-		<td>
-  		<%= @license.note %>
-		</td>
-	</tr>
-</table>
+		<tr>
+			<td>
+  			<b>Note:</b>
+			</td>
+			<td>
+	  		<%= @license.note %>
+			</td>
+		</tr>
+	</table>
+</div>
 
 <div class="btn-group">
 	<%= link_to 'Edit', edit_license_path(@license), :class => "btn" %>

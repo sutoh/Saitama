@@ -1,33 +1,33 @@
 <p id="notice"><%= notice %></p>
-
-<table class="table table-striped">
-	<tr>
-		<td>
-	  	<b>Name:</b>
-		</td>
-		<td>
-	  	<%= @skill.name %>
-		</td>
-	</tr>
-
-	<tr>
-		<td>
-	  	<b>Category:</b>
-		</td>
-		<td>
-	  	<%= @skill.category %>
-		</td>
-	</tr>
-
-	<tr>
-		<td>
-	  	<b>Note:</b>
-		</td>
-		<td>
-	  	<%= @skill.note %>
-		</td>
-	</tr>
-</table>
+<div class="well">
+	<legend>work_detail</legend>
+	<table class="table">
+		<tr>
+			<th>
+	  		<b>Name:</b>
+			</th>
+			<td>
+	 			<%= @skill.name %>
+			</td>
+		</tr>
+		<tr>
+			<th>
+			  <b>Category:</b>
+			</th>
+			<td>
+	  		<%= @skill.category %>
+			</td>
+		</tr>
+		<tr>
+			<th>
+  			<b>Note:</b>
+			</th>
+			<td>
+	 			<%= @skill.note %>
+			</td>
+		</tr>
+	</table>
+</div>
 
 <div class="btn-group">
 	<%= link_to 'Edit', edit_skill_path(@skill), :class => "btn" %>
