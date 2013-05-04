@@ -18,10 +18,8 @@
           <td><%= employee_skill.name %></td> 
           <td><%= employee_skill.level %></td>
           <td>
-            <div class="btn-group">
-              <%= link_to 'Edit', edit_employee_employee_skill_path(params[:employee_id], employee_skill), :class => "btn" %>
-              <%= link_to 'Destroy', employee_employee_skill_path(params[:employee_id], employee_skill), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-warning" %>
-            </div>
+            <%= link_to edit_employee_employee_skill_path(params[:employee_id], employee_skill), title: "Edit" do %><i class="icon-edit"></i><% end %>
+            <%= link_to employee_employee_skill_path(params[:employee_id], employee_skill), method: :delete, data: { confirm: 'Are you sure?' }, title: "Delete" do %><i class="icon-trash"></i><% end %>
           </td>
         </tr>
       <% end %>
@@ -34,7 +32,7 @@
             <%= f.number_field :level %>
           </td>
           <td>
-            <%= f.submit :class => "btn btn-primary" %>
+            <%= f.submit "Create", :class => "btn btn-primary" %>
           </td>
         </tr>
       <% end %>

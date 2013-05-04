@@ -13,13 +13,15 @@
     <tbody>
       <% @employees.each do |employee| %>
       <tr>
-        <td><%= link_to employee.family_name + " " + employee.given_name, employee %></td>
+        <td><%= link_to employee.family_name + " " + employee.given_name, employee %>
+          <%= link_to employee,  method: :delete, data: { confirm: '削除してもよろしいですか?' }, title: "Delete", class: "pull-right" do %><i class="icon-trash"></i><% end %>
+          <%= link_to edit_employee_path(employee), title: "Edit", class: "pull-right" do %><i class="icon-edit"></i><% end %>
+        </td>
         <td>
+          
           <div class="btn-group">
             <%= link_to '資格登録', employee_employee_licenses_path(employee), :class => "btn" %>
             <%= link_to 'スキル登録', employee_employee_skills_path(employee), :class => "btn" %>
-            <%= link_to '修正', edit_employee_path(employee), :class => "btn"%>
-            <%= link_to '削除', employee,  method: :delete, data: { confirm: '削除してもよろしいですか?' }, :class => "btn btn-warning" %>
           </div>
         </td>
       </tr>
