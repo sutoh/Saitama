@@ -40,12 +40,8 @@
         <div class="waku-detail">
           <div class="waku-detail-header">年齢</div>
           <div class="waku-detail-data">
-            <%= nenrei(@employee.birthday) if !@employee.birthday.nil?  %>
+            <%= nenrei(@employee.birthday).to_s + " 歳  ( 誕生日: #{@employee.birthday} )" if !@employee.birthday.nil?  %>
           </div>
-        </div>
-        <div class="waku-detail">
-          <div class="waku-detail-header">誕生日</div>
-          <div class="waku-detail-data"><%= @employee.birthday %></div>
         </div>
         <div class="waku-detail">
           <div class="waku-detail-header">入社年月日</div>
@@ -53,7 +49,7 @@
         </div>
         <div class="waku-detail">
           <div class="waku-detail-header">経験年数</div>
-          <div class="waku-detail-data"><%= @employee.experience %></div>
+          <div class="waku-detail-data"><%= @employee.experience.to_s + " 年" if @employee.experience%></div>
         </div>
         <div class="waku-detail">
           <div class="waku-detail-header">最終学歴</div>
