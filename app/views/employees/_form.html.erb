@@ -19,7 +19,7 @@
       <%= f.text_field :family_name %>
     </div>
   </div>
-  <div class="field contorol-group">
+  <div class="field control-group">
     <%= f.label :"お名前（名）", class: "control-label" %>
     <div class="controls">
       <%= f.text_field :given_name %>
@@ -69,7 +69,7 @@
   </div>
   <div class="field control-group">
     <%= f.label :"住所", class: "control-label"%>
-    <div class="contorols">
+    <div class="controls">
       <%= f.text_field :address %>
     </div>
   </div>
@@ -94,25 +94,19 @@
   <div class="field control-group">
     <%= f.label :"技術区分", class: "control-label" %>
     <div class="controls">
-      <%= f.number_field :tech_flg %>
+      <%= f.select :tech_flg, $tech_list %>
     </div>
   </div>
   <div class="field control-group">
     <%= f.label :"社員区分", class: "control-label" %>
     <div class="controls">
-      <%= f.number_field :staff_flg %>
-    </div>
-  </div>
-  <div class="field control-group">
-    <%= f.label :"削除区分", class: "control-label" %>
-    <div class="controls">
-      <%= f.number_field :del_flg %>
+      <%= f.select :staff_flg, $staff_list %>
     </div>
   </div>
   <div class="field control-group">
     <%= f.label :"部署区分", class: "control-label" %>
     <div class="controls">
-      <%= f.number_field :department_id %>
+      <%= f.select :department_id, @departments.map{|d|[d.name, d.id]} %>
     </div>
   </div>
   <div class="field control-group">
