@@ -8,122 +8,54 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'factory_girl'
 require 'database_cleaner'
-# TODO 復活予定 データ増えすぎた...
-=begin
-seed_files = Dir.glob(File.dirname(__FILE__) + "/seeds/" + Rails.env + "/*.rb")
-seed_files.each do |file|
-  puts "Creating #{File.basename(file)}"
-  require file
-end
-=end
 
-begin
-  #TODO 削除されない??
-  #DatabaseCleaner.start
-  #削除されるのでとりあえず代用
-  print "Table [User, License,department,employee,skill] deleted? y/n | "
-  yn = STDIN.gets
-  if (yn.chomp=='y') then
-    User.delete_all
-    License.delete_all
-    Employee.delete_all
-    Department.delete_all
-    Skill.delete_all
-    puts "XX Data, Goodbye XX"
+FactoryGirl.factories.clear
+FactoryGirl.definition_file_paths = [File.join(Rails.root, 'db', 'seeds', Rails.env, 'factories')]
+ FactoryGirl.reload
+# seed_files = Dir.glob(File.dirname(__FILE__) + "/seeds/" + Rails.env + "/*.rb")
+
+#TODO 削除されない??
+#DatabaseCleaner.start
+#削除されるのでとりあえず代用
+#tables = ActiveRecord::Base.connection.tables.delete("schema_migration").join(",")
+
+puts "Detecting All tables of this Rails App..."
+puts ""
+puts "[tables]"
+
+puts "--------------------"
+tables = ActiveRecord::Base.connection.tables
+tables.delete("schema_migrations")
+puts tables
+puts "--------------------"
+puts ""
+
+print "These tables will be truncated. Are you sure? (y/n) | "
+yn = STDIN.gets
+puts ""
+if (yn.chomp == 'y')
+  tables.each do |table|
+    # MySQL
+    #ActiveRecord::Base.connection.execute("TRUNCATE #{table}") unless table == "schema_migrations"
+    # SQLite
+    puts "truncating #{table}..."
+    ActiveRecord::Base.connection.execute("DELETE FROM #{table}") unless table == "schema_migrations"
+    puts "#{table} is successfully truncated."
+  end
+else
+  exit
+end
+
+# Create All Factories
+puts ""
+puts "Create all factories..."
+puts ""
+
+FactoryGirl.factories.each do |factory|
+  if tables.include?(factory.name.to_s.pluralize)
   else
-    puts "XX It does not delete XX"
+    puts "creating #{factory.name}..."
+    FactoryGirl.create(factory.name)
+    puts "#{factory.name} is successfully created."
   end
-rescue => ex
-  puts 'db_cleaner error'
-  puts ex
 end
-
-# /spec/factories autoload
-begin
-  fg = FactoryGirl
-  #TODO カッコ悪いんでかっこ良く治したい
-
-  license_a = [:ruby_silver,:ruby_gold,:rails_bronze,:java_1_4,:oracle_bronze]
-  
-  license_a.each do |l|
-    license = fg.create(l)
-    puts "license: #{license.name} #{license.note} Create ok"
-  end
-    
-  dept = fg.create(:department)
-  puts "department: #{dept.id} #{dept.name} Create ok"
-  
-  dept_a = ["技術部","R&B","営業本部","カスタマー部","管理本部","Ruby部"]
-  dept_a.each do |d|
-    dept = fg.create(:department,name: d)
-    puts "department: #{dept.id} #{dept.name} Create ok"
-  end
-  
-  skill = fg.create(:skill)
-  puts "skill: #{skill.id} #{skill.name} Create ok"
-  skill = fg.create(:skill_ruby)
-  puts "skill: #{skill.id} #{skill.name} Create ok"
-  skill = fg.create(:skill_rails)
-  puts "skill: #{skill.id} #{skill.name} Create ok"
-  skill = fg.create(:skill_java)
-  puts "skill: #{skill.id} #{skill.name} Create ok"
-  skill = fg.create(:skill_android)
-  puts "skill: #{skill.id} #{skill.name} Create ok"
-  skill = fg.create(:skill_javascrirpt)
-  puts "skill: #{skill.id} #{skill.name} Create ok"
-  skill = fg.create(:skill_vb_asp)
-  puts "skill: #{skill.id} #{skill.name} Create ok"
-  skill = fg.create(:skill_vb)
-  puts "skill: #{skill.id} #{skill.name} Create ok"
-  skill = fg.create(:skill_vba)
-  puts "skill: #{skill.id} #{skill.name} Create ok"
-  skill = fg.create(:skill_oracle)
-  puts "skill: #{skill.id} #{skill.name} Create ok"
-  skill = fg.create(:skill_sqlserver)
-  puts "skill: #{skill.id} #{skill.name} Create ok"
-  skill = fg.create(:skill_mysql)
-  puts "skill: #{skill.id} #{skill.name} Create ok"
-  skill = fg.create(:skill_hadoop)
-  puts "skill: #{skill.id} #{skill.name} Create ok"
-  skill = fg.create(:skill_win_client)
-  puts "skill: #{skill.id} #{skill.name} Create ok"
-  skill = fg.create(:skill_win_server)
-  puts "skill: #{skill.id} #{skill.name} Create ok"
-  skill = fg.create(:skill_mac)
-  puts "skill: #{skill.id} #{skill.name} Create ok"
-  skill = fg.create(:skill_ubuntu)
-  puts "skill: #{skill.id} #{skill.name} Create ok"
-  skill = fg.create(:skill_linux)
-  puts "skill: #{skill.id} #{skill.name} Create ok"
-  skill = fg.create(:skill_aix)
-  puts "skill: #{skill.id} #{skill.name} Create ok"
-  
-  dept_ruby = Department.where(name: "Ruby部").first
-  employee = fg.create(:employee_yawata, department: dept_ruby)
-  puts "employee: #{employee.family_name} #{employee.department.id} #{employee.department.name} Create ok"
-  employee = fg.create(:employee_maeda)
-  puts "employee: #{employee.family_name} #{employee.department.id} #{employee.department.name} Create ok"
-  employee = fg.create(:employee_sutoh)
-  puts "employee: #{employee.family_name} #{employee.department.id} #{employee.department.name} Create ok"
-  
-  
-  if (yn.chomp=='y') then
-    user = fg.create(:user,:rubeus)
-    puts "login_id: #{user.login_id} Create ok"
-    user_a = [:user_sutoh,:user_maeda,:user_yawata,:user_lee,:user_izumi,:user_kashiyama]
-    user_a.each do |u|
-      user = fg.create(u)
-      puts "login_id: #{user.login_id} Create ok"
-    end
-  end
-  
-  user = fg.create(:user)
-  puts "login_id: #{user.login_id} Create ok"
-  employee = fg.create(:employee, user: user)
-  puts "employee: #{employee.id} #{employee.family_name} #{employee.department.id} #{employee.department.name} Create ok"
-  
-rescue => e
-  puts 'create error'
-  puts e
-end
-
