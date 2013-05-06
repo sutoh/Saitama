@@ -1,0 +1,46 @@
+<%= render "shared/toolbar_for_index", model_name: controller_name.classify , title_name: "社員" %>
+ 
+<div class="well">
+  <table class="table">
+    <thead>
+
+      <tr>
+        <th>Username</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Login Count</th>
+        <th>Last Sign In</th>
+        <th>Role</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+      <tr>
+        <th><%= user.login_id %></th>
+        <th><%= user.employee.full_name %></th>
+        <th><%= user.email %></th>
+        <th><%= user.sign_in_count %></th>
+        <th>
+          <%if user.last_sign_in_at.blank? %>
+          Never logged in
+          <% else %>
+          <%= time_ago_in_words(user.last_sign_in_at.to_datetime)+' ago' %>
+          <% end %>
+        </th>
+        <th><%= role_judge(user.role_id) %></th>
+        <th><%= link_to [:edit, :admin, user], title: "Edit" do %>
+          <i class='icon-edit'></i>
+          <% end %>
+        </th>
+        <th><%= link_to [:admin, user], title: "Delete", method: :delete, confirm: "Are you sure?" do %>
+          <i class='icon-trash'></i>
+          <% end %>
+        </th>
+      </tr>
+      <% end %>
+    </tbody>
+ 
+  </table>
+ 

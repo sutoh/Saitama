@@ -6,20 +6,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :login_id, :employee_id, :role_id
+  attr_accessible :email, :password, :password_confirmation, :remember_me, 
+                  :login_id, :employee_id, :role_id, :employee_attributes
   # attr_accessible :title, :body
-  has_one :employee
-  before_create :create_employee
-
-  def create_employee
-    employee = Employee.new
-    employee.family_name = "default"
-    employee.given_name = "default"
-    employee.family_name_kana = "default"
-    employee.given_name_kana = "default"
-    self.employee = employee
-  end
-
+  has_one :employee, dependent: :destroy
+  accepts_nested_attributes_for :employee, allow_destroy: true
 
   def email_required?
 		false

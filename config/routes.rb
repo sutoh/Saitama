@@ -26,6 +26,7 @@ Saitama::Application.routes.draw do
   #TODO 一般ユーザ用とadmin用のrouteを調整する（一般ユーザは照会系と自身のデータ更新のみ）
   namespace :admin do
     root to: "top#index"
+    resources :users
     resources :customers
   
     resources :works do

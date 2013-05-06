@@ -1,0 +1,172 @@
+<div class="well">
+  <%= form_for([:admin, @user], html: {class: "form-horizontal", multipart: true}) do |f| %>
+  <legend><%= legend_view %> </legend>
+  <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+        <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
+
+  <div class="field control-group">
+    <%= f.label :login_id, class: "control-label" %>
+    <div class="controls">
+      <%= f.text_field :login_id, class: "input-xlarge" %>
+    </div>
+  </div>
+  <div class="field control-group">
+    <%= f.label :email, class: "control-label" %>
+    <div class="controls">
+      <%= f.email_field :email, class: "input-xlarge" %>
+    </div>
+  </div>
+
+  <%= f.fields_for :employee do |employee_form| %>
+      <div class="field control-group">
+        <%= employee_form.label :"名前（姓）" ,class: "control-label"%>
+        <div class="controls">
+          <%= employee_form.text_field :family_name %>
+        </div>
+      </div>
+      <div class="field control-group">
+        <%= employee_form.label :"名前（名）", class: "control-label" %>
+        <div class="controls">
+          <%= employee_form.text_field :given_name %>
+        </div>
+      </div>
+      <div class="field control-group">
+        <%= employee_form.label :"名前カナ（姓）", class: "control-label" %>
+        <div class="controls">
+          <%= employee_form.text_field :family_name_kana %>
+        </div>
+      </div>
+      <div class="field control-group">
+        <%= employee_form.label :"名前カナ（名）", class: "control-label" %>
+        <div class="controls">
+          <%= employee_form.text_field :given_name_kana %>
+        </div>
+      </div>
+      <div class="field control-group">
+        <%= employee_form.label :"性別", class: "control-label" %>
+        <div class="controls">
+          <%= employee_form.select :gender, $genders_list %>
+        </div>
+      </div>
+      <div class="field control-group">
+        <%= employee_form.label :"生年月日", class: "control-label" %>
+        <div class="controls">
+          <%= employee_form.date_select :birthday %>
+        </div>
+      </div>
+      <div class="field control-group">
+        <%= employee_form.label :"経験年数", class: "control-label"%>
+        <div class="controls">
+          <%= employee_form.number_field :experience %>
+        </div>
+      </div>
+      <div class="field control-group">
+        <%= employee_form.label :"入社年月日", class: "control-label" %>
+        <div class="controls">
+          <%= employee_form.date_select :entrance_date %>
+        </div>
+      </div>
+      <div class="field control-group">
+        <%= employee_form.label :"郵便番号", class: "control-label" %>
+        <div class="controls">
+          <%= employee_form.text_field :postalcode %>
+        </div>
+      </div>
+      <div class="field control-group">
+        <%= employee_form.label :"住所", class: "control-label"%>
+        <div class="controls">
+          <%= employee_form.text_field :address %>
+        </div>
+      </div>
+      <div class="field control-group">
+        <%= employee_form.label :"最寄り駅", class: "control-label" %>
+        <div class="controls">
+          <%= employee_form.text_field :station %>
+        </div>
+      </div>
+      <div class="field control-group">
+        <%= employee_form.label :"最終学歴", class: "control-label" %>
+        <div class="controls">
+          <%= employee_form.text_field :education %>
+        </div>
+      </div>
+      <div class="field control-group">
+        <%= employee_form.label :"自己紹介", class: "control-label" %>
+        <div class="controls">
+          <%= employee_form.text_area :self_pr, rows: "8", class: "span8" %>
+        </div>
+      </div>
+      <div class="field control-group">
+        <%= employee_form.label :"職種", class: "control-label" %>
+        <div class="controls">
+          <%= employee_form.select :tech_flg, {"技術職" => 1, "営業職" => 2} %>
+        </div>
+      </div>
+      <div class="field control-group">
+        <%= employee_form.label :"契約形態", class: "control-label" %>
+        <div class="controls">
+          <%= employee_form.select :staff_flg, {"正社員" => 1, "契約社員" => 2, "個人事業主" => 3, "関連会社" => 4} %>
+        </div>
+      </div>
+      <div class="field control-group">
+        <%= employee_form.label :"所属部署", class: "control-label" %>
+        <div class="controls">
+          <%= employee_form.collection_select(:department_id, Department.all, :id, :name) %>
+        </div>
+      </div>
+      <div class="field control-group">
+        <%= employee_form.label :"写真", class: "control-label" %>
+        <div class="controls">
+          <%= employee_form.file_field :image %>
+        </div>
+      </div>
+      
+
+      <%= employee_form.hidden_field :latitude %>
+      <%= employee_form.hidden_field :longitude %>
+      <%= employee_form.hidden_field :gmaps ,{value: 'f'}%>
+  <% end %>
+
+
+  <% if action_name == "new" || "create" %>
+      <div class="field control-group">
+        <%= f.label :password, class: "control-label" %>
+        <div class="controls">
+          <%= f.password_field :password, class: "input-xlarge" %>
+        </div>
+      </div>
+
+      <div class="field control-group">
+        <%= f.label :password_confirmation, class: "control-label" %>
+        <div class="controls">
+          <%= f.password_field :password_confirmation, class: "input-xlarge" %>
+        </div>
+      </div>
+  <% end %>
+
+  <div class="field control-group">
+    <%= f.label :role_id, class: "control-label" %>
+    <div class="controls">
+      <%= f.select :role_id, {t("admin") => 1, t("user") => 2} %>
+    </div>
+  </div>
+
+  <div class="actions control-group">
+    <div class="controls">
+      <%= f.submit class: "btn btn-primary" %>
+      <%= link_to 'Cancel', admin_users_path, class: 'btn' %>
+    </div>
+  </div>
+
+  <% end %>
+</div>
+
+  

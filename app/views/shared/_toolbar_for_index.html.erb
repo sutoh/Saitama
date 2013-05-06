@@ -2,5 +2,9 @@
 <h1><%= title_name %>情報</h1>
 </div>
 <div class="btn-toolbar">
+  <% if controller.kind_of?(Admin::Base) %>
+  <%= link_to "追加", "new_admin_#{model_name.split("::")[1].downcase}".to_sym, class: "btn btn-primary" %>
+  <% else %>
   <%= link_to "追加", "new_#{model_name.downcase}".to_sym, class: "btn btn-primary" %>
+  <% end %>
 </div>
