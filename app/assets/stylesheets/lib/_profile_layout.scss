@@ -82,12 +82,12 @@ body {
 .waku-detail-data{
 	display: table-cell;
 	text-align:left;
-	width: 300px;
+	width: 220px;
 }
 .waku-detail-data2{
 	display: table-cell;
 	text-align:left;
-	width: 25%;
+	width:120px;
 }
 .kihon {
   border-top-color: #e46f61;
@@ -167,7 +167,9 @@ body {
 }
 .modal_window .waku-detail-group{
 	height: 190px;
+	overflow-x: scroll;
 	overflow-y: scroll;
+	white-space: nowrap;
 }
 
 
@@ -192,5 +194,8 @@ div#modal div:target {
 	display:block;
 }
 .select_date {
+	width: 80px;
+}
+.level_field {
 	width: 80px;
 }

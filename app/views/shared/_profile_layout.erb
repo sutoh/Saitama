@@ -49,7 +49,7 @@
         </div>
         <div class="waku-detail">
           <div class="waku-detail-header">入社年月日</div>
-          <div class="waku-detail-data"><%= @employee.experience %></div>
+          <div class="waku-detail-data"><%= @employee.entrance_date %></div>
         </div>
         <div class="waku-detail">
           <div class="waku-detail-header">経験年数</div>
@@ -265,7 +265,7 @@
             <%= fields_for("employee_skill_[]",employee_skill_) do |skill| %>
               <div class="waku-detail">
                 <div class="waku-detail-data"><%= skill.select :skill_id, @skills.skills.map{|s|[s.name, s.id]} %></div>
-                <div class="waku-detail-data2"><%= skill.number_field :level %></div>
+                <div class="waku-detail-data2"><%= skill.number_field :level, class: "level_field" %></div>
               </div>
             <% end %>
           <% end %> 
