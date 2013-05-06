@@ -1,0 +1,5 @@
+ja:
+  activerecord:
+    models:
+      employee: "従業員"
+  attributes:

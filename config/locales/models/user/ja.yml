@@ -1,0 +1,10 @@
+ja:
+  activerecord:
+    models:
+      user: "ユーザー"
+  attributes:
+    login_id: "ログインID"
+    email:    "メールアドレス"
+    password: "パスワード"
+    password_confirmation: "パスワード[再入力]"
+    role_id: "権限"
