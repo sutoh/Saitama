@@ -17,7 +17,18 @@ class Employee < ActiveRecord::Base
   has_attached_file :image,
                     :styles => { :medium => "300x300", :thumb => "100x100" },
                     :default_url => "/images/:style/missing.png"
-  
+
+  #Validate
+  validates :family_name, presence: true, length: {maximum: 20, minimum: 1}
+  validates :given_name, presence: true, length: {maximum: 20, minimum: 1}
+  validates :gender, allow_blank: true, numericality: true, inclusion: {in: 0..1}
+  validates :experience, allow_blank: true, numericality: true, inclusion: {in: 0..99}
+  validates :postalcode, allow_blank: true, format: /[0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]/
+  validates :address, presence: true,length: {maximum: 200, minimum: 5}
+  validates :tech_flg, allow_blank: true, numericality: true, inclusion: {in: 1..2}
+  validates :staff_flg, allow_blank: true, numericality: true, inclusion: {in: 1..4}
+
+
   def full_name
     family_name + " " + given_name 
   end
