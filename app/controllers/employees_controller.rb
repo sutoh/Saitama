@@ -45,6 +45,7 @@ class EmployeesController < ApplicationController
   # GET /employees/new.json
   def new
     @employee = Employee.new
+    @departments = Department.find(:all, :select => "Departments.name, Departments.id")
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @employee }
@@ -61,6 +62,7 @@ class EmployeesController < ApplicationController
   # POST /employees.json
   def create
     @employee = Employee.new(params[:employee])
+    @departments = Department.find(:all, :select => "Departments.name, Departments.id")
     respond_to do |format|
       if @employee.save
         format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
@@ -76,6 +78,7 @@ class EmployeesController < ApplicationController
   # PUT /employees/1.json
   def update
     @employee = Employee.find(params[:id])
+    @departments = Department.find(:all, :select => "Departments.name, Departments.id")
 
     respond_to do |format|
       if @employee.update_attributes(params[:employee])
