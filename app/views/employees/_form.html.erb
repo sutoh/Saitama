@@ -46,7 +46,7 @@
   <div class="field control-group">
     <%= f.label :"生年月日", class: "control-label" %>
     <div class="controls">
-      <%= f.date_select :birthday %>
+      <%= f.date_select :birthday, start_year: 1900, end_year: Date.today.year %>
     </div>
   </div>
   <div class="field control-group">
@@ -58,7 +58,7 @@
   <div class="field control-group">
     <%= f.label :"入社年月日", class: "control-label" %>
     <div class="controls">
-      <%= f.date_select :entrance_date %>
+      <%= f.date_select :entrance_date, start_year: 1998, end_year: Date.today.year%>
     </div>
   </div>
   <div class="field control-group">
