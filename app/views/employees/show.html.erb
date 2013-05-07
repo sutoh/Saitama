@@ -1,9 +1,5 @@
-
-
 <div class="btn-group">
-  <%= link_to 'Print',employee_path(@employee, format: 'pdf'), class: "btn" %> |
   <%= link_to 'Edit', edit_employee_path(@employee), class: "btn" %> |
   <%= link_to 'Back', employees_path, class: "btn" %>
 </div>
-
 <%= render "shared/profile_layout" %>

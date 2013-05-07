@@ -7,7 +7,8 @@
       <p><%= @employee.user.login_id if !@employee.user.nil? %></p>
       <p><strong><%= @employee.family_name + " " + @employee.given_name%></strong></p>
       <p><strong><%= @employee.family_name_kana + " " + @employee.given_name_kana %></strong></p>
-      <%= link_to "変更", edit_employee_path(@employee), :class => "btn btn-success" %>
+      <%= link_to "変更", edit_employee_path(@employee), class: "btn btn-success" %>
+      <%= link_to "印刷", employee_path(@employee, format: "pdf), class: "btn btn-success" %> |
     </div>
   </div>
   <div class="collapse">
