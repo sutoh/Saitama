@@ -64,8 +64,7 @@ module Saitama
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
     
     # Custom directories with classes and modules you want to be autoloadable.
-    config.autoload_paths += %W(#{config.root}/lib)  # 追加
-    config.autoload_paths += Dir["#{config.root}/lib/**/"] # 追加
+    config.autoload_paths += %W(#{Rails.root}/lib)
     
   end
 end
