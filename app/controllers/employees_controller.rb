@@ -37,8 +37,8 @@ class EmployeesController < ApplicationController
       format.json { render json: @employee }
       # Example: Using thinreports-rails gem
       # see https://github.com/takeshinoda/thinreports-rails
-      report = Report::Profile::render_profile(@employee,@licenses,@skills,@work,@work_details)
-      format.pdf {  send_data report.generate, filename: 'profile.pdf', 
+      format.pdf {  report = Reports::Profile::render_profile(@employee,@licenses,@skills,@work,@work_details)
+                    send_data report.generate, filename: 'profile.pdf', 
                                                type: 'application/pdf', 
                                                disposition: 'inline' }
     end
