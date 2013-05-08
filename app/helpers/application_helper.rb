@@ -20,19 +20,15 @@ module ApplicationHelper
   module_function
   
   def gender_judge(gender)
-    _gender_name = Genders_list.select{|s| s[1] == gender}
-    _gender_name.empty? ? "Unknown" : _gender_name[0][0]
+    Genders_list.select{|s| s[1] == gender}[0][0].presence || "Unkown"
   end
   
   def role_judge(role)
-    roles = Role_list
-    role_name = roles[role]
+    Role_list[role]
   end
   
   def fullname(family,given)
-    _f = family.nil? ? "" : family
-    _g = given.nil? ? "" : given
-    _f + " " + given
+    "#{(family.presence || "")} #{(given.presence || "")}"
   end
   
   def nenrei(birthday)
