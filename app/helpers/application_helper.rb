@@ -20,7 +20,7 @@ module ApplicationHelper
   module_function
   
   def gender_judge(gender)
-    Genders_list.select{|s| s[1] == gender}[0][0].presence || "Unkown"
+    Genders_list[gender] || "Unkown"
   end
   
   def role_judge(role)
