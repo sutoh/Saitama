@@ -28,15 +28,11 @@ class Employee < ActiveRecord::Base
   validates :tech_flg, allow_blank: true, numericality: true, inclusion: {in: 1..2}
   validates :staff_flg, allow_blank: true, numericality: true, inclusion: {in: 1..4}
 
-
-  def full_name
-    family_name + " " + given_name 
-  end
   
   def gmaps4rails_address
     "#{self.address}"
   end
   def gmaps4rails_infowindow
-    "<h3>#{full_name}</h3>"
+    "<h3>#{ApplicationHelper::fullname(family_name, given_name)}</h3>"
   end
 end
