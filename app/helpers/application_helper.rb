@@ -19,24 +19,12 @@ module ApplicationHelper
   
   module_function
   
-  def gender_judge(gender)
-    Genders_list[gender] || "Unkown"
-  end
   
   def role_judge(role)
     Role_list[role]
   end
   
-  def fullname(family,given)
-    "#{(family.presence || "")} #{(given.presence || "")}"
-  end
   
-  def nenrei(birthday)
-    day = Date.today
-    # 取り敢えず版うるう年考慮無し
-    # TODO
-    (day-birthday).to_i/365
-  end
   
   
 end
