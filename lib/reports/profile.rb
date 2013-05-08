@@ -15,11 +15,11 @@ module Reports
       # TODO: license表示
       # TODO: appeal表示
       report.page.values create_date: employee.updated_at ,
-                          name_kana:      Util::fullname(employee.family_name_kana,employee.given_name_kana) , 
-                          name:           Util::fullname(employee.family_name,employee.given_name) , 
-                          gender:         Valiable::gender_judge(employee.gender) , 
+                          name_kana:      ApplicationHelper.fullname(employee.family_name_kana,employee.given_name_kana) , 
+                          name:           ApplicationHelper.fullname(employee.family_name,employee.given_name) , 
+                          gender:         ApplicationHelper.gender_judge(employee.gender) , 
                           birthday:       employee.birthday , 
-                          nenrei:         Util::nenrei(employee.birthday) , 
+                          nenrei:         ApplicationHelper.nenrei(employee.birthday) , 
                           keikenY:        '99' , 
                           address:        employee.address , 
                           station:        employee.station , 
