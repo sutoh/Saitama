@@ -17,6 +17,8 @@ module ApplicationHelper
     params[:controller].classify
   end
   
+  module_function
+  
   def gender_judge(gender)
     _gender_name = Genders_list.select{|s| s[1] == gender}
     _gender_name.empty? ? "Unknown" : _gender_name[0][0]
@@ -40,9 +42,5 @@ module ApplicationHelper
     (day-birthday).to_i/365
   end
   
-   module_function :gender_judge
-   module_function :role_judge
-   module_function :fullname
-   module_function :nenrei
   
 end
