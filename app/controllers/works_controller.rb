@@ -27,7 +27,7 @@ class WorksController < ApplicationController
     @work = Work.new
     @employees = Employee.all
     @customers = Customer.all
-    @staff = Employee.where(staff_flg:1)
+    @staff = Employee.where(tech_flg:2)
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @work }
@@ -39,7 +39,7 @@ class WorksController < ApplicationController
     @work = Work.find(params[:id])
     @employees = Employee.all
     @customers = Customer.all
-    @staff = Employee.where(staff_flg:1)
+    @staff = Employee.where(tech_flg:2)
   end
 
   # POST /works
