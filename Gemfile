@@ -34,11 +34,10 @@ gem 'gmaps4rails'
 gem 'thinreports-rails'
 gem "paperclip", "~> 3.0"
 gem "introjs-rails"
-gem "factory_girl_rails", "~> 4.2.1"
-gem "pg"
 
 group :development, :test do
   gem "rspec-rails", "~> 2.13.0"
+  gem "factory_girl_rails", "~> 4.2.1" 
   gem "quiet_assets", "~> 1.0.2" 
   gem "database_cleaner", "~> 0.9.1"
 end
