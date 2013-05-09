@@ -28,15 +28,26 @@ class Employee < ActiveRecord::Base
   validates :tech_flg, allow_blank: true, numericality: true, inclusion: {in: 1..2}
   validates :staff_flg, allow_blank: true, numericality: true, inclusion: {in: 1..4}
 
-
-  def full_name
-    family_name + " " + given_name 
-  end
   
   def gmaps4rails_address
     "#{self.address}"
   end
   def gmaps4rails_infowindow
-    "<h3>#{full_name}</h3>"
+    "<h3>#{fullname}</h3>"
+  end
+  def fullname
+    "#{(family_name.presence || "")} #{(given_name.presence || "")}"
+  end
+  def fullname_kana
+    "#{(family_name_kana.presence || "")} #{(given_name_kana.presence || "")}"
+  end
+  def nenrei
+    day = Date.today
+    # 取り敢えず版うるう年考慮無し
+    # TODO
+    (day-birthday).to_i/365
+  end
+  def gender_judge
+    Genders_list[gender] || "Unkown"
   end
 end

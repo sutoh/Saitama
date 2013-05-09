@@ -13,7 +13,7 @@
     <tbody>
       <% @employees.each do |employee| %>
       <tr>
-        <td><%= link_to employee.family_name + " " + employee.given_name, employee %>
+        <td><%= link_to employee.fullname, employee %>
           <%= link_to employee,  method: :delete, data: { confirm: '削除してもよろしいですか?' }, title: "Delete", class: "pull-right" do %><i class="icon-trash"></i><% end %>
           <%= link_to edit_employee_path(employee), title: "Edit", class: "pull-right" do %><i class="icon-edit"></i><% end %>
         </td>
