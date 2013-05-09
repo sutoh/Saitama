@@ -4,6 +4,6 @@ class WorkDetail < ActiveRecord::Base
   belongs_to :work
   
   def job_short_name
-   Job_short_list[job_class] || ""
+   Job_short_list[job_class.to_i] || ""
   end
 end

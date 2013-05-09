@@ -15,6 +15,7 @@ FactoryGirl.define do
       job_class 2
       period_form Date.strptime("2010/09/01", "%Y/%m/%d")
       period_to Date.strptime("2011/08/01", "%Y/%m/%d")
+      personnel_num 200
     end
     
     factory :lee_detail_google do
@@ -29,6 +30,7 @@ FactoryGirl.define do
       job_class 2
       period_form Date.strptime("2010/02/01", "%Y/%m/%d")
       period_to Date.strptime("2010/08/01", "%Y/%m/%d")
+      personnel_num 50
     end
     
     factory :lee_detail_apple do
@@ -43,6 +45,7 @@ FactoryGirl.define do
       job_class 2
       period_form Date.strptime("2009/03/01", "%Y/%m/%d")
       period_to Date.strptime("2009/08/01", "%Y/%m/%d")
+      personnel_num 5000
     end
     
     factory :lee_detail_apple2 do
@@ -57,6 +60,7 @@ FactoryGirl.define do
       job_class 2
       period_form Date.strptime("2007/12/1", "%Y/%m/%d")
       period_to Date.strptime("2008/8/1", "%Y/%m/%d")
+      personnel_num 3
     end
     
     factory :lee_detail_line do
@@ -71,6 +75,7 @@ FactoryGirl.define do
       job_class 2
       period_form Date.strptime("2006/9/1", "%Y/%m/%d")
       period_to Date.strptime("2009/2/1", "%Y/%m/%d")
+      personnel_num 50
     end
     
     factory :lee_detail_amazon do
@@ -85,6 +90,7 @@ FactoryGirl.define do
       job_class 2
       period_form Date.strptime("2005/11/1", "%Y/%m/%d")
       period_to Date.strptime("2006/7/1", "%Y/%m/%d")
+      personnel_num 999
     end
     
     factory :lee_detail_amazon2 do
@@ -99,6 +105,7 @@ FactoryGirl.define do
       job_class 2
       period_form Date.strptime("2005/4/1", "%Y/%m/%d")
       period_to Date.strptime("2005/10/1", "%Y/%m/%d")
+      personnel_num 100
     end
   end
 end
