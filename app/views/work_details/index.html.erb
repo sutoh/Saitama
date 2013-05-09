@@ -1,21 +1,16 @@
 <%= render "shared/toolbar_for_index", model_name: "work_work_detail" , title_name: "業務内容" %>
 
 <div class="well">
-  <table class="table">
+  <table class="table table-responsive">
     <thead>
       <tr>
-        <th>Title</th>
-        <th>Subject</th>
-        <th>Role</th>
-        <th>Work role</th>
-        <th>Work class</th>
-        <th>Job class</th>
-        <th>Personnel num</th>
-        <th>Period form</th>
-        <th>Period to</th>
-        <th></th>
-        <th></th>
-        <th></th>
+        <th>プロジェクト名</th>
+        <th>作業<br/>区分</th>
+        <th>職位</th>
+        <th>要員数</th>
+        <th>期間<br/>開始</th>
+        <th>期間<br/>終了</th>
+        <th>詳細</th>
       </tr>
     </thead>
 
@@ -23,14 +18,11 @@
       <% @work_details.each do |work_detail| %>
         <tr>
           <td><%= work_detail.title %></td>
-          <td><%= work_detail.subject %></td>
-          <td><%= work_detail.role %></td>
-          <td><%= work_detail.work_role %></td>
           <td><%= work_detail.work_class %></td>
-          <td><%= work_detail.job_class %></td>
+          <td><%= work_detail.job_short_name %></td>
           <td><%= work_detail.personnel_num %></td>
-          <td><%= work_detail.period_form %></td>
-          <td><%= work_detail.period_to %></td>
+          <td><%= work_detail.period_form.strftime("%y/%m") %></td>
+          <td><%= work_detail.period_to.strftime("%y/%m") %></td>
           <td>
             <div class="btn-group">
               <%= link_to 'Show', work_work_detail_path(params[:work_id], work_detail), :class => "btn" %>
@@ -46,5 +38,4 @@
 </div>
 <br />
 
-<%= link_to 'New Work detail', new_work_work_detail_path, :class => "btn btn-success" %>
 <%= link_to 'Back', works_path, :class => "btn" %>
