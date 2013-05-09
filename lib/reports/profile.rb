@@ -45,7 +45,7 @@ module Reports
                       title:            work.title ,
                       subject:          work.subject ,
                       work_class:       work.work_class ,
-                      job_class:        work.job_class ,
+                      job_class:        work.job_short_name ,
                       personnel_num:    work.personnel_num ,
                       skills_os:        "Windows Server 2008\nLinux\nWindows 7" ,
                       skills_language:  "Ruby(Rails)\nJava,VB\nVBA\nJavascript\nASP.NET\nPHP" ,
