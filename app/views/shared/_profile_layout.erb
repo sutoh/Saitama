@@ -153,20 +153,36 @@
               <%= image_tag 'lisences/java-logo.png', {class: "lisence_logo"} %>
               </div>
             <div class="data">
-              <h4>業務タイトル</h4>
-              <p>業務内容</p>
+              <h6>業務タイトル</h6>
+              <div id="Calender">
+                <div class="the_date blue">
+                    <div class="date_m">開始年</div>
+                    <div class="date_d">開始月</div>
+                </div>
+                <div class="the_date pink">
+                    <div class="date_m">終了年</div>
+                    <div class="date_d">終了月</div>
+                </div>
+              </div>
             </div>
           </li>
           <% @work_details.each do |wd| %>
-            <% #employee_license = license.employee_licenses.find(:first) %>
           <li>
             <div class="icon">
               <i class="icon-digg"></i>
             </div>
             <div class="data">
-              業務タイトル
-              <p>業務内容
-              </p>
+              <h6><%= wd.title %></h6>
+              <div id="Calender">
+                <div class="the_date blue">
+                    <div class="date_m"><%= wd.period_form.strftime("%Y年") %></div>
+                    <div class="date_d"><%= wd.period_form.strftime("%m月") %></div>
+                </div>
+                <div class="the_date pink">
+                    <div class="date_m"><%= wd.period_to.strftime("%Y年") %></div>
+                    <div class="date_d"><%= wd.period_to.strftime("%m月") %></div>
+                </div>
+              </div>
             </div>
           </li>
           <% end %>
