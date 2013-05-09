@@ -3,5 +3,6 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 #= require_directory ./gmaps4rails
 #= require_directory ./lib
+#= require introjs
 jQuery ->
   $("ul.nav li").eq(0).addClass("active")
