@@ -39,8 +39,8 @@ module Reports
         # TODO: work_skill表示
         report.page.list(:work_detail).add_row do |row|
           row.values  d_no: rc+=1,
-                      period_from:      work.period_form ,
-                      period_to:        work.period_to ,
+                      period_from:      work.period_form.strftime("%y/%m") ,
+                      period_to:        work.period_to.strftime("%y/%m") ,
                       d_mc:             '12' ,
                       title:            work.title ,
                       subject:          work.subject ,
