@@ -2,8 +2,8 @@ class WorksController < ApplicationController
   # GET /works
   # GET /works.json
   def index
-    @works = Work.all
-
+    @employee = current_user.employee
+    @works = Work.where(employee_id:@employee)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @works }
@@ -25,9 +25,9 @@ class WorksController < ApplicationController
   # GET /works/new.json
   def new
     @work = Work.new
-    @employee = Employee.all
-    @customer = Customer.all
-    @staff = Employee.where(staff_flg:1)
+    @employees = Employee.all
+    @customers = Customer.all
+    @staff = Employee.where(tech_flg:2)
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @work }
@@ -37,9 +37,9 @@ class WorksController < ApplicationController
   # GET /works/1/edit
   def edit
     @work = Work.find(params[:id])
-    @employee = Employee.all
-    @customer = Customer.all
-    @staff = Employee.where(staff_flg:1)
+    @employees = Employee.all
+    @customers = Customer.all
+    @staff = Employee.where(tech_flg:2)
   end
 
   # POST /works

@@ -1,14 +1,15 @@
 
-  <div class="well card">
-    <div class="span2">
+  <div class="well card" data-intro="この画面はあなたのプロフィール画面です。ここのTOPカードには、画像・名前・アカウント名はここへ表示されます。画像が無い場合、自動的に「Yellow egg」になります。:)" data-step="3">
+    <div class="span2" data-intro="問題・不満が生じた場合、どんな細かな事象でも「モバイルインテリジェンスチーム」へご連絡下さい。お待ちしております。:)" data-step="13">
        <%= link_to image_tag(@employee.image.url(:thumb), {class: "logo frame"}), edit_employee_path(@employee) %>
     </div>
-    <div class="span3">
+    <div class="span6">
       <p><%= @employee.user.login_id if !@employee.user.nil? %></p>
       <p><strong><%= @employee.family_name + " " + @employee.given_name%></strong></p>
       <p><strong><%= @employee.family_name_kana + " " + @employee.given_name_kana %></strong></p>
-      <%= link_to "変更", edit_employee_path(@employee), class: "btn btn-success" %>
-      <%= link_to "印刷", employee_path(@employee, format: "pdf"), class: "btn btn-success" %>
+      <%= link_to "変更", edit_employee_path(@employee), {class: "btn btn-success",data:  {intro: "まず、あなたの事を教えて下さい。名前、住所、誕生日などの基本情報の入力を行います。", step: "2"}} %>
+      <%= link_to "印刷", employee_path(@employee, format: "pdf"), {class: "btn btn-success",data:  {intro: "最後に、あなたに入力頂いた情報を元に、あなただけの「スキルシート」をPDF印刷出来ます。:)", step: "12"}} %>
+      <a class="btn btn-success introJs" href="javascript:void(0);" onclick="javascript:introJs().start();" data-intro="スキル管理DB 「Saitama」 へようこそ!! このサービスは、あなたの情報やスキルを保存し、いつでもどこでもPDF印刷が出来るサービスになります。" data-step="1">Show me how</a>
     </div>
   </div>
   <div class="collapse">
@@ -26,17 +27,17 @@
 
 <div class="content">
   <div class="col">
-    <div class="waku kihon">
+    <div class="waku kihon" data-intro="基本情報カードには、TOPカード以外のあなたに関する、詳しい情報が表示されます。" data-step="4">
       <div class="waku-header">
         <div class="waku-name">基本情報</div>
         <div class="edit">
-          <a href="#kihon">編集</a>
+          <a href="#kihon" data-intro="カード毎に画面を遷移せず、情報の変更も可能です。" data-step="5">編集</a>
         </div>
       </div>
       <div class="waku-detail-group">
         <div class="waku-detail">
           <div class="waku-detail-header">性別</div>
-          <div class="waku-detail-data"><%= gender_judge(@employee.gender) %></div>
+          <div class="waku-detail-data"><%= @employee.gender_judge %></div>
         </div>
         <div class="waku-detail">
           <div class="waku-detail-header">年齢</div>
@@ -58,7 +59,7 @@
         </div>
       </div>
     </div>
-    <div class="waku sumika">
+    <div class="waku sumika" data-intro="住処カードでは、あなたの住んでいる場所が表示されます。入力した住所は、GoogleMapへ連携されます。残念ながら、パチンコガンダム駅は存在しません。:p" data-step="6">
       <div class="waku-header">
         <div class="waku-name">住所</div>
         <div class="edit">
@@ -83,7 +84,7 @@
         </div>
       </div>
     </div>
-    <div class="waku appeal">
+    <div class="waku appeal" data-intro="アピールカードでは、あなたのアピール情報が表示されます。どんどんアピールを書き込みましょう。<3" data-step="7">
       <div class="waku-header">
         <div class="waku-name">アピール</div>
         <div class="edit">
@@ -97,11 +98,11 @@
         </div>
       </div>
     </div>
-    <div class="waku skill">
+    <div class="waku skill" data-intro="スキルカードでは、あなたの技術力を記載して下さい。OS / DB / 言語 / Hardware・Packageのカテゴリに分けて記入します。レベルにより、5段階のスターが付与されます。たくさんの星を付けましょう:)" data-step="8">
       <div class="waku-header">
         <div class="waku-name">スキル</div>
         <div class="edit">
-          <a href="#skill">編集</a>
+          <a href="#skill" data-intro="スキルは、ここで登録・編集が行えます。" data-step="9">編集</a>
         </div>
       </div>
       <div>
@@ -138,7 +139,7 @@
   </div>
   
   <div class="col">
-        <div class="waku work-detail">
+        <div class="waku work-detail" data-intro="経歴カードでは、あなたが行なってきた仕事を入力します。スキル管理DBでは、経歴カードがメインにとなる情報となります。今までの経験を事細かに記載しましょう。" data-step="10">
       <div class="waku-header">
         <div class="waku-name">経歴</div>
         <div class="edit">
@@ -152,27 +153,43 @@
               <%= image_tag 'lisences/java-logo.png', {class: "lisence_logo"} %>
               </div>
             <div class="data">
-              <h4>業務タイトル</h4>
-              <p>業務内容</p>
+              <h6>業務タイトル</h6>
+              <div id="Calender">
+                <div class="the_date blue">
+                    <div class="date_m">開始年</div>
+                    <div class="date_d">開始月</div>
+                </div>
+                <div class="the_date pink">
+                    <div class="date_m">終了年</div>
+                    <div class="date_d">終了月</div>
+                </div>
+              </div>
             </div>
           </li>
           <% @work_details.each do |wd| %>
-            <% #employee_license = license.employee_licenses.find(:first) %>
           <li>
             <div class="icon">
               <i class="icon-digg"></i>
             </div>
             <div class="data">
-              業務タイトル
-              <p>業務内容
-              </p>
+              <h6><%= wd.title %></h6>
+              <div id="Calender">
+                <div class="the_date blue">
+                    <div class="date_m"><%= wd.period_form.strftime("%Y年") %></div>
+                    <div class="date_d"><%= wd.period_form.strftime("%m月") %></div>
+                </div>
+                <div class="the_date pink">
+                    <div class="date_m"><%= wd.period_to.strftime("%Y年") %></div>
+                    <div class="date_d"><%= wd.period_to.strftime("%m月") %></div>
+                </div>
+              </div>
             </div>
           </li>
           <% end %>
         </ul>
       </div>
     </div>
-    <div class="waku license">
+    <div class="waku license"  data-intro="資格カードでは、あなたの保持している資格を記載しましょう。" data-step="11">
       <div class="waku-header">
         <div class="waku-name">資格</div>
         <div class="edit">
@@ -219,7 +236,7 @@
   <%= render :layout => "/shared/waku_modal", locals: {waku_id: "kihon", title: "基本情報"} do %>
     <%= form_for(@employee) do |f| %>
       <div class="waku-detail-group">
-        <%= render :layout => "/shared/waku_modal_detail", locals: {detail_header: "性別", f: f} do %><%= f.select :gender, Genders_list %><% end %>
+        <%= render :layout => "/shared/waku_modal_detail", locals: {detail_header: "性別", f: f} do %><%= f.select :gender, Genders_list.invert %><% end %>
         <%= render :layout => "/shared/waku_modal_detail", locals: {detail_header: "年齢", f: f} do %><%= nenrei(@employee.birthday) if !@employee.birthday.nil?  %><% end %>
         <%= render :layout => "/shared/waku_modal_detail", locals: {detail_header: "誕生日", f: f} do %><%= f.date_select :birthday, {start_year: 1900, end_year: Date.today.year},{class: "select_date"} %><% end %>
         <%= render :layout => "/shared/waku_modal_detail", locals: {detail_header: "入社年月日", f: f} do %><%= f.date_select :entrance_date, {start_year: 1998, end_year: Date.today.year}, {class: "select_date"} %><% end %>

@@ -15,11 +15,11 @@ module Reports
       # TODO: license表示
       # TODO: appeal表示
       report.page.values create_date: employee.updated_at ,
-                          name_kana:      ApplicationHelper.fullname(employee.family_name_kana,employee.given_name_kana) , 
-                          name:           ApplicationHelper.fullname(employee.family_name,employee.given_name) , 
-                          gender:         ApplicationHelper.gender_judge(employee.gender) , 
+                          name_kana:      employee.fullname_kana , 
+                          name:           employee.fullname , 
+                          gender:         employee.gender_judge , 
                           birthday:       employee.birthday , 
-                          nenrei:         ApplicationHelper.nenrei(employee.birthday) , 
+                          nenrei:         employee.nenrei , 
                           keikenY:        '99' , 
                           address:        employee.address , 
                           station:        employee.station , 
@@ -39,13 +39,13 @@ module Reports
         # TODO: work_skill表示
         report.page.list(:work_detail).add_row do |row|
           row.values  d_no: rc+=1,
-                      period_from:      work.period_form ,
-                      period_to:        work.period_to ,
+                      period_from:      work.period_form.strftime("%y/%m") ,
+                      period_to:        work.period_to.strftime("%y/%m") ,
                       d_mc:             '12' ,
                       title:            work.title ,
                       subject:          work.subject ,
                       work_class:       work.work_class ,
-                      job_class:        work.job_class ,
+                      job_class:        work.job_short_name ,
                       personnel_num:    work.personnel_num ,
                       skills_os:        "Windows Server 2008\nLinux\nWindows 7" ,
                       skills_language:  "Ruby(Rails)\nJava,VB\nVBA\nJavascript\nASP.NET\nPHP" ,

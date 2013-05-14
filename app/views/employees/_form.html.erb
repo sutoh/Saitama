@@ -40,7 +40,7 @@
   <div class="field control-group">
     <%= f.label :"性別", class: "control-label" %>
     <div class="controls">
-      <%= f.select :gender, Genders_list %>
+      <%= f.select :gender, Genders_list.invert %>
     </div>
   </div>
   <div class="field control-group">
@@ -94,13 +94,13 @@
   <div class="field control-group">
     <%= f.label :"技術区分", class: "control-label" %>
     <div class="controls">
-      <%= f.select :tech_flg, Tech_list %>
+      <%= f.select :tech_flg, Tech_list.invert %>
     </div>
   </div>
   <div class="field control-group">
     <%= f.label :"社員区分", class: "control-label" %>
     <div class="controls">
-      <%= f.select :staff_flg, Staff_list %>
+      <%= f.select :staff_flg, Staff_list.invert %>
     </div>
   </div>
   <div class="field control-group">

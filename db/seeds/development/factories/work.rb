@@ -109,15 +109,4 @@ FactoryGirl.define do
   end
   
   
-  factory :work_detail do
-    factory :lee_detail do
-      work_id { Work.where("employee_id = ? and customer_id = ?",
-                            Employee.where(user_id: 
-                              User.where(login_id: "lee.jisun").first.id
-                            ).first.id,
-                            Customer.where(name: "Human-net").first.id).first.id}
-      title 'てすと'
-      subject 'てすと'
-    end
-  end
 end

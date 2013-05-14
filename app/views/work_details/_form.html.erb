@@ -45,7 +45,7 @@
   <div class="field control-group">
     <%= f.label :job_class, :class => "control-label" %>
     <div class="controls">
-      <%= f.text_field :job_class %>
+      <%= f.select :job_class, Job_list.invert %>
     </div>
   </div>
   <div class="field control-group">
