@@ -279,7 +279,7 @@
             <%= fields_for("employee_skill_[]",employee_skill_) do |skill| %>
               <div class="waku-detail">
                 <div class="waku-detail-data"><%= skill.select :skill_id, @skills.skills.map{|s|[s.name, s.id]} %></div>
-                <div class="waku-detail-data2"><%= skill.number_field :level, class: "level_field" %></div>
+                <div class="waku-detail-data2"><%= skill.range_field :level, class: "level_field", min: 1, max: 5 %></div>
               </div>
             <% end %>
           <% end %> 
