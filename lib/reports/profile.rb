@@ -28,7 +28,7 @@ module Reports
                           skill_Language: 'Ruby(Rails) , Java , VB , VBA , Javascript , ASP.NET , PHP' , 
                           skill_OS:       'Windows Server 2008 ,  Linux ,  Windows 7' , 
                           skill_hardware: 'IBM , Dell' , 
-                          license:        'RubyAssotiationSilver , Java SJC-P 1.4 , 基本情報処理技術者' , 
+                          license:        licenses.licenses.map{|l|l.name}.join(",") , 
                           appeal:         '頑張ってます。' 
       
       work_details.each do |work|
