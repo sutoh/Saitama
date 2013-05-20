@@ -7,7 +7,6 @@ class ProfileController < ApplicationController
     @employee_skills = @employee.employee_skills.all
     @employee_license = @employee.employee_licenses.find(:first)
     @employee_licenses = @employee.employee_licenses.all
-      debugger
     @work = @employee.works.all
     @work_details = []
     @work.each do |w|
