@@ -18,8 +18,8 @@ class EmployeesController < ApplicationController
   # GET /employees/1.json
   def show
     @employee = Employee.find(params[:id])
-    @licenses = Employee.find(@employee, include: :licenses)
-    @skills = Employee.find(@employee, include: :skills)
+    @licenses = Employee.find(@employee, include: :licenses).licenses
+    @skills = Employee.find(@employee, include: :skills).skills
     @employee_skill = @employee.employee_skills.find(:first)
     @employee_skills = @employee.employee_skills.all
     @employee_license = @employee.employee_licenses.find(:first)

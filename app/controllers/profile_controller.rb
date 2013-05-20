@@ -1,12 +1,13 @@
 class ProfileController < ApplicationController
   def index
     @employee = current_user.employee
-    @licenses = Employee.find(@employee, include: :licenses)
-    @skills = Employee.find(@employee, include: :skills)
+    @licenses = Employee.find(@employee, include: :licenses).licenses
+    @skills = Employee.find(@employee, include: :skills).skills
     @employee_skill = @employee.employee_skills.find(:first)
     @employee_skills = @employee.employee_skills.all
     @employee_license = @employee.employee_licenses.find(:first)
     @employee_licenses = @employee.employee_licenses.all
+      debugger
     @work = @employee.works.all
     @work_details = []
     @work.each do |w|

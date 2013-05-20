@@ -117,7 +117,7 @@
             </div>
           </li>
           <% if @employee_skill %>
-          <% @skills.skills.each do |skill| %>
+          <% @skills.each do |skill| %>
           <% employee_skill = skill.employee_skills.find(:first) %>
           <li>
             <div class="icon">
@@ -210,7 +210,7 @@
             </div>
           </li>
           <% if @employee_license %>
-          <% @licenses.licenses.each do |license| %>
+          <% @licenses.each do |license| %>
             <% employee_license = license.employee_licenses.find(:first) %>
           <li>
             <div class="icon">
@@ -278,7 +278,7 @@
           <% @employee_skills.each do |employee_skill_| %>
             <%= fields_for("employee_skill_[]",employee_skill_) do |skill| %>
               <div class="waku-detail">
-                <div class="waku-detail-data"><%= skill.select :skill_id, @skills.skills.map{|s|[s.name, s.id]} %></div>
+                <div class="waku-detail-data"><%= skill.select :skill_id, @skills.map{|s|[s.name, s.id]} %></div>
                 <div class="waku-detail-data2"><%= skill.range_field :level, class: "level_field", min: 1, max: 5 %></div>
               </div>
             <% end %>
@@ -301,7 +301,7 @@
           <% @employee_licenses.each do |employee_license_| %>
             <%= fields_for("employee_license_[]",employee_license_) do |license| %>
               <div class="waku-detail">
-                <div class="waku-detail-data"><%= license.select :license_id, @licenses.licenses.map{|s|[s.name, s.id]} %></div>
+                <div class="waku-detail-data"><%= license.select :license_id, @licenses.map{|s|[s.name, s.id]} %></div>
                 <div class="waku-detail-data2"><%= license.date_select :acquisition_date, {}, {class: "select_date"} %></div>
               </div>
             <% end %>
