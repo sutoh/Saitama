@@ -37,13 +37,14 @@ module Reports
         end
         # TODO: d_mc(期間)
         # TODO: work_skill表示
+        subjects = subject(work.subject,work.role,work.work_role)
         report.page.list(:work_detail).add_row do |row|
           row.values  d_no: rc+=1,
                       period_from:      work.period_form.strftime("%y/%m") ,
                       period_to:        work.period_to.strftime("%y/%m") ,
                       d_mc:             '12' ,
                       title:            work.title ,
-                      subject:          work.subject ,
+                      subject:          subjects ,
                       work_class:       work.work_class ,
                       job_class:        work.job_short_name ,
                       personnel_num:    work.personnel_num ,
@@ -54,6 +55,19 @@ module Reports
       end
       
       report
+    end
+    
+    def self.subject(a,b,c)
+        _s = String.new
+        _s << "①"
+        _s << (a || "").chomp
+        _s << "\n"
+        _s << "②"
+        _s << (b || "").chomp
+        _s << "\n"
+        _s << "③"
+        _s << (c || "").chomp
+        _s
     end
   end
 end
