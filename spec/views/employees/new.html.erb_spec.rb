@@ -3,8 +3,8 @@ require 'spec_helper'
 describe "employees/new" do
   before(:each) do
     assign(:employee, stub_model(Employee).as_new_record)
-    assign(:controller, "employee".classify)
-    assign(:action_name, "edit".capitalize)
+    @departments = Department.find(:all, :select => "Departments.name, Departments.id")
+    view.stub(:legend_view).and_return("new Employee")
   end
 
   it "renders new employee form" do

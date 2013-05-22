@@ -6,6 +6,7 @@ describe "employees/index" do
       stub_model(Employee),
       stub_model(Employee)
     ])
+    view.stub(:controller_name).and_return("Employee")
   end
 
   it "renders a list of employees" do

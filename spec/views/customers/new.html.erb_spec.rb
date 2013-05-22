@@ -3,8 +3,7 @@ require 'spec_helper'
 describe "customers/new" do
   before(:each) do
     assign(:customer, stub_model(Customer).as_new_record)
-    assign(:controller, "customer".classify)
-    assign(:action_name, "new".capitalize)
+    view.stub(:legend_view).and_return("new customer")
   end
 
   it "renders new customer form" do
