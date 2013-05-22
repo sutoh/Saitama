@@ -30,12 +30,12 @@ class Profile
 
 	protected
 	def attr_reader_employee(*syms)
-  	syms.each do |sym|
-  		class_eval %{
-   			def #{sym}
-    			employee.#{sym}
-   			end
-  		}
-  	end
- 	end
+		syms.each do |sym|
+			class_eval <<-EOS
+				def #{sym}
+					employee.#{sym}
+				end
+			EOS
+		end
+	end
 end
