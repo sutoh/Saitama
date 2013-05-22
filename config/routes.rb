@@ -1,5 +1,6 @@
 Saitama::Application.routes.draw do
-  devise_for :users do
+  devise_for :users
+  devise_scope :users do
     get "/", :to => "devise/sessions#new"
   end
   

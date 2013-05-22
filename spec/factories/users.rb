@@ -34,6 +34,7 @@ FactoryGirl.define do
       login_id { "#{split_email(email)}" }
     end
     
+    factory :user_admin, traits: [:admin]
     factory :user_maeda, traits: [:rubeus,:email]
     factory :user_yawata, traits: [:email] {email 'yawata@human-net.co.jp'}
     factory :user_lee, traits: [:rubeus,:email] {email "lee@human-net.co.jp"}
