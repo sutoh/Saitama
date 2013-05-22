@@ -18,8 +18,9 @@
 end
 
 module RequestMacros
+  include Warden::Test::Helpers
   def sign_in_user
-    @user = FactoryGirl.create(:user)
-    post_via_redirect user_session_path, 'user[login_id]' => @user.login_id, 'user[password]' => @user.password
+    user = FactoryGirl.create(:user)
+    login_as user, scope: :user, :run_callbacks => false
   end
 end
