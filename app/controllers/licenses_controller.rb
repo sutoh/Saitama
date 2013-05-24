@@ -25,8 +25,6 @@ class LicensesController < ApplicationController
   # GET /licenses/new.json
   def new
     @license = License.new
-    @controller = controller_name
-    @action_name = action_name
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @license }
@@ -36,8 +34,6 @@ class LicensesController < ApplicationController
   # GET /licenses/1/edit
   def edit
     @license = License.find(params[:id])
-    @controller = controller_name
-    @action_name = action_name
   end
 
   # POST /licenses
