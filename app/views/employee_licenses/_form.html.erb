@@ -16,7 +16,7 @@
     <div class="control-group">
       <%= f.label :license_id, :class => "control-label" %>
       <div class="controls">
-        <%= f.select :license_id, @licenses.map{|l|[l.name, l.id]} %>
+        <%= f.select :license_id, licenseList.map{|l|[l.name, l.id]} %>
       </div>
     </div>
     <div class="control-group">

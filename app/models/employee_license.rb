@@ -3,12 +3,13 @@ class EmployeeLicense < ActiveRecord::Base
   belongs_to :employee
   belongs_to :license
 
-  def get_employee_names(employee_id)
-  	employee_ids = EmployeeLicense.find(:employee_id => employee_id)
-  	employee_ids.each do |f|
-  		employee = Employee.find(f.employee_id)
-  		employee_names = employee.family_name + " " + employee.given_name
-  	end
-  	return employee_names
+  def employee_name()
+    Employee.find(employee_id).fullname
+  end
+  def new_record()
+    EmployeeLicense.new
+  end
+  def license_name()
+    license.name.presence || "none"
   end
 end
