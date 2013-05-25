@@ -3,10 +3,10 @@ class EmployeeLicensesController < ApplicationController
   # GET /employee_licenses.json
   def index
     #@employee_licenses = EmployeeLicense.all
-    @employee = Employee.find(params[:employee_id])
-    @employee_licenses = @employee.employee_licenses.find(:all,:select => "employee_licenses.*, licenses.name" ,:joins => :license)
-    @employee_license = EmployeeLicense.new
-    @licenses = License.find(:all, :select => "Licenses.name, Licenses.id")
+    employee_id = params[:employee_id]
+    @employee = Employee.find(employee_id)
+    @employee_licenses = EmployeeLicense.find_all_by_employee_id(employee_id)
+    @employee_licenses = @employee_licenses.presence || [EmployeeLicense.new(employee_id: employee_id)]
 
     respond_to do |format|
       format.html # index.html.erb
@@ -17,7 +17,6 @@ class EmployeeLicensesController < ApplicationController
   # GET /employee_licenses/1
   # GET /employee_licenses/1.json
   def show
-    @employee = Employee.find(params[:employee_id])
     @employee_license = EmployeeLicense.find(params[:id])
 
     respond_to do |format|
@@ -29,9 +28,7 @@ class EmployeeLicensesController < ApplicationController
   # GET /employee_licenses/new
   # GET /employee_licenses/new.json
   def new
-    @employee = Employee.find(params[:employee_id])
-    @employee_license = EmployeeLicense.new
-    @licenses = License.find(:all, :select => "Licenses.name, Licenses.id")
+    @employee_license = EmployeeLicense.new(employee_id: params[:employee_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -43,16 +40,18 @@ class EmployeeLicensesController < ApplicationController
   def edit
     @employee = Employee.find(params[:employee_id])
     @employee_license = EmployeeLicense.find(params[:id])
-    @licenses = License.find(:all, :select => "Licenses.name, Licenses.id")
   end
 
   # POST /employee_licenses
   # POST /employee_licenses.json
   def create
-    @employee = Employee.find(params[:employee_id])
+    employee_id = params[:employee_id]
+    @employee = Employee.find(employee_id)
+    @employee_licenses = EmployeeLicense.find_all_by_employee_id(employee_id)
+    @employee_licenses = @employee_licenses.presence || [EmployeeLicense.new(employee_id: employee_id)]
+
     @employee_license = EmployeeLicense.new(params[:employee_license])
     @employee_license.employee = @employee
-    @licenses = License.find(:all, :select => "Licenses.name, Licenses.id")
 
     respond_to do |format|
       if @employee_license.save
@@ -75,7 +74,6 @@ class EmployeeLicensesController < ApplicationController
     end
     @employee = Employee.find(params[:employee_id])
     @employee_license = EmployeeLicense.find(params[:id])
-    @licenses = License.find(:all, :select => "Licenses.name, Licenses.id")
 
     respond_to do |format|
       if @employee_license.update_attributes(params[:employee_license])

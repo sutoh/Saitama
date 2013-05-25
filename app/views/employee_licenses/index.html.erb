@@ -1,7 +1,7 @@
 <div class="page-header">
   <h1>社員資格情報</h1>
 </div>
-<h2><%= @employee.fullname %></h2>
+<h2><%= @employee_licenses[0].employee_name %></h2>
 
 <div class="well">
   <table class="table">
@@ -14,9 +14,10 @@
     </thead>
 
     <tbody>
+      <% if !@employee_licenses[0].new_record? %>
       <% @employee_licenses.each do |employee_license| %>
         <tr>
-          <td><%= employee_license.name %></td>
+          <td><%= employee_license.license_name %></td>
           <td><%= employee_license.acquisition_date %></td>
           <td>
             <%= link_to edit_employee_employee_license_path(params[:employee_id], employee_license), title: "Edit" do %><i class="icon-edit"></i><% end %>
@@ -24,10 +25,11 @@
           </td>
         </tr>
       <% end %>
-      <%= form_for([@employee, @employee_license]) do |f| %>
+      <% end %>
+      <%= form_for([@employee, @employee_licenses[0].new_record]) do |f| %>
         <tr>
           <td>
-            <%= f.select :license_id, @licenses.map{|l|[l.name, l.id]} %>
+            <%= f.select :license_id, licenseList.map{|l|[l.name, l.id]} %>
           </td>
           <td>
             <%= f.date_select :acquisition_date, {},{:class => "input-small"} %>

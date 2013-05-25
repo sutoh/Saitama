@@ -37,7 +37,7 @@ describe EmployeesController do
 
   describe "GET index" do
     it "assigns all employees as @employees" do
-      employee = Employee.create! valid_attributes
+      employee = FactoryGirl.create :employee_sutoh
       get :index, {}, valid_session
       assigns(:employees).should eq([employee])
     end
@@ -45,9 +45,10 @@ describe EmployeesController do
 
   describe "GET show" do
     it "assigns the requested employee as @employee" do
-      employee = Employee.create! valid_attributes
+      employee = FactoryGirl.create :employee_sutoh
       get :show, {:id => employee.to_param}, valid_session
-      assigns(:employee).should eq(employee)
+      profile = Profile.new(employee)
+      assigns(:profile).id.should eq(profile.id)
     end
   end
 
@@ -60,7 +61,7 @@ describe EmployeesController do
 
   describe "GET edit" do
     it "assigns the requested employee as @employee" do
-      employee = Employee.create! valid_attributes
+      employee = FactoryGirl.create :employee_sutoh
       get :edit, {:id => employee.to_param}, valid_session
       assigns(:employee).should eq(employee)
     end
@@ -70,18 +71,18 @@ describe EmployeesController do
     describe "with valid params" do
       it "creates a new Employee" do
         expect {
-          post :create, {:employee => valid_attributes}, valid_session
+          post :create, {employee: FactoryGirl.attributes_for(:employee_maeda)}, valid_session
         }.to change(Employee, :count).by(1)
       end
 
       it "assigns a newly created employee as @employee" do
-        post :create, {:employee => valid_attributes}, valid_session
+        post :create, {employee: FactoryGirl.attributes_for(:employee_maeda)}, valid_session
         assigns(:employee).should be_a(Employee)
         assigns(:employee).should be_persisted
       end
 
       it "redirects to the created employee" do
-        post :create, {:employee => valid_attributes}, valid_session
+        post :create, {employee: FactoryGirl.attributes_for(:employee_maeda)}, valid_session
         response.should redirect_to(Employee.last)
       end
     end
@@ -106,7 +107,7 @@ describe EmployeesController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested employee" do
-        employee = Employee.create! valid_attributes
+        employee = FactoryGirl.create :employee_sutoh
         # Assuming there are no other employees in the database, this
         # specifies that the Employee created on the previous line
         # receives the :update_attributes message with whatever params are
@@ -116,13 +117,13 @@ describe EmployeesController do
       end
 
       it "assigns the requested employee as @employee" do
-        employee = Employee.create! valid_attributes
+        employee = FactoryGirl.create :employee_sutoh
         put :update, {:id => employee.to_param, :employee => valid_attributes}, valid_session
         assigns(:employee).should eq(employee)
       end
 
       it "redirects to the employee" do
-        employee = Employee.create! valid_attributes
+        employee = FactoryGirl.create :employee_sutoh
         put :update, {:id => employee.to_param, :employee => valid_attributes}, valid_session
         response.should redirect_to(employee)
       end
@@ -130,7 +131,7 @@ describe EmployeesController do
 
     describe "with invalid params" do
       it "assigns the employee as @employee" do
-        employee = Employee.create! valid_attributes
+        employee = FactoryGirl.create :employee_sutoh
         # Trigger the behavior that occurs when invalid params are submitted
         Employee.any_instance.stub(:save).and_return(false)
         put :update, {:id => employee.to_param, :employee => {  }}, valid_session
@@ -138,7 +139,7 @@ describe EmployeesController do
       end
 
       it "re-renders the 'edit' template" do
-        employee = Employee.create! valid_attributes
+        employee = FactoryGirl.create :employee_sutoh
         # Trigger the behavior that occurs when invalid params are submitted
         Employee.any_instance.stub(:save).and_return(false)
         put :update, {:id => employee.to_param, :employee => {  }}, valid_session
@@ -149,14 +150,14 @@ describe EmployeesController do
 
   describe "DELETE destroy" do
     it "destroys the requested employee" do
-      employee = Employee.create! valid_attributes
+      employee = FactoryGirl.create :employee_sutoh
       expect {
         delete :destroy, {:id => employee.to_param}, valid_session
       }.to change(Employee, :count).by(-1)
     end
 
     it "redirects to the employees list" do
-      employee = Employee.create! valid_attributes
+      employee = FactoryGirl.create :employee_sutoh
       delete :destroy, {:id => employee.to_param}, valid_session
       response.should redirect_to(employees_url)
     end

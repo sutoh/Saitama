@@ -6,7 +6,7 @@ describe "customers/index" do
         FactoryGirl.build_stubbed(:customer),
         FactoryGirl.build_stubbed(:customer)
       ]).page(1))
-    assign(:controller, "customer".classify)
+    view.stub(:controller_name).and_return("customer")
   end
 
   it "renders a list of customers" do
