@@ -22,12 +22,6 @@ describe EmployeeSkill do
     it ("データが空である事") { expect(subject).to be_empty }
   end
   
-  context "データが存在する時" do
-    subject { FactoryGirl.create_list(:employee, 3, :sutoh, :rubeus, :maeda) }
-    it ("データが空でない事") { expect(subject).not_to be_empty }
-    its (:size) { should eq 3 }
-  end
-
   describe "with RelationTest" do  
     context "belong_toの確認" do
       it { should belong_to(:employee) }
