@@ -34,8 +34,7 @@ describe Employee do
       context "Address へ Saitama を入れた場合" do
     
         before { FactoryGirl.create :employee_sutoh }
-        subject{Employee.where("address = ?",'Saitama').first.gmaps4rails_address}
-      
+        subject{ Employee.where("address = ?",'Saitama').first.gmaps4rails_address }
         it ("nullでない事") { expect(subject).not_to be_nil }
         it ("正常に出力される事") { expect(subject).to eq "Saitama" }
       
@@ -43,18 +42,66 @@ describe Employee do
     end
     
     describe "gmaps4rails_infowindow" do
+      context "fullname へ 値が入っている場合" do
+        before { FactoryGirl.create :employee_sutoh }
+        subject { Employee.where(["family_name = ? and given_name = ?" ,'sutoh', 'shohei']).first.gmaps4rails_infowindow }
+        it ("nullでない事") { expect(subject).not_to be_nil }
+        it ("正常に出力される事") { expect(subject).to eq "<h3>sutoh shohei</h3>" }
+      end 
     end
   
     describe "fullname" do
+      context "sutoh shoheiが入っている場合" do
+        before { FactoryGirl.create :employee_sutoh }
+        subject { Employee.where(["family_name = ? and given_name = ?" ,'sutoh', 'shohei']).first.fullname }
+        it ("nullでない事") { expect(subject).not_to be_nil }
+        it ("正常に出力される事") { expect(subject).to eq "sutoh shohei" }
+      end
     end
   
     describe "fullname_kana" do
+        before { FactoryGirl.create :employee_sutoh }
+        subject { Employee.where(["family_name_kana = ? and given_name_kana = ?" ,'ストウ', 'ショウヘイ']).first.fullname_kana }
+        it ("nullでない事") { expect(subject).not_to be_nil }
+        it ("正常に出力される事") { expect(subject).to eq "ストウ ショウヘイ" }
     end
   
     describe "nenrei" do
+      context "当日より後の場合" do
+        before { FactoryGirl.create(:employee_sutoh ,{birthday: '2013-12-31'}) }
+        subject { Employee.where("birthday = ?" , '2013-12-31').first.nenrei }
+        it { expect(subject).to be < 0 }
+      end
+      #TODO:当日日付から100年先の計算
+      context "100年離れている場合" do
+        before { FactoryGirl.create(:employee_sutoh ,{birthday: '1913-06-02'})  }
+        subject { Employee.where("birthday = ?" , '1913-06-02').first.nenrei }
+        it { expect(subject).to be >= 100 }
+      end
+      #TODO:当日日付から100年先の計算
+      context "当日とお同じ場合" do
+        before { FactoryGirl.create(:employee_sutoh ,{birthday: '2013-06-02'})  }
+        subject { Employee.where("birthday = ?" , '2013-06-02').first.nenrei }
+        it { expect(subject).to eq 0 }
+      end
+      context "正常ケース" do
+        before { FactoryGirl.create :employee_sutoh }
+        subject { Employee.where("birthday = ?" , '1986-03-12').first.nenrei }
+        it ("27歳であること") { expect(subject).to eq 27 }
+      end
     end
   
     describe "gender_judge" do
+      context "0が入っている場合" do
+        before { FactoryGirl.create(:employee_sutoh, gender:0) }
+        subject { Employee.where("gender = ?" , '0').first.gender_judge }
+        it ("男であること") { expect(subject).to eq "男性" }
+      end
+      context "1が入っている場合" do
+        before { FactoryGirl.create(:employee_sutoh, gender:1) }
+        subject { Employee.where("gender = ?" , '1').first.gender_judge }
+        it ("女であること") { expect(subject).to eq "女性" }
+      end
     end
   end
 
