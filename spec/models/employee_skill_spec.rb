@@ -6,6 +6,12 @@ describe EmployeeSkill do
     subject { EmployeeSkill.all }
     its (:size) { should eq 0 }
     it ("データが空である事") { expect(subject).to be_empty }
+  end    
+
+  context "データが存在する時" do
+    subject { FactoryGirl.create_list(:employee_skill, 3, :skill1,:skill2,:skill3) }
+    it ("データが空でない事") { expect(subject).not_to be_empty }
+    its (:size) { should eq 3 }
   end
   
   describe "with RelationTest" do  
@@ -16,7 +22,7 @@ describe EmployeeSkill do
   end
 
   describe "カラム毎のテスト" do
-    subject { FactoryGirl.create(:employee_skill_first,hash) }
+    subject { FactoryGirl.create(:employee_skill1,hash) }
 
     describe "#level" do
       let(:hash){ {} }
