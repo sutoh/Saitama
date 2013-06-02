@@ -2,11 +2,6 @@
 require 'spec_helper'
 
 describe WorkSkill do
-  share_examples_for 'Column_is_not_nil_and_numeric' do
-    it ("Nullでない事") { expect(column).not_to be_nil }
-    it ("Numericである事") { expect(column).to be_a_kind_of(Numeric) }
-  end
-
   context "データが存在しない時" do
     subject { WorkSkill.all }
     its (:size) { should eq 0 }
