@@ -35,15 +35,29 @@ describe WorkSkill do
         it { expect(column).to eq 1 }
         it_should_behave_like 'Column_is_not_nil_and_numeric'
       end
+
+      describe 'Validation Test' do
+        context "nilの場合" do
+          let(:hash){ {skill_id: nil} }
+          it_should_behave_like 'Validation failed'
+        end
+      end
     end
 
-    describe "#skill_id" do
+    describe "#work_detail_id" do
       let(:hash){ {} }
-      let(:column){subject.skill_id}
+      let(:column){subject.work_detail_id}
 
       context "登録が成功した場合" do
         it { expect(column).to eq 1 }
         it_should_behave_like 'Column_is_not_nil_and_numeric'
+      end
+
+      describe 'Validation Test' do
+        context "nilの場合" do
+          let(:hash){ {work_detail_id: nil} }
+          it_should_behave_like 'Validation failed'
+        end
       end
     end
   end

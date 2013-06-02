@@ -39,6 +39,13 @@ describe Work do
         it { expect(column).to eq 1 }
         it_should_behave_like 'Column_is_not_nil_and_numeric'
       end
+
+      describe 'Validation Test' do
+        context "nilの場合" do
+          let(:hash){ {employee_id: nil} }
+          it_should_behave_like 'Validation failed'
+        end
+      end
     end
 
     describe "#sales_staff_id" do
@@ -49,6 +56,13 @@ describe Work do
         it { expect(column).to eq 1 }
         it_should_behave_like 'Column_is_not_nil_and_numeric'
       end
+
+      describe 'Validation Test' do
+        context "nilの場合" do
+          let(:hash){ {sales_staff_id: nil} }
+          it_should_behave_like 'Validation failed'
+        end
+      end
     end
 
     describe "#customer_id" do
@@ -58,6 +72,13 @@ describe Work do
       context "登録が成功した場合" do
         it { expect(column).to eq 1 }
         it_should_behave_like 'Column_is_not_nil_and_numeric'
+      end
+
+      describe 'Validation Test' do
+        context "nilの場合" do
+          let(:hash){ {customer_id: nil} }
+          it_should_behave_like 'Validation failed'
+        end
       end
     end
   end

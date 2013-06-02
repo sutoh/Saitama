@@ -28,13 +28,18 @@ describe WorkDetail do
     #Methodテスト
     describe "job_short_name method" do
     	context "job_class へ 1 を入れた場合" do
-    
         before { FactoryGirl.create :work_detail1 }
         subject{WorkDetail.where("job_class = ?", 1).first.job_short_name}
       
         it ("nullでない事") { expect(subject).not_to be_nil }
         it ("正常に出力される事") { expect(subject).to eq "PM" }
+      end 
+
+      context "job_class へ 範囲外の数字(0) を入れた場合" do
+        before { FactoryGirl.create :work_detail1, {job_class: 0} }
+        subject{WorkDetail.where("job_class = ?", 0).first.job_short_name}
       
+        it ("値がかえらない事") { expect(subject).to eq "" }
       end 
     end
   end
