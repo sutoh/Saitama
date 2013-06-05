@@ -22,3 +22,9 @@
     it ("Nullでない事") { expect(column).not_to be_nil }
     it ("Dateである事") { expect(column).to be_a_kind_of(Date) }
   end
+
+  share_examples_for 'Department_list_should_not_to_be_nil' do
+    it "department list should not to be nil" do
+      expect(assigns(:departments)).not_to be_nil
+    end
+  end

@@ -2,6 +2,9 @@
 class EmployeesController < ApplicationController
   # GET /employees
   # GET /employees.json
+  before_filter :get_department_list, only: [:new, :edit, :create, :update]
+  before_filter :get_employee, only: [:edit, :update, :destroy]
+
   def index
     @employees = Employee.all
     @json = Employee.all.to_gmaps4rails
@@ -17,7 +20,7 @@ class EmployeesController < ApplicationController
   # GET /employees/1
   # GET /employees/1.json
   def show
-    @profile = Profile.new(Employee.find(params[:id]))
+    @profile = Profile.new(get_employee_from_params)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @profile.employee }
@@ -34,7 +37,6 @@ class EmployeesController < ApplicationController
   # GET /employees/new.json
   def new
     @employee = Employee.new
-    @departments = Department.find(:all, :select => "Departments.name, Departments.id")
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @employee }
@@ -43,15 +45,12 @@ class EmployeesController < ApplicationController
 
   # GET /employees/1/edit
   def edit
-    @employee = Employee.find(params[:id])
-    @departments = Department.find(:all, :select => "Departments.name, Departments.id")
   end
 
   # POST /employees
   # POST /employees.json
   def create
     @employee = Employee.new(params[:employee])
-    @departments = Department.find(:all, :select => "Departments.name, Departments.id")
     respond_to do |format|
       if @employee.save
         format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
@@ -66,9 +65,6 @@ class EmployeesController < ApplicationController
   # PUT /employees/1
   # PUT /employees/1.json
   def update
-    @employee = Employee.find(params[:id])
-    @departments = Department.find(:all, :select => "Departments.name, Departments.id")
-
     respond_to do |format|
       if @employee.update_attributes(params[:employee])
         format.html { redirect_to @employee, notice: 'Employee was successfully updated.' }
@@ -83,7 +79,6 @@ class EmployeesController < ApplicationController
   # DELETE /employees/1
   # DELETE /employees/1.json
   def destroy
-    @employee = Employee.find(params[:id])
     @employee.destroy
 
     respond_to do |format|
@@ -91,7 +86,8 @@ class EmployeesController < ApplicationController
       format.json { head :no_content }
     end
   end
-    private
+
+  private
 
   def render_employee_list(employees)
     report = ThinReports::Report.new layout: File.join(Rails.root, 'app', 'reports', 'employees.tlf')
@@ -110,4 +106,16 @@ class EmployeesController < ApplicationController
                                type: 'application/pdf', 
                                disposition: 'attachment'
   end
+
+  def get_department_list
+    @departments = Department.find(:all, :select => "Departments.name, Departments.id")
+  end
+
+  def get_employee
+    @employee = get_employee_from_params
+  end
+
+  def get_employee_from_params
+    Employee.find(params[:id])
+  end 
 end
