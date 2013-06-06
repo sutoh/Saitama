@@ -28,3 +28,11 @@
       expect(assigns(:departments)).not_to be_nil
     end
   end
+  share_examples_for 'Index_is_size_check' do |s|
+    let(:size){ s }
+    it { expect(subject).to eq(create.size) }
+  end
+  share_examples_for 'Index_is_string_check' do |s|
+    let(:size){ s }
+    it { expect(subject).to eq(create) }
+  end
