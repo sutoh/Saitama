@@ -11,7 +11,6 @@ class EmployeesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @employees }
       # Example: Basic Usage
       format.pdf { render_employee_list(@employees) }
     end
@@ -23,7 +22,6 @@ class EmployeesController < ApplicationController
     @profile = Profile.new(get_employee_from_params)
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @profile.employee }
       # Example: Using thinreports-rails gem
       # see https://github.com/takeshinoda/thinreports-rails
       format.pdf {  report = Reports::Profile::render_profile(@profile.employee,@profile.licenses,@profile.skills,@profile.works,@profile.work_details)
@@ -37,10 +35,6 @@ class EmployeesController < ApplicationController
   # GET /employees/new.json
   def new
     @employee = Employee.new
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @employee }
-    end
   end
 
   # GET /employees/1/edit
@@ -54,10 +48,8 @@ class EmployeesController < ApplicationController
     respond_to do |format|
       if @employee.save
         format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
-        format.json { render json: @employee, status: :created, location: @employee }
       else
         format.html { render action: "new" }
-        format.json { render json: @employee.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -68,10 +60,8 @@ class EmployeesController < ApplicationController
     respond_to do |format|
       if @employee.update_attributes(params[:employee])
         format.html { redirect_to @employee, notice: 'Employee was successfully updated.' }
-        format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @employee.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -83,7 +73,6 @@ class EmployeesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to employees_url }
-      format.json { head :no_content }
     end
   end
 

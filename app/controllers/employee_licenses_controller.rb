@@ -8,32 +8,17 @@ class EmployeeLicensesController < ApplicationController
     employee_id = params[:employee_id]
     @employee_licenses = EmployeeLicense.find_all_by_employee_id(employee_id)
     @employee_licenses = @employee_licenses.presence || [EmployeeLicense.new(employee_id: employee_id)]
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @employee_licenses }
-    end
   end
 
   # GET /employee_licenses/1
   # GET /employee_licenses/1.json
   def show
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @employee_license }
-    end
   end
 
   # GET /employee_licenses/new
   # GET /employee_licenses/new.json
   def new
     @employee_license = EmployeeLicense.new(employee_id: params[:employee_id])
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @employee_license }
-    end
   end
 
   # GET /employee_licenses/1/edit
@@ -53,10 +38,8 @@ class EmployeeLicensesController < ApplicationController
     respond_to do |format|
       if @employee_license.save
         format.html { redirect_to employee_employee_licenses_path(@employee), notice: 'Employee license was successfully created.' }
-        format.json { render json: @employee_license, status: :created, location: @employee_license }
       else
         format.html { render action: "new" }
-        format.json { render json: @employee_license.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -73,10 +56,8 @@ class EmployeeLicensesController < ApplicationController
     respond_to do |format|
       if @employee_license.update_attributes(params[:employee_license])
         format.html { redirect_to employee_employee_licenses_path(@employee), notice: 'Employee license was successfully updated.' }
-        format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @employee_license.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -88,7 +69,6 @@ class EmployeeLicensesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to employee_employee_licenses_url(@employee) }
-      format.json { head :no_content }
     end
   end
 

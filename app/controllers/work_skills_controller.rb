@@ -34,10 +34,8 @@ class WorkSkillsController < ApplicationController
     respond_to do |format|
       if @work_skill.save
         format.html { redirect_to [@work, @work_detail, @work_skill], notice: 'Work skill was successfully created.' }
-        format.json { render json: @work_skill, status: :created, location: @work_skill }
       else
         format.html { render action: "new" }
-        format.json { render json: @work_skill.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -48,10 +46,8 @@ class WorkSkillsController < ApplicationController
     respond_to do |format|
       if @work_skill.update_attributes(params[:work_skill])
         format.html { redirect_to [@work, @work_detail, @work_skill], notice: 'Work skill was successfully updated.' }
-        format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @work_skill.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -63,7 +59,6 @@ class WorkSkillsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to work_work_detail_work_skills_url(params[:work_id], params[:work_detail_id]) }
-      format.json { head :no_content }
     end
   end
 
