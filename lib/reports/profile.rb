@@ -18,7 +18,7 @@ module Reports
                           name_kana:      employee.fullname_kana , 
                           name:           employee.fullname , 
                           gender:         employee.gender_judge , 
-                          birthday:       employee.birthday , 
+                          birthday:       employee.birthday.strftime("%Y年%m月%d日") , 
                           nenrei:         employee.nenrei , 
                           keikenY:        '99' , 
                           address:        employee.address , 
