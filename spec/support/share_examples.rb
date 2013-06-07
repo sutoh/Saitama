@@ -36,3 +36,8 @@
     let(:size){ s }
     it { expect(subject).to eq(create) }
   end
+
+  share_examples_for 'Response_to_render_templete_and_contents_match' do |template, matchstring|
+    it { expect(response).to render_template(template) }
+    it { expect(response.body).to match /#{matchstring}/m }
+  end

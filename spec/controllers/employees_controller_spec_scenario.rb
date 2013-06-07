@@ -15,44 +15,30 @@ describe EmployeesController do
   context 'with TemplateTest(invalid params)' do
     render_views
     let(:employee){ FactoryGirl.create :employee_sutoh }
+    let(:employee_id){{id: employee.to_param}}
     
     describe 'GET index' do
       before { get :index, {}, valid_session }
-      it { expect(response).to render_template("index") }
-      it { expect(response.body).to match /社員/m }
+      it_should_behave_like 'Response_to_render_templete_and_contents_match', "index", "社員"
     end
     describe 'GET show' do
-      before { get :show, {:id => employee.to_param}, valid_session }
-      it { expect(response).to render_template("show") }
-      it { expect(response.body).to match /profile/m }
+      before { get :show, employee_id, valid_session }
+      it_should_behave_like 'Response_to_render_templete_and_contents_match', "show", "profile"
     end
     describe 'GET new' do
       before { get :new, {}, valid_session }
-      it { expect(response).to render_template("new") }
-      it { expect(response.body).to match /社員/m }
+      it_should_behave_like 'Response_to_render_templete_and_contents_match', "new", "社員"
     end
     describe 'GET edit' do
-      before { get :edit, {:id => employee.to_param}, valid_session }
-      it { expect(response).to render_template("edit") }
-      it { expect(response.body).to match /社員/m }
+      before { get :edit, employee_id, valid_session }
+      it_should_behave_like 'Response_to_render_templete_and_contents_match', "edit", "社員"
     end
     describe 'POST create' do
       before do
         Employee.any_instance.stub(:save).and_return(false)
         post :create, {:employee => {  }}, valid_session
       end
-      it { expect(response).to render_template("new") }
-      it { expect(response.body).to match /社員/m }
-    end
-    describe 'GET edit' do
-      before { get :edit, {:id => employee.to_param}, valid_session }
-      it { expect(response).to render_template("edit") }
-      it { expect(response.body).to match /社員/m }
-    end
-    describe 'GET edit' do
-      before { get :edit, {:id => employee.to_param}, valid_session }
-      it { expect(response).to render_template("edit") }
-      it { expect(response.body).to match /社員/m }
+      it_should_behave_like 'Response_to_render_templete_and_contents_match', "new", "社員"
     end
   end
   
