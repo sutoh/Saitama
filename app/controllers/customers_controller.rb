@@ -1,4 +1,5 @@
 class CustomersController < ApplicationController
+  before_filter :set_customer, only: [:show, :edit, :update, :destroy]
   # GET /customers
   # GET /customers.json
   def index
@@ -12,7 +13,6 @@ class CustomersController < ApplicationController
   # GET /customers/1
   # GET /customers/1.json
   def show
-    @customer = Customer.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -33,7 +33,6 @@ class CustomersController < ApplicationController
 
   # GET /customers/1/edit
   def edit
-    @customer = Customer.find(params[:id])
   end
 
   # POST /customers
@@ -55,8 +54,6 @@ class CustomersController < ApplicationController
   # PUT /customers/1
   # PUT /customers/1.json
   def update
-    @customer = Customer.find(params[:id])
-
     respond_to do |format|
       if @customer.update_attributes(params[:customer])
         format.html { redirect_to @customer, notice: 'Customer was successfully updated.' }
@@ -71,12 +68,17 @@ class CustomersController < ApplicationController
   # DELETE /customers/1
   # DELETE /customers/1.json
   def destroy
-    @customer = Customer.find(params[:id])
     @customer.destroy
 
     respond_to do |format|
       format.html { redirect_to customers_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def set_customer
+    @customer = Customer.find(params[:id])
   end
 end

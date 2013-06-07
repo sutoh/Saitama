@@ -2,8 +2,8 @@
 class EmployeesController < ApplicationController
   # GET /employees
   # GET /employees.json
-  before_filter :get_department_list, only: [:new, :edit, :create, :update]
-  before_filter :get_employee, only: [:edit, :update, :destroy]
+  before_filter :set_department_list, only: [:new, :edit, :create, :update]
+  before_filter :set_employee, only: [:edit, :update, :destroy]
 
   def index
     @employees = Employee.all
@@ -107,11 +107,11 @@ class EmployeesController < ApplicationController
                                disposition: 'attachment'
   end
 
-  def get_department_list
+  def set_department_list
     @departments = Department.find(:all, :select => "Departments.name, Departments.id")
   end
 
-  def get_employee
+  def set_employee
     @employee = get_employee_from_params
   end
 

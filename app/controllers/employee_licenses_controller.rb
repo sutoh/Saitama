@@ -1,10 +1,11 @@
 class EmployeeLicensesController < ApplicationController
+  before_filter :set_employeeLicense, only: [:show, :edit, :update, :destroy]
+  before_filter :set_employee, only: [:index, :edit, :create, :update, :destroy]
   # GET /employee_licenses
   # GET /employee_licenses.json
   def index
     #@employee_licenses = EmployeeLicense.all
     employee_id = params[:employee_id]
-    @employee = Employee.find(employee_id)
     @employee_licenses = EmployeeLicense.find_all_by_employee_id(employee_id)
     @employee_licenses = @employee_licenses.presence || [EmployeeLicense.new(employee_id: employee_id)]
 
@@ -17,7 +18,6 @@ class EmployeeLicensesController < ApplicationController
   # GET /employee_licenses/1
   # GET /employee_licenses/1.json
   def show
-    @employee_license = EmployeeLicense.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -38,15 +38,12 @@ class EmployeeLicensesController < ApplicationController
 
   # GET /employee_licenses/1/edit
   def edit
-    @employee = Employee.find(params[:employee_id])
-    @employee_license = EmployeeLicense.find(params[:id])
   end
 
   # POST /employee_licenses
   # POST /employee_licenses.json
   def create
     employee_id = params[:employee_id]
-    @employee = Employee.find(employee_id)
     @employee_licenses = EmployeeLicense.find_all_by_employee_id(employee_id)
     @employee_licenses = @employee_licenses.presence || [EmployeeLicense.new(employee_id: employee_id)]
 
@@ -72,8 +69,6 @@ class EmployeeLicensesController < ApplicationController
       redirect_to profile_index_path
       return
     end
-    @employee = Employee.find(params[:employee_id])
-    @employee_license = EmployeeLicense.find(params[:id])
 
     respond_to do |format|
       if @employee_license.update_attributes(params[:employee_license])
@@ -89,13 +84,19 @@ class EmployeeLicensesController < ApplicationController
   # DELETE /employee_licenses/1
   # DELETE /employee_licenses/1.json
   def destroy
-    @employee = Employee.find(params[:employee_id])
-    @employee_license = EmployeeLicense.find(params[:id])
     @employee_license.destroy
 
     respond_to do |format|
       format.html { redirect_to employee_employee_licenses_url(@employee) }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def set_employeeLicense
+    @employee_license = EmployeeLicense.find(params[:id])
+  end
+  def set_employee
+    @employee = Employee.find(params[:employee_id])
   end
 end

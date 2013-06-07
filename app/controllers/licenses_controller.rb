@@ -1,4 +1,5 @@
 class LicensesController < ApplicationController
+  before_filter :set_license, only: [:show, :edit, :update, :destroy]
   # GET /licenses
   # GET /licenses.json
   def index
@@ -13,7 +14,6 @@ class LicensesController < ApplicationController
   # GET /licenses/1
   # GET /licenses/1.json
   def show
-    @license = License.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -33,7 +33,6 @@ class LicensesController < ApplicationController
 
   # GET /licenses/1/edit
   def edit
-    @license = License.find(params[:id])
   end
 
   # POST /licenses
@@ -55,8 +54,6 @@ class LicensesController < ApplicationController
   # PUT /licenses/1
   # PUT /licenses/1.json
   def update
-    @license = License.find(params[:id])
-
     respond_to do |format|
       if @license.update_attributes(params[:license])
         format.html { redirect_to @license, notice: 'License was successfully updated.' }
@@ -71,12 +68,17 @@ class LicensesController < ApplicationController
   # DELETE /licenses/1
   # DELETE /licenses/1.json
   def destroy
-    @license = License.find(params[:id])
     @license.destroy
 
     respond_to do |format|
       format.html { redirect_to licenses_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def set_license
+    @license = License.find(params[:id])
   end
 end

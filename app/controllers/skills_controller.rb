@@ -1,4 +1,5 @@
 class SkillsController < ApplicationController
+  before_filter :set_skill, only: [:show, :edit, :update, :destroy]
   # GET /skills
   # GET /skills.json
   def index
@@ -13,7 +14,6 @@ class SkillsController < ApplicationController
   # GET /skills/1
   # GET /skills/1.json
   def show
-    @skill = Skill.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,7 +34,6 @@ class SkillsController < ApplicationController
 
   # GET /skills/1/edit
   def edit
-    @skill = Skill.find(params[:id])
   end
 
   # POST /skills
@@ -56,8 +55,6 @@ class SkillsController < ApplicationController
   # PUT /skills/1
   # PUT /skills/1.json
   def update
-    @skill = Skill.find(params[:id])
-
     respond_to do |format|
       if @skill.update_attributes(params[:skill])
         format.html { redirect_to @skill, notice: 'Skill was successfully updated.' }
@@ -72,12 +69,17 @@ class SkillsController < ApplicationController
   # DELETE /skills/1
   # DELETE /skills/1.json
   def destroy
-    @skill = Skill.find(params[:id])
     @skill.destroy
 
     respond_to do |format|
       format.html { redirect_to skills_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def set_skill
+    @skill = Skill.find(params[:id])
   end
 end
