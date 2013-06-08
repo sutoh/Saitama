@@ -1,7 +1,7 @@
 <%= render "shared/toolbar_for_index", model_name: controller_name.classify , title_name: "社員" %>
  
 <div class="well">
-  <table class="table">
+  <table class="table table-responsive">
     <thead>
 
       <tr>
@@ -19,7 +19,7 @@
       <% @users.each do |user| %>
       <tr>
         <th><%= user.login_id %></th>
-        <th><%= user.employee.full_name %></th>
+        <th><%= user.employee.fullname %></th>
         <th><%= user.email %></th>
         <th><%= user.sign_in_count %></th>
         <th>
