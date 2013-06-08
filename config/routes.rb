@@ -4,8 +4,7 @@ Saitama::Application.routes.draw do
     get "/", :to => "devise/sessions#new"
   end
   
-  get "profile/index"
-
+  resource :profile
   resources :customers
   
   resources :works do

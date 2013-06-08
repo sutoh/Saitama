@@ -53,7 +53,7 @@ class EmployeeSkillsController < ApplicationController
   def update
     if params[:employee_skill_]
       EmployeeSkill.update(params[:employee_skill_].keys, params[:employee_skill_].values)
-      redirect_to profile_index_path
+      redirect_to profile_path
       return
     end
 
