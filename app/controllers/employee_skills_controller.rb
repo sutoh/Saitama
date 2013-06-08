@@ -6,7 +6,7 @@ class EmployeeSkillsController < ApplicationController
   # GET /employee_skills.json
   def index
     #@employee_skills = EmployeeSkill.all
-    @employee_skills = @employee.employee_skills.find(:all, select: "employee_skills.*, skills.name", joins: :skill)
+    @employee_skills = EmployeeSkill.find_all_by_employee_id(@employee.id)
     @employee_skill = EmployeeSkill.new
   end
 
@@ -34,6 +34,7 @@ class EmployeeSkillsController < ApplicationController
     respond_to do |format|
       if @employee_skill.save
         format.html { redirect_to employee_employee_skills_path(@employee), notice: 'Employee skill was successfully created.' }
+        format.js   # ajax用に追加        
       else
         format.html { render action: "new" }
       end
