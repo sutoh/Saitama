@@ -49,7 +49,7 @@ class EmployeeLicensesController < ApplicationController
   def update
     if params[:employee_license_]
       EmployeeLicense.update(params[:employee_license_].keys, params[:employee_license_].values)
-      redirect_to profile_index_path
+      redirect_to profile_path
       return
     end
 

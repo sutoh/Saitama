@@ -10,6 +10,8 @@
       <%= link_to "変更", edit_employee_path(@profile.employee), {class: "btn btn-success",data:  {intro: "まず、あなたの事を教えて下さい。名前、住所、誕生日などの基本情報の入力を行います。", step: "2"}} %>
       <%= link_to "印刷", employee_path(@profile.employee, format: "pdf"), {class: "btn btn-success",data:  {intro: "最後に、あなたに入力頂いた情報を元に、あなただけの「スキルシート」をPDF印刷出来ます。:)", step: "12"}} %>
       <a class="btn btn-success introJs" href="javascript:void(0);" onclick="javascript:introJs().start();" data-intro="スキル管理DB 「Saitama」 へようこそ!! このサービスは、あなたの情報やスキルを保存し、いつでもどこでもPDF印刷が出来るサービスになります。" data-step="1">Show me how</a>
+      <%= link_to "パスワード変更", edit_profile_path(@profile.employee), {class: "btn btn-success"} %>
+
     </div>
   </div>
   <div class="collapse">

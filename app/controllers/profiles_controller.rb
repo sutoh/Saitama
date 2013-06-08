@@ -1,5 +1,5 @@
-class ProfileController < ApplicationController
-  def index
+class ProfilesController < ApplicationController
+  def show
     @profile = Profile.new(current_user.employee)
     respond_to do |format|
       format.html # profile.html.erb
