@@ -2,7 +2,7 @@
 <tr id="employee_skill_<%= employee_skill.skill_id %>">
 	<%= form_for([@employee, employee_skill], remote: true) do |f| %>
   <td><%= employee_skill.skill_name %></td> 
-  <td><%= f.range_field :level, min: 1, max: 5, id: "range_#{employee_skill.skill_id}", class: "employee_skill_range" %></td>
+  <td><%= f.range_field :level, min: 0, max: 5, id: "range_#{employee_skill.skill_id}", class: "employee_skill_range" %></td>
   <td>
   	<%= f.hidden_field :employee_id, value: employee_skill.employee_id %>
   	<%= f.hidden_field :skill_id, value: employee_skill.skill_id %>

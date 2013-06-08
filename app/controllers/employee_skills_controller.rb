@@ -57,6 +57,14 @@ class EmployeeSkillsController < ApplicationController
       return
     end
 
+    if params[:employee_skill][:level] == "0"
+      @employee_skill.destroy
+      @employee_skill = EmployeeSkill.new(params[:employee_skill])
+      respond_to do | format|
+        format.js
+      end
+      return
+    end
     respond_to do |format|
       if @employee_skill.update_attributes(params[:employee_skill])
         format.html { redirect_to employee_employee_skills_path(@employee), notice: 'Employee skill was successfully updated.' }
