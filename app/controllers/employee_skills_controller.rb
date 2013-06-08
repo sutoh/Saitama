@@ -6,8 +6,15 @@ class EmployeeSkillsController < ApplicationController
   # GET /employee_skills.json
   def index
     #@employee_skills = EmployeeSkill.all
-    @employee_skills = EmployeeSkill.find_all_by_employee_id(@employee.id)
+    @have_employee_skills = EmployeeSkill.find_all_by_employee_id(@employee.id)
     @employee_skill = EmployeeSkill.new
+    @have_not_employee_skills = []
+
+    Skill.all.each do |s|
+      unless @have_employee_skills.collect{|l| l.skill_id}.include?(s.id)
+        @have_not_employee_skills << EmployeeSkill.new({employee_id: @employee.id, skill_id: s.id, level: 0})
+      end
+    end
   end
 
   # GET /employee_skills/1
@@ -53,6 +60,7 @@ class EmployeeSkillsController < ApplicationController
     respond_to do |format|
       if @employee_skill.update_attributes(params[:employee_skill])
         format.html { redirect_to employee_employee_skills_path(@employee), notice: 'Employee skill was successfully updated.' }
+        format.js
       else
         format.html { render action: "edit" }      
       end

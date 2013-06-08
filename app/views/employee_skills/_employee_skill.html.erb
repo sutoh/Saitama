@@ -1,8 +1,14 @@
-<tr>
+
+<tr id="employee_skill_<%= employee_skill.skill_id %>">
+	<%= form_for([@employee, employee_skill], remote: true) do |f| %>
   <td><%= employee_skill.skill_name %></td> 
-  <td><%= employee_skill.level %></td>
+  <td><%= f.range_field :level, min: 1, max: 5, id: "range_#{employee_skill.skill_id}", class: "employee_skill_range" %></td>
   <td>
-  	<%= link_to edit_employee_employee_skill_path(params[:employee_id], employee_skill), title: "Edit" do %><i class="icon-edit"></i><% end %>
+  	<%= f.hidden_field :employee_id, value: employee_skill.employee_id %>
+  	<%= f.hidden_field :skill_id, value: employee_skill.skill_id %>
+  	<% unless employee_skill.new_record? %>
   	<%= link_to employee_employee_skill_path(params[:employee_id], employee_skill), method: :delete, data: { confirm: 'Are you sure?' }, title: "Delete" do %><i class="icon-trash"></i><% end %>
+  	<% end %> 
   </td>
+  <% end %>
 </tr>
