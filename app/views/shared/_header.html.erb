@@ -69,7 +69,7 @@
               <i class="icon-user"></i> admin <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-            <% if controller.kind_of?(Admin::Base) %>
+            <% if admin? %>
               <li>
                 <%= link_to :admin_root do %>
                   <i class="icon-wrench"></i> Administration
