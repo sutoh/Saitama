@@ -6,5 +6,4 @@ class Work < ActiveRecord::Base
 
   validates :customer_id, presence: true
   validates :employee_id, presence: true
-  validates :sales_staff_id, presence: true
 end
