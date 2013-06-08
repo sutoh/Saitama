@@ -119,20 +119,22 @@
             </div>
           </li>
           <% if @profile.employee_skills_find_first %>
-          <% @profile.skills.each do |skill| %>
-          <% employee_skill = skill.employee_skills.find(:first) %>
-          <li>
-            <div class="icon">
-              <i class="icon-digg"></i>
-            </div>
-            <div class="data">
-              <h4><%= link_to skill.name, edit_employee_employee_skill_path(@profile.employee, employee_skill) %></h4>
-              <p>
-                <% employee_skill.level.times do %>★<% end %>
-              </p>
-            </div>
-          </li>
-          <% end %>
+            <% @profile.skills.each do |skill| %>
+              <% employee_skill = skill.employee_skills.find(:first) %>
+              <%= link_to edit_employee_employee_skill_path(@profile.employee, employee_skill) do %>
+                <li>
+                  <div class="icon">
+                    <i class="icon-digg"></i>
+                  </div>
+                  <div class="data">
+                    <h4><%= skill.name %></h4>
+                    <p>
+                      <% employee_skill.level.times do %>★<% end %>
+                    </p>
+                  </div>
+                </li>
+              <% end %>
+            <% end %>
           <% end %>
         </ul>
       </div>
@@ -169,24 +171,26 @@
             </div>
           </li>
           <% @profile.work_details.each do |wd| %>
-          <li>
-            <div class="icon">
-              <i class="icon-digg"></i>
-            </div>
-            <div class="data">
-              <h6><%= wd.title %></h6>
-              <div id="Calender">
-                <div class="the_date blue">
-                    <div class="date_m"><%= wd.period_form.strftime("%Y年") %></div>
-                    <div class="date_d"><%= wd.period_form.strftime("%m月") %></div>
+            <%= link_to(edit_work_work_detail_path(wd.work_id, wd.id )) do %>
+              <li>
+                <div class="icon">
+                  <i class="icon-digg"></i>
                 </div>
-                <div class="the_date pink">
-                    <div class="date_m"><%= wd.period_to.strftime("%Y年") %></div>
-                    <div class="date_d"><%= wd.period_to.strftime("%m月") %></div>
+                <div class="data">
+                  <h6><%= wd.title %></h6>
+                  <div id="Calender">
+                    <div class="the_date blue">
+                        <div class="date_m"><%= wd.period_form.strftime("%Y年") %></div>
+                        <div class="date_d"><%= wd.period_form.strftime("%m月") %></div>
+                    </div>
+                    <div class="the_date pink">
+                        <div class="date_m"><%= wd.period_to.strftime("%Y年") %></div>
+                        <div class="date_d"><%= wd.period_to.strftime("%m月") %></div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </li>
+              </li>
+            <% end %>
           <% end %>
         </ul>
       </div>
@@ -212,21 +216,22 @@
             </div>
           </li>
           <% if @profile.employee_licenses_find_first %>
-          <% @profile.licenses.each do |license| %>
-            <% employee_license = license.employee_licenses.find(:first) %>
-          <li>
-            <div class="icon">
-              <i class="icon-digg"></i>
-            </div>
-            <div class="data">
-              <%= link_to(license.name, edit_employee_employee_license_path(@profile.employee, employee_license))%>
-              <p>
-                <%= link_to employee_license.acquisition_date, 
-              edit_employee_employee_license_path(@profile.employee, employee_license) %>
-              </p>
-            </div>
-          </li>
-          <% end %>
+            <% @profile.licenses.each do |license| %>
+              <% employee_license = license.employee_licenses.find(:first) %>
+              <%= link_to(edit_employee_employee_license_path(@profile.employee, employee_license)) do %>
+              <li>
+                <div class="icon">
+                  <i class="icon-digg"></i>
+                </div>
+                <div class="data">
+                  <%= license.name %>
+                  <p>
+                  <%= employee_license.acquisition_date %>
+                  </p>
+                </div>
+              </li>
+              <% end %>
+            <% end %>
           <% end %>
         </ul>
       </div>
