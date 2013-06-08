@@ -1,1 +1,1 @@
-$('#new_employee_skill').before('<%= j render(@employee_skill) %>');
+$("#employee_skill_<%=@employee_skill.skill_id%>").replaceWith('<%= j render(@employee_skill) %>');

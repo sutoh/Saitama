@@ -13,20 +13,8 @@
       </tr>
     </thead>
     <tbody>
-      <%= render @employee_skills %>
-      <%= form_for([@employee, @employee_skill], remote: true) do |f| %>
-        <tr>
-          <td>
-            <%= f.select :skill_id, @skills.map{|s|[s.name, s.id]} %>
-          </td>
-          <td>
-            <%= f.number_field :level %>
-          </td>
-          <td>
-            <%= f.submit "Create", :class => "btn btn-primary" %>
-          </td>
-        </tr>
-      <% end %>
+      <%= render @have_employee_skills %>
+      <%= render @have_not_employee_skills %>
     </tbody>
   </table>
 </div>
