@@ -1,3 +1,27 @@
 // Place all the styles related to the Employee_Skills controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.skills_col{
+		font-weight: normal;
+		width: 300px;
+		height: 37px;
+		float: left;
+}
+
+.skills_header_row {
+	.skills_col{
+		background-color: gray;
+		color: #f7f7fd;
+		border: 1px solid #f7f7fd;
+		padding: 10px;
+	}
+}
+
+.skills_row {
+	clear: left;
+	.skills_col{
+		margin: 10px;
+	}
+}

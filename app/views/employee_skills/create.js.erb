@@ -1,1 +1,2 @@
-$("#employee_skill_<%=@employee_skill.skill_id%>").replaceWith('<%= j render(@employee_skill) %>');
+$("#employee_skill_<%=@employee_skill.skill_id%>").replaceWith("<div id='employee_skill_<%=@employee_skill.skill_id%>'><%= j (render (@employee_skill))%></div>");
+$("#employee_skill_<%=@employee_skill.skill_id%>").fadeOut(1).fadeIn();

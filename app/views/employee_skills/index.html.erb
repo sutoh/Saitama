@@ -4,19 +4,23 @@
 <h2><%= @employee.fullname %></h2>
 
 <div class="well">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Skill</th>
-        <th>Level</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= render @have_employee_skills %>
-      <%= render @have_not_employee_skills %>
-    </tbody>
-  </table>
+  <div class="table">
+    <div class="skills_header_row">
+      <div class="skills_col">Skill</div>
+      <div class="skills_col">Level</div>
+    </div>
+    <% @have_employee_skills.each do | employee_skill| %>
+      <div id="employee_skill_<%= employee_skill.skill_id %>">
+        <%= render employee_skill %>
+      </div>
+    <% end %>
+    <% @have_not_employee_skills.each do | employee_skill| %>
+      <div id="employee_skill_<%= employee_skill.skill_id %>">
+        <%= render employee_skill %>
+      </div>
+    <% end %>
+    <div class="skills_row"></div>
+  </div>
 </div>
 <%= link_to 'New Employee skill', new_employee_employee_skill_path(params[:employee_id]), :class => "btn btn-success" %>
 <%= link_to 'Back', employees_path, :class => "btn" %>

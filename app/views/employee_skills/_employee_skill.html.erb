@@ -1,14 +1,11 @@
 
-<tr id="employee_skill_<%= employee_skill.skill_id %>">
-	<%= form_for([@employee, employee_skill], remote: true) do |f| %>
-  <td><%= employee_skill.skill_name %></td> 
-  <td><%= f.range_field :level, min: 0, max: 5, id: "range_#{employee_skill.skill_id}", class: "employee_skill_range" %></td>
-  <td>
-  	<%= f.hidden_field :employee_id, value: employee_skill.employee_id %>
-  	<%= f.hidden_field :skill_id, value: employee_skill.skill_id %>
-  	<% unless employee_skill.new_record? %>
-  	<%= link_to employee_employee_skill_path(params[:employee_id], employee_skill), method: :delete, data: { confirm: 'Are you sure?' }, title: "Delete" do %><i class="icon-trash"></i><% end %>
-  	<% end %> 
-  </td>
-  <% end %>
-</tr>
+<%= form_for [@employee, employee_skill], remote: true, html: {id: "employee_skill_form_#{employee_skill.skill_id}"} do |f| %>
+	<div class="skills_row">
+  	<div class="skills_col"><%= employee_skill.skill_name %></div> 
+  	<div class="skills_col"><%= f.range_field :level, min: 0, max: 5, id: "range_#{employee_skill.skill_id}", class: "employee_skill_range" %></div>
+  	<div>
+  		<%= f.hidden_field :employee_id, value: employee_skill.employee_id %>
+  		<%= f.hidden_field :skill_id, value: employee_skill.skill_id %>
+  	</div>
+	</div>
+<% end %>

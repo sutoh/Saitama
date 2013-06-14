@@ -36,7 +36,6 @@ class EmployeeSkillsController < ApplicationController
   # POST /employee_skills.json
   def create
     @employee_skill = EmployeeSkill.new(params[:employee_skill])
-    @employee_skill.employee = @employee
 
     respond_to do |format|
       if @employee_skill.save
@@ -57,16 +56,14 @@ class EmployeeSkillsController < ApplicationController
       return
     end
 
-    if params[:employee_skill][:level] == "0"
-      @employee_skill.destroy
-      @employee_skill = EmployeeSkill.new(params[:employee_skill])
-      respond_to do | format|
-        format.js
-      end
-      return
-    end
     respond_to do |format|
       if @employee_skill.update_attributes(params[:employee_skill])
+        unless params[:employee_skill][:level] == "0"
+          @employee_skill = EmployeeSkill.find(params[:id])
+        else
+          @employee_skill.destroy
+          @employee_skill = EmployeeSkill.new(params[:employee_skill])
+        end
         format.html { redirect_to employee_employee_skills_path(@employee), notice: 'Employee skill was successfully updated.' }
         format.js
       else
