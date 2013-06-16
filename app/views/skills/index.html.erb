@@ -16,7 +16,7 @@
       <% @skills.each do |skill| %>
       <tr>
         <td><%= link_to skill.name, skill %></td>
-        <td><%= skill.category %></td>
+        <td><%= skill.category_name %></td>
         <td><%= skill.note %></td>
         <td>
           <%= link_to edit_skill_path(skill), title: "Edit" do %>

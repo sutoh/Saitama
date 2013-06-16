@@ -7,13 +7,13 @@ FactoryGirl.define do
     association :skill
 
     trait :skill1 do
-      skill_id 1
+      association :skill, factory: :skill_ruby
     end
     trait :skill2 do
-      skill_id 2
+    association :skill, factory: :skill_rails
     end
     trait :skill3 do
-      skill_id 3
+      association :skill, factory: :skill_java
     end
 
     factory :employee_skill1, traits: [:skill1]
