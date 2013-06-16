@@ -36,7 +36,7 @@ describe EmployeeSkill do
 
       describe 'Validation Test' do
         context "範囲外の登録をした場合" do
-          let(:hash){ {level: 6} }
+          let(:hash){ {level: 11} }
           it_should_behave_like 'Validation failed'
         end
       end
