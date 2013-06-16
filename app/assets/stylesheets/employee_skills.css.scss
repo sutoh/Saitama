@@ -11,6 +11,7 @@
 }
 
 .skills_header_row {
+	height: 57px;
 	.skills_col{
 		background-color: gray;
 		color: #f7f7fd;
@@ -20,8 +21,12 @@
 }
 
 .skills_row {
+	height: 47px;
 	clear: left;
 	.skills_col{
-		margin: 10px;
+		margin: 5px;
+	}
+	form {
+		margin: 0;
 	}
 }

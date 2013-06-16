@@ -1,11 +1,11 @@
 
-<%= form_for [@employee, employee_skill], remote: true, html: {id: "employee_skill_form_#{employee_skill.skill_id}"} do |f| %>
-	<div class="skills_row">
+<div class="skills_row">
+	<%= form_for [@employee, employee_skill], remote: true, html: {id: "employee_skill_form_#{employee_skill.skill_id}"} do |f| %>
   	<div class="skills_col"><%= employee_skill.skill_name %></div> 
   	<div class="skills_col"><%= f.range_field :level, min: 0, max: 10, id: "range_#{employee_skill.skill_id}", class: "employee_skill_range" %></div>
   	<div>
   		<%= f.hidden_field :employee_id, value: employee_skill.employee_id %>
   		<%= f.hidden_field :skill_id, value: employee_skill.skill_id %>
   	</div>
-	</div>
-<% end %>
+	<% end %>
+</div>
