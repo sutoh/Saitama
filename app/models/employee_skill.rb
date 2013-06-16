@@ -5,7 +5,7 @@ class EmployeeSkill < ActiveRecord::Base
 
   #Validates
   validates :employee_id, presence: true
-  validates :level, allow_blank: true, numericality: true, inclusion: {in: 0..5}
+  validates :level, allow_blank: true, numericality: true, inclusion: {in: 0..10}
   validates :skill_id, presence: true
 
   def skill_name()
