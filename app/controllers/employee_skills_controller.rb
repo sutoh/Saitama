@@ -15,7 +15,8 @@ class EmployeeSkillsController < ApplicationController
         have_not_employee_skills << EmployeeSkill.new({employee_id: @employee.id, skill_id: s.id, level: 0})
       end
     end
-    @employee_skills = (have_employee_skills + have_not_employee_skills).sort{|a,b| a.category <=> b.category}
+    @employee_skills = (have_employee_skills + have_not_employee_skills).sort_by{|a|[a.category, a.skill_name.upcase]}
+    
   end
 
   # GET /employee_skills/1
