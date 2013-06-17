@@ -13,57 +13,68 @@
   <%= f.hidden_field :work_id ,{value: params[:work_id] }%>
   
   <div class="field control-group">
-    <%= f.label :title, :class => "control-label" %>
+    <%= f.label :title, "タイトル", :class => "control-label" %>
     <div class="controls">
       <%= f.text_field :title %>
     </div>
   </div>
   <div class="field control-group">
-    <%= f.label :subject, :class => "control-label" %>
+    <%= f.label :subject, "①プロジェクト概要", :class => "control-label" %>
     <div class="controls">
       <%= f.text_area :subject, :size => "30x10" %>
     </div>
   </div>
   <div class="field control-group">
-    <%= f.label :role, :class => "control-label" %>
+    <%= f.label :role, "②プロジェクトでの役割", :class => "control-label" %>
     <div class="controls">
       <%= f.text_area :role, :size => "30x10" %>
     </div>
   </div>
   <div class="field control-group">
-    <%= f.label :work_role, :class => "control-label" %>
+    <%= f.label :work_role, "③担当作業", :class => "control-label" %>
     <div class="controls">
       <%= f.text_area :work_role, :size => "30x10" %>
     </div>
   </div>
   <div class="field control-group">
-    <%= f.label :work_class, :class => "control-label" %>
+    <%= f.label :work_class, "作業区分", :class => "control-label" %>
     <div class="controls">
       <%= f.text_field :work_class %>
+      <div>
+        <p>
+          0:コンサルティング 1:要件定義 2:基本設計 3:詳細設計 <br>
+          4:コーディング 5:単体試験 6:結合試験 7:総合試験 <br>
+          8:環境構築 9:保守 A:ヘルプデスク B:品質保証 C:オペレータ<br> 
+          D:ＤＢチューニング E:移行 F:その他
+        </p>
+      </div>
     </div>
   </div>
   <div class="field control-group">
-    <%= f.label :job_class, :class => "control-label" %>
+    <%= f.label :job_class, "職位", :class => "control-label" %>
     <div class="controls">
       <%= f.select :job_class, Job_list.invert %>
     </div>
   </div>
   <div class="field control-group">
-    <%= f.label :personnel_num, :class => "control-label" %>
+    <%= f.label :personnel_num, "要員数", :class => "control-label" %>
     <div class="controls">
       <%= f.number_field :personnel_num %>
     </div>
   </div>
   <div class="field control-group">
-    <%= f.label :period_form, :class => "control-label" %>
+    <%= f.label :period_form, "開始日", :class => "control-label" %>
     <div class="controls">
       <%= f.date_select :period_form %>
     </div>
   </div>
   <div class="field control-group">
-    <%= f.label :period_to, :class => "control-label" %>
+    <%= f.label :period_to, "終了日", :class => "control-label" %>
     <div class="controls">
       <%= f.date_select :period_to %>
+      <div>
+        継続中の場合、現在日付
+      </div>
     </div>
   </div>
   <div class="actions control-group">
