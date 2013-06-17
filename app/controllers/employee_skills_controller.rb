@@ -6,15 +6,16 @@ class EmployeeSkillsController < ApplicationController
   # GET /employee_skills.json
   def index
     #@employee_skills = EmployeeSkill.all
-    @have_employee_skills = EmployeeSkill.find_all_by_employee_id(@employee.id)
+    have_employee_skills = EmployeeSkill.find_all_by_employee_id(@employee.id)
     @employee_skill = EmployeeSkill.new
-    @have_not_employee_skills = []
+    have_not_employee_skills = []
 
     Skill.all.each do |s|
-      unless @have_employee_skills.collect{|l| l.skill_id}.include?(s.id)
-        @have_not_employee_skills << EmployeeSkill.new({employee_id: @employee.id, skill_id: s.id, level: 0})
+      unless have_employee_skills.collect{|l| l.skill_id}.include?(s.id)
+        have_not_employee_skills << EmployeeSkill.new({employee_id: @employee.id, skill_id: s.id, level: 0})
       end
     end
+    @employee_skills = (have_employee_skills + have_not_employee_skills).sort{|a,b| a.category <=> b.category}
   end
 
   # GET /employee_skills/1

@@ -8,12 +8,7 @@
       <div class="skills_col">Skill</div>
       <div class="skills_col">Level</div>
     </div>
-    <% @have_employee_skills.each do | employee_skill| %>
-      <div id="employee_skill_<%= employee_skill.skill_id %>">
-        <%= render employee_skill %>
-      </div>
-    <% end %>
-    <% @have_not_employee_skills.each do | employee_skill| %>
+    <% @employee_skills.each do | employee_skill| %>
       <div id="employee_skill_<%= employee_skill.skill_id %>">
         <%= render employee_skill %>
       </div>

@@ -10,14 +10,18 @@ FactoryGirl.define do
       association :skill, factory: :skill_ruby
     end
     trait :skill2 do
-    association :skill, factory: :skill_rails
+      association :skill, factory: :skill_rails
     end
     trait :skill3 do
       association :skill, factory: :skill_java
+    end
+    trait :skill4 do
+      skill_id 1
     end
 
     factory :employee_skill1, traits: [:skill1]
     factory :employee_skill2, traits: [:skill2]
     factory :employee_skill3, traits: [:skill3]
+    factory :employee_skill4, traits: [:skill4]
   end
 end

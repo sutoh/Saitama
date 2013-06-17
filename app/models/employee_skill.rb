@@ -11,4 +11,8 @@ class EmployeeSkill < ActiveRecord::Base
   def skill_name()
     skill.name.presence || "none"
   end
+
+  def category()
+    skill.category
+  end
 end

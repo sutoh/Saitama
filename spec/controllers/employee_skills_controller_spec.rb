@@ -8,7 +8,7 @@ describe EmployeeSkillsController do
     FactoryGirl.create :skill_ruby
 	}
 	let(:employee_id){{employee_id: @employee.to_param}}
-	let(:employee_skill){ FactoryGirl.create :employee_skill, employee_id: @employee.id }
+	let(:employee_skill){ FactoryGirl.create :employee_skill1, employee_id: @employee.id }
 
   context 'with TemplateTest(valid params)' do
     render_views
@@ -40,7 +40,7 @@ describe EmployeeSkillsController do
       it { expect(response.body).to match /employee_skill/m }
       describe 'Ajax request' do
         before do
-          xhr :post, "create", employee_id.merge({employee_skill: FactoryGirl.attributes_for(:employee_skill1).merge(employee_id: 1)})
+          xhr :post, "create", employee_id.merge({employee_skill: FactoryGirl.attributes_for(:employee_skill4).merge(employee_id: 1)})
         end
         it {expect(assigns(:employee_skill)).to be_persisted}
         it {response.should render_template('employee_skills/create') }
@@ -52,17 +52,13 @@ describe EmployeeSkillsController do
   context 'with AssignsTest' do
 		describe "GET index" do
 			before do
-    	  @employee_skill = FactoryGirl.create :employee_skill, employee_id: @employee.id
+    	  @employee_skill = FactoryGirl.create :employee_skill1, employee_id: @employee.id
       	get :index, employee_id
 			end
 
-    	it "@have_employee_skills" do
-      	expect(assigns(:have_employee_skills)).to eq([@employee_skill])
+    	it "@employee_skills" do
+      	expect(assigns(:employee_skills)).not_to be_nil
     	end
-
-      it "@have_not_employee_skills" do
-        expect(assigns(:have_not_employee_skills).sort).not_to be_nil
-      end
 
     	it "@employee_skill" do
     		expect(assigns(:employee_skill)).to be_new_record
