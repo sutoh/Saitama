@@ -42,7 +42,7 @@ class WorkDetailsController < ApplicationController
   def update
     respond_to do |format|
       if @work_detail.update_attributes(params[:work_detail])
-        format.html { redirect_to [work,@work_detail], notice: 'Work detail was successfully updated.' }
+        format.html { redirect_to [@work,@work_detail], notice: 'Work detail was successfully updated.' }
       else
         format.html { render action: "edit" }
       end
