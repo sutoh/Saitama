@@ -4,6 +4,5 @@ class Work < ActiveRecord::Base
   belongs_to :customer
   has_many :work_details
 
-  validates :customer_id, presence: true
   validates :employee_id, presence: true
 end
