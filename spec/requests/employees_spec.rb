@@ -1,12 +1,24 @@
+# -*- encoding: UTF-8 -*-
 require 'spec_helper'
+#テスト対象
+describe "EmployeesRequest" do
 
-describe "Employees" do
-  describe "GET /employees" do
-    it "works! (now write some real specs)" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      sign_in_user
-      get employees_path
-      response.status.should be(200)
+  describe "GET index" do
+    subject { response.status }
+    
+    context "ログイン済み" do
+      before { sign_in_user }
+      before(:each) { get employees_path }
+      it '正常であること' do
+        expect(subject).to eq(200)
+      end
+    end
+    
+    context "ログインしない場合" do
+      before(:each) { get employees_path }
+      it 'ユーザログインページへ転送されること' do
+        expect(subject).to eq(302)
+      end
     end
   end
 end

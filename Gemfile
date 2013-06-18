@@ -46,6 +46,7 @@ group :test do
  gem "email_spec", "~> 1.4.0"
  gem "cucumber-rails", "~> 1.3.0", :require => false
  gem "capybara", "~> 2.0.2"
+ gem 'shoulda-matchers'
 end 
 
 

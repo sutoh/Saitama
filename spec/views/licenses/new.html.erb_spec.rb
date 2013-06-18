@@ -5,6 +5,7 @@ describe "licenses/new" do
     assign(:license, stub_model(License).as_new_record)
     assign(:controller, "license".classify)
     assign(:action_name, "new".capitalize)
+    view.stub(:legend_view).and_return("new license")
   end
 
   it "renders new license form" do

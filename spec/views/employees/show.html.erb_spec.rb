@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe "employees/show" do
   before(:each) do
-    @employee = assign(:employee, stub_model(Employee))
+  	employee = stub_model(Employee, FactoryGirl.attributes_for(:employee_maeda))
+    @profile = assign(:profile, Profile.new(employee))
   end
 
   it "renders attributes in <p>" do

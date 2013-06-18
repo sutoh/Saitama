@@ -24,6 +24,9 @@ module ApplicationHelper
     Role_list[role]
   end
   
+  def admin?
+    current_user.role_id==ADMIN
+  end
   
   
   

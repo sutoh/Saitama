@@ -25,7 +25,7 @@ describe LicensesController do
   # License. As you add validations to License, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {  }
+    FactoryGirl.attributes_for(:license)
   end
 
   # This should return the minimal set of values that should be in the session

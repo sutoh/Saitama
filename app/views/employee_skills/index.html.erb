@@ -3,41 +3,18 @@
 </div>
 <h2><%= @employee.fullname %></h2>
 
-<div class="well">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Skill</th>
-        <th>Level</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @employee_skills.each do |employee_skill| %>
-        <tr>
-          <td><%= employee_skill.name %></td> 
-          <td><%= employee_skill.level %></td>
-          <td>
-            <%= link_to edit_employee_employee_skill_path(params[:employee_id], employee_skill), title: "Edit" do %><i class="icon-edit"></i><% end %>
-            <%= link_to employee_employee_skill_path(params[:employee_id], employee_skill), method: :delete, data: { confirm: 'Are you sure?' }, title: "Delete" do %><i class="icon-trash"></i><% end %>
-          </td>
-        </tr>
-      <% end %>
-      <%= form_for([@employee, @employee_skill]) do |f| %>
-        <tr>
-          <td>
-            <%= f.select :skill_id, @skills.map{|s|[s.name, s.id]} %>
-          </td>
-          <td>
-            <%= f.number_field :level %>
-          </td>
-          <td>
-            <%= f.submit "Create", :class => "btn btn-primary" %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+  <div class="table">
+    <div class="skills_header_row">
+      <div class="skills_col">Skill</div>
+      <div class="skills_col">Level</div>
+    </div>
+    <% @employee_skills.each do | employee_skill| %>
+      <div id="employee_skill_<%= employee_skill.skill_id %>">
+        <%= render employee_skill %>
+      </div>
+    <% end %>
+    <div class="skills_row"></div>
+  </div>
+
 <%= link_to 'New Employee skill', new_employee_employee_skill_path(params[:employee_id]), :class => "btn btn-success" %>
 <%= link_to 'Back', employees_path, :class => "btn" %>
