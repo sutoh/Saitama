@@ -3,4 +3,6 @@ class Work < ActiveRecord::Base
   belongs_to :employee
   belongs_to :customer
   has_many :work_details
+
+  validates :employee_id, presence: true
 end

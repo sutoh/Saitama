@@ -1,15 +1,17 @@
 
   <div class="well card" data-intro="この画面はあなたのプロフィール画面です。ここのTOPカードには、画像・名前・アカウント名はここへ表示されます。画像が無い場合、自動的に「Yellow egg」になります。:)" data-step="3">
     <div class="span2" data-intro="問題・不満が生じた場合、どんな細かな事象でも「モバイルインテリジェンスチーム」へご連絡下さい。お待ちしております。:)" data-step="13">
-       <%= link_to image_tag(@employee.image.url(:thumb), {class: "logo frame"}), edit_employee_path(@employee) %>
+       <%= link_to image_tag(@profile.image.url(:thumb), {class: "logo frame"}), edit_employee_path(@profile.employee) %>
     </div>
     <div class="span6">
-      <p><%= @employee.user.login_id if !@employee.user.nil? %></p>
-      <p><strong><%= @employee.family_name + " " + @employee.given_name%></strong></p>
-      <p><strong><%= @employee.family_name_kana + " " + @employee.given_name_kana %></strong></p>
-      <%= link_to "変更", edit_employee_path(@employee), {class: "btn btn-success",data:  {intro: "まず、あなたの事を教えて下さい。名前、住所、誕生日などの基本情報の入力を行います。", step: "2"}} %>
-      <%= link_to "印刷", employee_path(@employee, format: "pdf"), {class: "btn btn-success",data:  {intro: "最後に、あなたに入力頂いた情報を元に、あなただけの「スキルシート」をPDF印刷出来ます。:)", step: "12"}} %>
+      <p><%= @profile.login_id %></p>
+      <p><strong><%= @profile.fullname %></strong></p>
+      <p><strong><%= @profile.fullname_kana %></strong></p>
+      <%= link_to "変更", edit_employee_path(@profile.employee), {class: "btn btn-success",data:  {intro: "まず、あなたの事を教えて下さい。名前、住所、誕生日などの基本情報の入力を行います。", step: "2"}} %>
+      <%= link_to "印刷", employee_path(@profile.employee, format: "pdf"), {class: "btn btn-success",data:  {intro: "最後に、あなたに入力頂いた情報を元に、あなただけの「スキルシート」をPDF印刷出来ます。:)", step: "12"}} %>
       <a class="btn btn-success introJs" href="javascript:void(0);" onclick="javascript:introJs().start();" data-intro="スキル管理DB 「Saitama」 へようこそ!! このサービスは、あなたの情報やスキルを保存し、いつでもどこでもPDF印刷が出来るサービスになります。" data-step="1">Show me how</a>
+      <%= link_to "パスワード変更", edit_profile_path, {class: "btn btn-success"} %>
+
     </div>
   </div>
   <div class="collapse">
@@ -37,25 +39,25 @@
       <div class="waku-detail-group">
         <div class="waku-detail">
           <div class="waku-detail-header">性別</div>
-          <div class="waku-detail-data"><%= @employee.gender_judge %></div>
+          <div class="waku-detail-data"><%= @profile.gender_judge %></div>
         </div>
         <div class="waku-detail">
           <div class="waku-detail-header">年齢</div>
           <div class="waku-detail-data">
-            <%= nenrei(@employee.birthday).to_s + " 歳  ( 誕生日: #{@employee.birthday} )" if !@employee.birthday.nil?  %>
+            <%= nenrei(@profile.birthday).to_s + " 歳  ( 誕生日: #{@profile.birthday} )" if !@profile.birthday.nil?  %>
           </div>
         </div>
         <div class="waku-detail">
           <div class="waku-detail-header">入社年月日</div>
-          <div class="waku-detail-data"><%= @employee.entrance_date %></div>
+          <div class="waku-detail-data"><%= @profile.entrance_date %></div>
         </div>
         <div class="waku-detail">
           <div class="waku-detail-header">経験年数</div>
-          <div class="waku-detail-data"><%= @employee.experience.to_s + " 年" if @employee.experience%></div>
+          <div class="waku-detail-data"><%= @profile.experience.to_s + " 年" if @profile.experience%></div>
         </div>
         <div class="waku-detail">
           <div class="waku-detail-header">最終学歴</div>
-          <div class="waku-detail-data"><%= @employee.education %></div>
+          <div class="waku-detail-data"><%= @profile.education %></div>
         </div>
       </div>
     </div>
@@ -68,19 +70,19 @@
       </div>
       <div class="waku-detail-group">
         <div class="gmap">
-          <%= gmaps4rails(@json) %>
+          <%= gmaps4rails(@profile.to_gmaps4rails) %>
         </div>
         <div class="waku-detail">
           <div class="waku-detail-header">郵便番号</div>
-          <div class="waku-detail-data"><%= @employee.postalcode %></div>
+          <div class="waku-detail-data"><%= @profile.postalcode %></div>
         </div>
         <div class="waku-detail">
           <div class="waku-detail-header">最寄り駅</div>
-          <div class="waku-detail-data"><%= @employee.station %></div>
+          <div class="waku-detail-data"><%= @profile.station %></div>
         </div>
         <div class="waku-detail">
           <div class="waku-detail-header">住所</div>
-          <div class="waku-detail-data"><%= @employee.address %></div>
+          <div class="waku-detail-data"><%= @profile.address %></div>
         </div>
       </div>
     </div>
@@ -94,7 +96,7 @@
       <div class="waku-detail-group">
         <div class="waku-detail">
           <div class="waku-detail-header">自己PR</div>
-          <div class="waku-detail-data"><%= @employee.self_pr %></div>
+          <div class="waku-detail-data"><%= @profile.self_pr %></div>
         </div>
       </div>
     </div>
@@ -116,21 +118,23 @@
               <p>★スキルレベル☆</p>
             </div>
           </li>
-          <% if @employee_skill %>
-          <% @skills.skills.each do |skill| %>
-          <% employee_skill = skill.employee_skills.find(:first) %>
-          <li>
-            <div class="icon">
-              <i class="icon-digg"></i>
-            </div>
-            <div class="data">
-              <h4><%= link_to skill.name, edit_employee_employee_skill_path(@employee, employee_skill) %></h4>
-              <p>
-                <% employee_skill.level.times do %>★<% end %>
-              </p>
-            </div>
-          </li>
-          <% end %>
+          <% if @profile.employee_skills_find_first %>
+            <% @profile.skills.each do |skill| %>
+              <% employee_skill = skill.employee_skills.find(:first) %>
+              <%= link_to edit_employee_employee_skill_path(@profile.employee, employee_skill) do %>
+                <li>
+                  <div class="icon">
+                    <i class="icon-digg"></i>
+                  </div>
+                  <div class="data">
+                    <h4><%= skill.name %></h4>
+                    <p>
+                      <% employee_skill.level.times do %>★<% end %>
+                    </p>
+                  </div>
+                </li>
+              <% end %>
+            <% end %>
           <% end %>
         </ul>
       </div>
@@ -166,25 +170,27 @@
               </div>
             </div>
           </li>
-          <% @work_details.each do |wd| %>
-          <li>
-            <div class="icon">
-              <i class="icon-digg"></i>
-            </div>
-            <div class="data">
-              <h6><%= wd.title %></h6>
-              <div id="Calender">
-                <div class="the_date blue">
-                    <div class="date_m"><%= wd.period_form.strftime("%Y年") %></div>
-                    <div class="date_d"><%= wd.period_form.strftime("%m月") %></div>
+          <% @profile.work_details.each do |wd| %>
+            <%= link_to(edit_work_work_detail_path(wd.work_id, wd.id )) do %>
+              <li>
+                <div class="icon">
+                  <i class="icon-digg"></i>
                 </div>
-                <div class="the_date pink">
-                    <div class="date_m"><%= wd.period_to.strftime("%Y年") %></div>
-                    <div class="date_d"><%= wd.period_to.strftime("%m月") %></div>
+                <div class="data">
+                  <h6><%= wd.title %></h6>
+                  <div id="Calender">
+                    <div class="the_date blue">
+                        <div class="date_m"><%= wd.period_form.strftime("%Y年") %></div>
+                        <div class="date_d"><%= wd.period_form.strftime("%m月") %></div>
+                    </div>
+                    <div class="the_date pink">
+                        <div class="date_m"><%= wd.period_to.strftime("%Y年") %></div>
+                        <div class="date_d"><%= wd.period_to.strftime("%m月") %></div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </li>
+              </li>
+            <% end %>
           <% end %>
         </ul>
       </div>
@@ -209,22 +215,23 @@
               <p>取得日</p>
             </div>
           </li>
-          <% if @employee_license %>
-          <% @licenses.licenses.each do |license| %>
-            <% employee_license = license.employee_licenses.find(:first) %>
-          <li>
-            <div class="icon">
-              <i class="icon-digg"></i>
-            </div>
-            <div class="data">
-              <%= link_to(license.name, edit_employee_employee_license_path(@employee, employee_license))%>
-              <p>
-                <%= link_to employee_license.acquisition_date, 
-              edit_employee_employee_license_path(@employee, employee_license) %>
-              </p>
-            </div>
-          </li>
-          <% end %>
+          <% if @profile.employee_licenses_find_first %>
+            <% @profile.licenses.each do |license| %>
+              <% employee_license = license.employee_licenses.find(:first) %>
+              <%= link_to(edit_employee_employee_license_path(@profile.employee, employee_license)) do %>
+              <li>
+                <div class="icon">
+                  <i class="icon-digg"></i>
+                </div>
+                <div class="data">
+                  <%= license.name %>
+                  <p>
+                  <%= employee_license.acquisition_date %>
+                  </p>
+                </div>
+              </li>
+              <% end %>
+            <% end %>
           <% end %>
         </ul>
       </div>
@@ -234,10 +241,10 @@
 
 <div id="modal">
   <%= render :layout => "/shared/waku_modal", locals: {waku_id: "kihon", title: "基本情報"} do %>
-    <%= form_for(@employee) do |f| %>
+    <%= form_for(@profile.employee) do |f| %>
       <div class="waku-detail-group">
         <%= render :layout => "/shared/waku_modal_detail", locals: {detail_header: "性別", f: f} do %><%= f.select :gender, Genders_list.invert %><% end %>
-        <%= render :layout => "/shared/waku_modal_detail", locals: {detail_header: "年齢", f: f} do %><%= nenrei(@employee.birthday) if !@employee.birthday.nil?  %><% end %>
+        <%= render :layout => "/shared/waku_modal_detail", locals: {detail_header: "年齢", f: f} do %><%= nenrei(@profile.birthday) if !@profile.birthday.nil?  %><% end %>
         <%= render :layout => "/shared/waku_modal_detail", locals: {detail_header: "誕生日", f: f} do %><%= f.date_select :birthday, {start_year: 1900, end_year: Date.today.year},{class: "select_date"} %><% end %>
         <%= render :layout => "/shared/waku_modal_detail", locals: {detail_header: "入社年月日", f: f} do %><%= f.date_select :entrance_date, {start_year: 1998, end_year: Date.today.year}, {class: "select_date"} %><% end %>
         <%= render :layout => "/shared/waku_modal_detail", locals: {detail_header: "経験年数", f: f} do %><%= f.number_field :experience %><% end %>
@@ -248,7 +255,7 @@
   <% end %>
   
   <%= render :layout => "/shared/waku_modal", locals: {waku_id: "sumika", title: "住所"} do %>
-    <%= form_for(@employee) do |f| %>
+    <%= form_for(@profile.employee) do |f| %>
       <div class="waku-detail-group">
         <%= render :layout => "/shared/waku_modal_detail", locals: {detail_header: "郵便番号", f: f} do %><%= f.text_field :postalcode %><% end %>
         <%= render :layout => "/shared/waku_modal_detail", locals: {detail_header: "最寄り駅", f: f} do %><%= f.text_field :station %><% end %>
@@ -259,7 +266,7 @@
   <% end %>
 
   <%= render :layout => "/shared/waku_modal", locals: {waku_id: "appeal", title: "アピール"} do %>
-    <%= form_for(@employee) do |f| %>
+    <%= form_for(@profile.employee) do |f| %>
       <div class="waku-detail-group">
         <%= render :layout => "/shared/waku_modal_detail", locals: {detail_header: "自己PR", f: f} do %><%= f.text_area :self_pr, rows: "8"%><% end %>
       </div>
@@ -267,19 +274,19 @@
     <% end %>
   <% end %>
 
-  <% if @employee_skill %>
+  <% if @profile.employee_skills_find_first %>
     <%= render :layout => "/shared/waku_modal", locals: {waku_id: "skill", title: "スキル"} do %>
-      <%= form_for([@employee, @employee_skill]) do %>
+      <%= form_for([@profile.employee, @profile.employee_skills_find_first]) do %>
         <div class="waku-detail-group">
           <div class="waku-detail">
             <div class="waku-detail-data">スキル名</div>
             <div class="waku-detail-data2">レベル</div>
           </div>
-          <% @employee_skills.each do |employee_skill_| %>
+          <% @profile.employee_skills.each do |employee_skill_| %>
             <%= fields_for("employee_skill_[]",employee_skill_) do |skill| %>
               <div class="waku-detail">
-                <div class="waku-detail-data"><%= skill.select :skill_id, @skills.skills.map{|s|[s.name, s.id]} %></div>
-                <div class="waku-detail-data2"><%= skill.number_field :level, class: "level_field" %></div>
+                <div class="waku-detail-data"><%= skill.select :skill_id, @profile.skills.map{|s|[s.name, s.id]} %></div>
+                <div class="waku-detail-data2"><%= skill.range_field :level, class: "level_field", min: 1, max: 5 %></div>
               </div>
             <% end %>
           <% end %> 
@@ -290,18 +297,18 @@
     <% end %>
   <% end %>
 
-  <% if @employee_license %>
+  <% if @profile.employee_licenses_find_first %>
     <%= render :layout => "/shared/waku_modal", locals: {waku_id: "license", title: "資格"} do %>
-      <%= form_for([@employee, @employee_license]) do %>
+      <%= form_for([@profile.employee, @profile.employee_licenses_find_first]) do %>
         <div class="waku-detail-group">
           <div class="waku-detail">
             <div class="waku-detail-data">資格名</div>
             <div class="waku-detail-data2">取得日</div>
           </div>
-          <% @employee_licenses.each do |employee_license_| %>
+          <% @profile.employee_licenses.each do |employee_license_| %>
             <%= fields_for("employee_license_[]",employee_license_) do |license| %>
               <div class="waku-detail">
-                <div class="waku-detail-data"><%= license.select :license_id, @licenses.licenses.map{|s|[s.name, s.id]} %></div>
+                <div class="waku-detail-data"><%= license.select :license_id, @profile.licenses.map{|s|[s.name, s.id]} %></div>
                 <div class="waku-detail-data2"><%= license.date_select :acquisition_date, {}, {class: "select_date"} %></div>
               </div>
             <% end %>

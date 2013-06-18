@@ -5,7 +5,7 @@ FactoryGirl.define do
     name "License name"
     validity_term "3year"
     publisher "test"
-    note "none"
+    note "License note"
     
     trait :ruby do
       name "Ruby"

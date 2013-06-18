@@ -94,7 +94,7 @@ input[type="color"],
 input,
 textarea,
 .uneditable-input {
-  width: 206px; // plus 12px padding and 2px border
+  width: 400px; // plus 12px padding and 2px border
 }
 // Reset height since textareas have rows
 textarea {
@@ -147,6 +147,10 @@ input[type="button"],
 input[type="radio"],
 input[type="checkbox"] {
   width: auto; // Override of generic input selector
+}
+
+input[type="number"] {
+  width: 206px
 }
 
 // Set the height of select and file controls to match text inputs

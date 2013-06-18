@@ -6,6 +6,7 @@ describe "departments/index" do
       stub_model(Department),
       stub_model(Department)
     ])
+    view.stub(:controller_name).and_return("department")
   end
 
   it "renders a list of departments" do

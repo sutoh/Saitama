@@ -2,13 +2,15 @@
 class EmployeesController < ApplicationController
   # GET /employees
   # GET /employees.json
+  before_filter :set_department_list, only: [:new, :edit, :create, :update]
+  before_filter :set_employee, only: [:edit, :update, :destroy]
+
   def index
     @employees = Employee.all
     @json = Employee.all.to_gmaps4rails
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @employees }
       # Example: Basic Usage
       format.pdf { render_employee_list(@employees) }
     end
@@ -17,27 +19,12 @@ class EmployeesController < ApplicationController
   # GET /employees/1
   # GET /employees/1.json
   def show
-    @employee = Employee.find(params[:id])
-    @licenses = Employee.find(@employee, include: :licenses)
-    @skills = Employee.find(@employee, include: :skills)
-    @employee_skill = @employee.employee_skills.find(:first)
-    @employee_skills = @employee.employee_skills.all
-    @employee_license = @employee.employee_licenses.find(:first)
-    @employee_licenses = @employee.employee_licenses.all
-    @work = @employee.works.all
-    @work_details = []
-    @work.each do |w|
-      w.work_details.all.each do |wd|
-        @work_details << wd
-      end
-    end
-    @json = @employee.to_gmaps4rails
+    @profile = Profile.new(get_employee_from_params)
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @employee }
       # Example: Using thinreports-rails gem
       # see https://github.com/takeshinoda/thinreports-rails
-      format.pdf {  report = Reports::Profile::render_profile(@employee,@licenses,@skills,@work,@work_details)
+      format.pdf {  report = Reports::Profile::render_profile(@profile.employee,@profile.licenses,@profile.skills,@profile.works,@profile.work_details)
                     send_data report.generate, filename: 'profile.pdf', 
                                                type: 'application/pdf', 
                                                disposition: 'inline' }
@@ -48,31 +35,21 @@ class EmployeesController < ApplicationController
   # GET /employees/new.json
   def new
     @employee = Employee.new
-    @departments = Department.find(:all, :select => "Departments.name, Departments.id")
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @employee }
-    end
   end
 
   # GET /employees/1/edit
   def edit
-    @employee = Employee.find(params[:id])
-    @departments = Department.find(:all, :select => "Departments.name, Departments.id")
   end
 
   # POST /employees
   # POST /employees.json
   def create
     @employee = Employee.new(params[:employee])
-    @departments = Department.find(:all, :select => "Departments.name, Departments.id")
     respond_to do |format|
       if @employee.save
         format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
-        format.json { render json: @employee, status: :created, location: @employee }
       else
         format.html { render action: "new" }
-        format.json { render json: @employee.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -80,16 +57,11 @@ class EmployeesController < ApplicationController
   # PUT /employees/1
   # PUT /employees/1.json
   def update
-    @employee = Employee.find(params[:id])
-    @departments = Department.find(:all, :select => "Departments.name, Departments.id")
-
     respond_to do |format|
       if @employee.update_attributes(params[:employee])
         format.html { redirect_to @employee, notice: 'Employee was successfully updated.' }
-        format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @employee.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -97,15 +69,14 @@ class EmployeesController < ApplicationController
   # DELETE /employees/1
   # DELETE /employees/1.json
   def destroy
-    @employee = Employee.find(params[:id])
     @employee.destroy
 
     respond_to do |format|
       format.html { redirect_to employees_url }
-      format.json { head :no_content }
     end
   end
-    private
+
+  private
 
   def render_employee_list(employees)
     report = ThinReports::Report.new layout: File.join(Rails.root, 'app', 'reports', 'employees.tlf')
@@ -124,4 +95,16 @@ class EmployeesController < ApplicationController
                                type: 'application/pdf', 
                                disposition: 'attachment'
   end
+
+  def set_department_list
+    @departments = Department.find(:all, :select => "Departments.name, Departments.id")
+  end
+
+  def set_employee
+    @employee = get_employee_from_params
+  end
+
+  def get_employee_from_params
+    Employee.find(params[:id])
+  end 
 end

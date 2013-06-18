@@ -21,6 +21,9 @@ FactoryGirl.define do
     staff_flg 1
     del_flg 0
     association :department
+    gmaps     true 
+    latitude  35.690859
+    longitude 139.7641696
     
     trait :rubeus do
       family_name "rubeus"

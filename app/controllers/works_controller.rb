@@ -46,7 +46,9 @@ class WorksController < ApplicationController
   # POST /works.json
   def create
     @work = Work.new(params[:work])
-
+    @employees = Employee.all
+    @customers = Customer.all
+    @staff = Employee.where(tech_flg:2)
     respond_to do |format|
       if @work.save
         format.html { redirect_to @work, notice: 'Work was successfully created.' }
@@ -62,7 +64,9 @@ class WorksController < ApplicationController
   # PUT /works/1.json
   def update
     @work = Work.find(params[:id])
-
+    @employees = Employee.all
+    @customers = Customer.all
+    @staff = Employee.where(tech_flg:2)
     respond_to do |format|
       if @work.update_attributes(params[:work])
         format.html { redirect_to @work, notice: 'Work was successfully updated.' }

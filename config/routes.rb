@@ -1,10 +1,10 @@
 Saitama::Application.routes.draw do
-  devise_for :users do
+  devise_for :users
+  devise_scope :user do
     get "/", :to => "devise/sessions#new"
   end
   
-  get "profile/index"
-
+  resource :profile
   resources :customers
   
   resources :works do

@@ -4,4 +4,7 @@
 
 jQuery ->
   $("ul.nav li").eq(2).addClass("active")
-  
+
+$(document).on "change", "[class*='employee_skill_range']", ->
+  form = $(this).parents("form")[0]
+  $(form).trigger "submit.rails"
